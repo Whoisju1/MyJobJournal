@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Whoisju1/JobNotes/issues"
   },
-  "homepage": "https://github.com/Whoisju1/JobNotes#readme"
+  "homepage": "https://github.com/Whoisju1/JobNotes#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
