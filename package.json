@@ -1,27 +1,33 @@
 {
-  "name": "jobnotes",
-  "version": "1.0.0",
-  "description": "An app to help you keep track of your own job hunt. ",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Whoisju1/JobNotes.git"
-  },
-  "author": "Juan John-Charles",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Whoisju1/JobNotes/issues"
-  },
-  "homepage": "https://github.com/Whoisju1/JobNotes#readme",
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "express-session": "^1.15.5",
-    "mongoose": "^4.11.5",
-    "passport": "^0.3.2",
-    "passport-google-oauth20": "^1.0.0"
-  }
+    "name": "jobnotes",
+    "version": "1.0.0",
+    "description": "An app to help you keep track of your own job hunt. ",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon server.js",
+        "client": "npm run start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Whoisju1/JobNotes.git"
+    },
+    "author": "Juan John-Charles",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Whoisju1/JobNotes/issues"
+    },
+    "homepage": "https://github.com/Whoisju1/JobNotes#readme",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "concurrently": "^3.5.0",
+        "express": "^4.15.3",
+        "express-session": "^1.15.5",
+        "mongoose": "^4.11.5",
+        "passport": "^0.3.2",
+        "passport-google-oauth20": "^1.0.0",
+        "react-router-dom": "^4.1.2"
+    }
 }
