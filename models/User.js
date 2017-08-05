@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const Applications = require('./Application');
+const applicationSchema = require('./Application');
 
 const userSchema = new Schema({
 	googleID: String,
@@ -16,7 +16,7 @@ const userSchema = new Schema({
 		type: String,
 		trim: true
 	},
-	// Applications: [Applications],
+	Applications: [applicationSchema],
 	NumOfApplications: {
 		type: Number,
 		default: 0
