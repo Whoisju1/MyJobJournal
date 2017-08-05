@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Whoisju1/JobNotes#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "mongoose": "^4.11.5",
+    "passport": "^0.3.2",
+    "passport-google-oauth20": "^1.0.0"
   }
 }
