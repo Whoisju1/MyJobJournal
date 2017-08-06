@@ -1,9 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Header from './Header';	
+import * as actions from '../actions';
+import {connect} from 'react-redux';
 
 class App extends React.Component {
-	constructor() {
-		super();
+
+	componentDidMount () {
+		this.props.fetchUser();
+	}
+	
+	
+	constructor(props) {
+		super(props);
 		this.state = { someKey: 'someValue' };
 	}
 
@@ -12,6 +21,7 @@ class App extends React.Component {
 			<div className="container">
 				<BrowserRouter>
 					<div style={{textAlign:'center', margin: '10% auto'}}>
+					<Header />
 						Welcome to JobNotes <br/><br/>
 						<a href="/api/current_user">Go to user Info</a> <br/>
 						<a href="/api/logout">Logout User</a>  <br/>
@@ -23,4 +33,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default connect(null, actions)(App);
