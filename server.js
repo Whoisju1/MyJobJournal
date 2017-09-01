@@ -26,6 +26,16 @@ mongoose.connect(keys.mongoURI);
 // });
 
 // user express sessions as a middleware
+if (process.env.NODE_ENV === 'production') {
+    //express will server up production assets like the main.js file or main.css file
+    app.use(express.static('client/build'));
+    
+    //express will serve up the index.html file if it doesn't recognize the route
+    const path = require('path');
+    app.get('*', (req, res) => {
+       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')); 
+    });
+}
 
 app.use(
 	session({
