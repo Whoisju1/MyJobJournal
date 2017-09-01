@@ -13,6 +13,9 @@ import './styles/index.css';
 import './styles/header.css';
 import './styles/nav.css';
 import './styles/landing.css';
+import './styles/single.css';
+import './styles/form.css';
+import './styles/dashboard.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
