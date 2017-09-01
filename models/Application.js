@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const applicationSchema = new Schema({
-    company: {
-        type: String,
-        trim: true
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    companyInfo: {
+    company: {
         type: String,
         trim: true
     },
@@ -14,6 +14,18 @@ const applicationSchema = new Schema({
         type: Number,
     },
     companyEmail:{
+        type: String,
+        trim: true
+    },
+    companyLocation: {
+        type: String,
+        trim: true
+    },
+    companyWebsite: {
+        type: String,
+        trim: true
+    },
+    companyInfo: {
         type: String,
         trim: true
     },
@@ -31,10 +43,9 @@ const applicationSchema = new Schema({
     },
     dateApplied: {
         type: Date,
-        default: Date().now
     },
     requirements: {
-        type: [String],
+        type: String,
         trim: true
     },
     compensation: {
@@ -43,7 +54,12 @@ const applicationSchema = new Schema({
     jobDetails: {
         type: String,
         trim: true
+    },
+    dateCreated: {
+        type: Date,
+        default: Date.now
     }
 });
 
-module.exports = applicationSchema;
+const Application = mongoose.model('Application', applicationSchema);
+module.exports = Application;

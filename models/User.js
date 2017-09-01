@@ -16,11 +16,18 @@ const userSchema = new Schema({
 		type: String,
 		trim: true
 	},
-	Applications: [applicationSchema],
-	NumOfApplications: {
+	image: {
+		type: String
+	},
+	applications: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Application'
+	}],
+	numOfApplications: {
 		type: Number,
 		default: 0
 	}
 });
 
-mongoose.model('users', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;
