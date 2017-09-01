@@ -7,6 +7,10 @@ import {connect} from 'react-redux';
 import Header from './Header';	
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import FormData from './PostForm';
+import requireAuth from './HOC/requireAuth';
+import SingleItem from './SingleItem';
+import UpdateForm from './UpdateForm';
 
 class App extends React.Component {
 
@@ -22,12 +26,15 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div className="main-container">
 				<BrowserRouter>
 					<div className='main-container'>
 					<Header />
+					<Route path='/add' component={FormData}/> 
 					<Route exact path='/' component={Landing}/>
-					<Route path='/applications' component={Dashboard}/>
+					<Route exact path='/applications' component={requireAuth(Dashboard)}/>
+					<Route exact path='/application/:id' component={SingleItem}/>
+					<Route exact path='/edit/:id' component={UpdateForm}/>
 					</div>
 				</BrowserRouter>
 			</div>
@@ -36,6 +43,3 @@ class App extends React.Component {
 }
 
 export default connect(null, actions)(App);
-
-					// <a href="/api/current_user">Go to user Info</a> <br/>
-					// <a href="/api/logout">Logout User</a>  <br/>
