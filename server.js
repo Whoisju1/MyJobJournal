@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 require('./models/User');
+require('./models/Application');
 require('./services/passport');
 const app = express();
 
@@ -14,11 +15,17 @@ const app = express();
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
-// user express sessions as a middleware
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/job-note', {
+// 	useMongoClient: true 
+// });
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+// 	console.log(`mongoose connected successfully`);
+// });
 
-// app.use(session({
-//     store: new MongoStore({ mongooseConnection: mongoose.connection })
-// }));
+// user express sessions as a middleware
 
 app.use(
 	session({
