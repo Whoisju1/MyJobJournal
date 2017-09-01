@@ -1,0 +1,32 @@
+.index {
+    position: relative;
+    top: -76px;
+    left: -21px;
+    font-size: 80%;
+    color: lightgray;
+}
+
+.single-entry {
+    position: relative;
+    margin: 1% auto;
+    border: .5px solid darkgray;
+    width: 50%;
+    padding: 2% 2% 2% 3%;
+}
+
+.forward {
+    display: flex;
+    flex-flow: column;
+}
+
+.backward {
+    display: flex;
+    flex-flow: column-reverse;
+}
+
+.order-change {
+    cursor: pointer;
+    position: absolute;
+    top: 12%;
+    left: 13%;
+}

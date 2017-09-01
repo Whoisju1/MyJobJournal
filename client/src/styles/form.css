@@ -1,0 +1,10 @@
+.post-form {
+    width: 50%;
+    margin: 1% auto 5% auto;
+    border: .5px solid lightgray;
+    padding: 1%;
+}
+
+.form-input {
+    margin: 2% 0;
+}

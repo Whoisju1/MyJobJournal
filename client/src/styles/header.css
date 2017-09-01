@@ -1,5 +1,5 @@
 header {
-    height: 15%;
+    height: 10%;
     border: 1px solid black;
     display: flex;
     justify-content: space-around;
@@ -10,4 +10,26 @@ header {
 
 header :any-link {
     color: #fff;
+}
+
+.logo {
+    text-decoration: none;
+    font-family: Courier New, Courier, monospace;
+    font-size: 250%;
+}
+
+.profile-area {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.profile-img {
+    border: 2px solid lightgray;
+    border-radius: 50px;
+    height: 70%;
+}
+
+.user-name {
+    margin: 0;
 }

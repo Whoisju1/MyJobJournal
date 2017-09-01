@@ -8,4 +8,14 @@ html body {
 .main-container {
     height: 100vh;
     width: 100%;
+    overflow-x: hidden;
+}
+
+.no-content {
+    font-style: italic;
+    color: gray;
+}
+
+.open-form {
+    color: #2c3e50
 }
