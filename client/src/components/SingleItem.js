@@ -90,7 +90,7 @@ class SingleItem extends React.Component {
 							</div>
 							<div className="single-output">
 								<span className="single-title">Date of Application:</span>{' '}
-								{this.dateApplied ? (
+								{item.dateApplied ? (
 									`${moment(item.dateApplied)
 										.add(1, 'day')
 										.format('LL')} (${moment(item.dateApplied).fromNow()})`
