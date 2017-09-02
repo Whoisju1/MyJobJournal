@@ -11,7 +11,7 @@
     right: 2%;
     top: 5%;
     cursor: pointer;
-    color: gray;
+    color: #337ab7;
 }
 
 .date-created {
@@ -109,4 +109,10 @@
 .larger-content {
     margin-left: 1%;
     white-space: pre-wrap;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 10%;
+    right: 2%;
 }
