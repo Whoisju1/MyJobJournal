@@ -41,7 +41,8 @@ class UpdateForm extends React.Component {
 				dateApplied: application.dateApplied || '',
 				requirements: application.requirements || '',
 				compensation: application.compensation || '',
-				jobDetails: application.jobDetails || ''
+				jobDetails: application.jobDetails || '',
+				source: application.source
 			});
 		}
 	}
@@ -61,7 +62,8 @@ class UpdateForm extends React.Component {
 			dateApplied: '',
 			requirements: '',
 			compensation: '',
-			jobDetails: ''
+			jobDetails: '',
+			source: ''
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -72,6 +74,7 @@ class UpdateForm extends React.Component {
 	handleSubmit(event) {
 		let id = this.props.match.params.id;
 		this.props.updateData(id, this.state);
+		console.log('stuff being updated: ',this.state);
 		event.preventDefault();
 		this.setState({
 			company: '',
@@ -86,7 +89,8 @@ class UpdateForm extends React.Component {
 			dateApplied: '',
 			requirements: '',
 			compensation: '',
-			jobDetails: ''
+			jobDetails: '',
+			source: ''
 		});
 	}
 
@@ -138,6 +142,27 @@ class UpdateForm extends React.Component {
 						</InputGroup>
 					</Col>
 				</FormGroup>
+				<FormGroup controlId="formHorizontalEmail">
+				<Col componentClass={ControlLabel} sm={2}>
+					Source
+				</Col>
+				<Col sm={10}>
+					<InputGroup>
+						<InputGroup.Addon>
+							<Icon icon={office} />
+						</InputGroup.Addon>
+						<FormControl
+							name="source"
+							type="text"
+							autofocus 
+							required
+							onChange={this.saveToState}
+							value={this.state.source}
+							placeholder="Where you found out about the position"
+						/>
+					</InputGroup>
+				</Col>
+			</FormGroup>
 				<FormGroup controlId="formHorizontalEmail">
 					<Col componentClass={ControlLabel} sm={2}>
 						Information About the Company

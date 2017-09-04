@@ -46,6 +46,7 @@ class SingleItem extends React.Component {
 						return <DeleteBtn cb={() => dltData(item._id)} close={closeModal} />;
 					}
 				};
+				console.log('item in single item: ',item);
 				let param = this.props.match.params.id;
 				if (param === item._id) {
 					return (
@@ -79,6 +80,10 @@ class SingleItem extends React.Component {
 							<div className="single-output">
 								<span className="single-title"> Location:</span>{' '}
 								{item.companyLocation || <span className="no-content">Not Specified</span>}
+							</div>
+							<div className="single-output">
+								<span className="single-title"> Source:</span>{' '}
+								{item.source || <span className="no-content">Not Specified</span>}
 							</div>
 							<div className="single-output">
 								<span className="single-title"> Company Website:</span>{' '}

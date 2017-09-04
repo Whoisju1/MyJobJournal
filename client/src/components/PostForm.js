@@ -35,7 +35,8 @@ class PostForm extends React.Component {
 			dateApplied: '',
 			requirements: '',
 			compensation: '',
-			jobDetails: ''
+			jobDetails: '',
+			source: ''
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.saveToState = this.saveToState.bind(this);
@@ -57,7 +58,8 @@ class PostForm extends React.Component {
 			dateApplied: '',
 			requirements: '',
 			compensation: '',
-			jobDetails: ''
+			jobDetails: '',
+			source: ''
 		});
 	}
 	saveToState(e) {
@@ -89,6 +91,27 @@ class PostForm extends React.Component {
 								onChange={this.saveToState}
 								value={this.state.company}
 								placeholder="Employer's name"
+							/>
+						</InputGroup>
+					</Col>
+				</FormGroup>
+				<FormGroup controlId="formHorizontalEmail">
+					<Col componentClass={ControlLabel} sm={2}>
+						Source
+					</Col>
+					<Col sm={10}>
+						<InputGroup>
+							<InputGroup.Addon>
+								<Icon icon={office} />
+							</InputGroup.Addon>
+							<FormControl
+								name="source"
+								type="text"
+								autofocus 
+								required
+								onChange={this.saveToState}
+								value={this.state.source}
+								placeholder="Where you found out about the position"
 							/>
 						</InputGroup>
 					</Col>

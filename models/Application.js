@@ -55,6 +55,9 @@ const applicationSchema = new Schema({
         type: String,
         trim: true
     },
+    source: {
+        type: String,
+    },
     dateCreated: {
         type: Date,
         default: Date.now

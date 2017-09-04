@@ -22,6 +22,7 @@ module.exports = app => {
 			jobID = req.body.jobID,
 			position = req.body.position,
 			status = req.body.status,
+			source = req.body.source,
 			dateApplied = req.body.dateApplied,
 			requirements = req.body.requirements,
 			compensation = req.body.compensation,
@@ -44,6 +45,7 @@ module.exports = app => {
 				dateApplied,
 				requirements,
 				compensation,
+				source,
 				jobDetails
 			});
 
@@ -80,8 +82,9 @@ module.exports = app => {
 			application.requirements = req.body.requirements;
 			application.compensation = req.body.compensation;
 			application.jobDetails = req.body.jobDetails;
+			application.source = req.body.source;
 
-			console.log('-----------body-----------------: ', req.body);
+			console.log('-----------edited body-----------------: ', req.body.source);
 
 			application.save((err, data) => {
 				if (err) return console.log('Error: ', err);
