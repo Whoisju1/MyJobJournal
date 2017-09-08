@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Nav from './Nav';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
@@ -16,15 +15,12 @@ class Header extends Component {
 			case false:
 				return <a href="/auth/google">Login With Google</a>;
 			default:
-				return [
-					<Nav key="1" />,
-					<div className="profile-area" key="2">
+				return <div className="profile-area" key="2">
 						<img src={this.props.auth.image} className="profile-img" alt="profile" />
 						<p className="user-name">
 							{this.props.auth.firstName}
 						</p>
 					</div>
-				];
 		}
 	}
 
