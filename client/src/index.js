@@ -12,7 +12,6 @@ import reducers from './reducers';
 import './styles/reset.css';
 import './styles/index.css';
 import './styles/header.css';
-import './styles/nav.css';
 import './styles/landing.css';
 import './styles/single.css';
 import './styles/form.css';
