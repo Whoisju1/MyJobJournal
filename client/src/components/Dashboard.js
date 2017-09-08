@@ -9,6 +9,7 @@ import { Glyphicon } from 'react-bootstrap';
 
 // import component
 import DeleteBtn from './DeleteBtn';
+import Aside from './Aside';
 
 class Dashboard extends React.Component {
 	constructor(props) {
@@ -121,10 +122,15 @@ class Dashboard extends React.Component {
 	render() {
 		return (
 			<div className={`${this.state.order} dash`}>
-				<div className="sort-btns">
-					<button onClick={() => this.listSort('company')} className="company-sort">Sort by Company</button>
-					<button onClick={() => this.listSort('position')} className="position-sort">Sort By Position</button>
-				</div>
+				<Aside>
+					<div className="sort-container">
+						<h3 className="sort-heading">Sort by...</h3>
+						<div className="sort-by" onClick={() => this.listSort('company')}>Company</div>
+						<div className="sort-by" onClick={() => this.listSort('position')}>Position</div>
+						<div className="sort-by" onClick={() => this.listSort('dateApplied')}>Date Applied</div>
+						<div className="sort-by" onClick={() => this.listSort('dateCreated')}>Date Created</div>
+					</div>
+				</Aside>
 				<div className="order-change" onClick={this.changeOrder}>
 					{this.showOrder()}
 				</div>
