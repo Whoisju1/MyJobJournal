@@ -155,7 +155,6 @@ class UpdateForm extends React.Component {
 							name="source"
 							type="text"
 							autofocus 
-							required
 							onChange={this.saveToState}
 							value={this.state.source}
 							placeholder="Where you found out about the position"
