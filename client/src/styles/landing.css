@@ -8,3 +8,25 @@
     left: 0;
     z-index: -1;
 }
+
+.sign-up-btn-container {
+    width: 3000px;
+}
+
+.login-container {
+    margin: 0 auto;
+    background: #fff;
+    width: 20%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-heading {
+    font-weight: bolder;
+}
+
+.login-btn {
+    width: 150px;
+}
