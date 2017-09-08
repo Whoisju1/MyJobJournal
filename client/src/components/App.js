@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 
@@ -11,6 +11,7 @@ import FormData from './PostForm';
 import requireAuth from './HOC/requireAuth';
 import SingleItem from './SingleItem';
 import UpdateForm from './UpdateForm';
+import NotFound from './NotFound.js';
 
 class App extends React.Component {
 
@@ -29,12 +30,15 @@ class App extends React.Component {
 			<div className="main-container">
 				<BrowserRouter>
 					<div className='main-container'>
-					<Header />
-					<Route path='/add' component={FormData}/> 
-					<Route exact path='/' component={Landing}/>
-					<Route exact path='/applications' component={requireAuth(Dashboard)}/>
-					<Route exact path='/application/:id' component={SingleItem}/>
-					<Route exact path='/edit/:id' component={UpdateForm}/>
+						<Header />
+						<Switch>
+							<Route path='/add' component={FormData}/> 
+							<Route exact path='/' component={Landing}/>
+							<Route exact path='/applications' component={requireAuth(Dashboard)}/>
+							<Route exact path='/application/:id' component={SingleItem}/>
+							<Route exact path='/edit/:id' component={UpdateForm}/>
+							<Route path='*' component={NotFound}/>
+						</Switch>
 					</div>
 				</BrowserRouter>
 			</div>
