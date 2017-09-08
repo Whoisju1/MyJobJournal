@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Icon from 'react-icons-kit';
 import { ic_delete_forever } from 'react-icons-kit/md/ic_delete_forever';
 import { ic_add_circle } from 'react-icons-kit/md/ic_add_circle';
-import {Glyphicon} from 'react-bootstrap';
+import { Glyphicon } from 'react-bootstrap';
 
 // import component
 import DeleteBtn from './DeleteBtn';
@@ -13,11 +13,16 @@ import DeleteBtn from './DeleteBtn';
 class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { showConfirm: false, order: 'forward' };
+		this.state = {
+			showConfirm: false,
+			order: 'forward',
+			sortOrder: null
+		};
 		this.requestConfirmation = this.requestConfirmation.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 		this.changeOrder = this.changeOrder.bind(this);
 		this.showOrder = this.showOrder.bind(this);
+		this.listSort = this.listSort.bind(this);
 	}
 	changeOrder() {
 		if (this.state.order === 'forward') {
@@ -26,14 +31,13 @@ class Dashboard extends React.Component {
 			this.setState({ order: 'forward' });
 		}
 	}
-	
-	showOrder () {
-		if (this.state.order === 'forward') {
-			return <Glyphicon glyph='chevron-down' />;
-		} else {
-			return <Glyphicon glyph='chevron-up' />;
-		}
 
+	showOrder() {
+		if (this.state.order === 'forward') {
+			return <Glyphicon glyph="chevron-down" />;
+		} else {
+			return <Glyphicon glyph="chevron-up" />;
+		}
 	}
 
 	requestConfirmation() {
@@ -48,19 +52,54 @@ class Dashboard extends React.Component {
 		this.props.fetchData();
 	}
 
-	renderEntries() {
+	listSort (order = null) {
+		this.setState({sortOrder: order});
+		console.log(`%csortOrder: ${this.state.sortOrder}`,'color:green');
+	}
+
+	renderEntries(filterSort) {
+		let {sortOrder} = this.state;
 		let dltData = this.props.deleteData.bind(this);
 		let requestConfirmation = this.requestConfirmation.bind(this);
 		let closeModal = this.closeModal.bind(this);
 		if (this.props.data !== null) {
 			let entries = this.props.data.applications;
-			return entries.map((item, index) => {
+
+			// create function will be passed as an argument in the sort function
+			const compareFunc = propKey => {
+				return (a, b) => {
+					let itemA = a[propKey].toUpperCase();
+					let itemB = b[propKey].toUpperCase();
+
+					if (itemA < itemB) {
+						return -1;
+					}
+					if (itemA > itemB) {
+						return 1;
+					}
+					return 0;
+				};
+			};
+			
+			const sortStr = compareFunc(sortOrder);
+
+			const sortedData = (filterSort, array) => {
+				if (!sortOrder) return array;
+				return array.concat().sort(filterSort);
+			};
+
+			const orderedList = sortedData(sortStr, entries);
+
+			console.log(`%csortOrder in function: ${sortOrder}`,'color:red');
+			console.table(orderedList);
+
+			return orderedList.map((item, index) => {
 				const showModal = () => {
 					if (this.state.showConfirm) {
 						return <DeleteBtn cb={() => dltData(item._id)} close={closeModal} />;
 					}
 				};
-
+			
 				return (
 					<SingleEntry key={index}>
 						<Link to={`/application/${item._id}`}>View Job Information</Link>
@@ -72,9 +111,7 @@ class Dashboard extends React.Component {
 						</div>
 						<Icon icon={ic_delete_forever} onClick={requestConfirmation} className="dlt" />
 						{showModal()}
-						<div className="index">
-							{index + 1}
-						</div>
+						<div className="index">{index + 1}</div>
 					</SingleEntry>
 				);
 			});
@@ -83,9 +120,15 @@ class Dashboard extends React.Component {
 
 	render() {
 		return (
-			<div className={this.state.order}>
-				<div className='order-change' onClick={this.changeOrder}>{this.showOrder()}</div>
-				<Glyphicon glyph='down' />
+			<div className={`${this.state.order} dash`}>
+				<div className="sort-btns">
+					<button onClick={() => this.listSort('company')} className="company-sort">Sort by Company</button>
+					<button onClick={() => this.listSort('position')} className="position-sort">Sort By Position</button>
+				</div>
+				<div className="order-change" onClick={this.changeOrder}>
+					{this.showOrder()}
+				</div>
+				<Glyphicon glyph="down" />
 				<Link to="/add">
 					<Icon icon={ic_add_circle} size={75} className="open-form" />
 				</Link>
@@ -102,11 +145,7 @@ const mapStateToProps = ({ data }) => {
 
 class SingleEntry extends React.Component {
 	render() {
-		return (
-			<div className="single-entry">
-				{this.props.children}
-			</div>
-		);
+		return <div className="single-entry">{this.props.children}</div>;
 	}
 }
 export default connect(mapStateToProps, actions)(Dashboard);
