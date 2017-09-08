@@ -84,8 +84,6 @@ module.exports = app => {
 			application.jobDetails = req.body.jobDetails;
 			application.source = req.body.source;
 
-			console.log('-----------edited body-----------------: ', req.body.source);
-
 			application.save((err, data) => {
 				if (err) return console.log('Error: ', err);
 				res.send(data);
