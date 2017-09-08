@@ -1,33 +1,38 @@
 header {
     height: 10%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    background-color: #2c3e50;
-    color: #fff;
+    /* background-color: #2c3e50; */
+    /* color: #fff; */
+    color: black;
 }
 
 header :any-link {
-    color: #fff;
+    /* color: #fff; */
+    color: black;
 }
 
 .logo {
     text-decoration: none;
     font-family: Courier New, Courier, monospace;
     font-size: 250%;
+    margin-left: 10%;
 }
 
 .profile-area {
     display: flex;
     flex-flow: column;
     align-items: center;
+    margin-right: 2%;
 }
 
 .profile-img {
-    border: 2px solid lightgray;
+    /* border: 2px solid lightgray; */
     border-radius: 50px;
-    height: 70%;
+    width: 90%;
+    height: auto;
 }
 
 .user-name {
