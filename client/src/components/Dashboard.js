@@ -10,6 +10,7 @@ import { Glyphicon } from 'react-bootstrap';
 // import component
 import DeleteBtn from './DeleteBtn';
 import Aside from './Aside';
+import OrderMenu from './OrderMenu';
 
 class Dashboard extends React.Component {
 	constructor(props) {
@@ -53,13 +54,13 @@ class Dashboard extends React.Component {
 		this.props.fetchData();
 	}
 
-	listSort (order = null) {
-		this.setState({sortOrder: order});
-		console.log(`%csortOrder: ${this.state.sortOrder}`,'color:green');
+	listSort(order = null) {
+		this.setState({ sortOrder: order });
+		console.log(`%csortOrder: ${this.state.sortOrder}`, 'color:green');
 	}
 
 	renderEntries(filterSort) {
-		let {sortOrder} = this.state;
+		let { sortOrder } = this.state;
 		let dltData = this.props.deleteData.bind(this);
 		let requestConfirmation = this.requestConfirmation.bind(this);
 		let closeModal = this.closeModal.bind(this);
@@ -68,6 +69,13 @@ class Dashboard extends React.Component {
 
 			// create function will be passed as an argument in the sort function
 			const compareFunc = propKey => {
+
+				if (propKey === 'dateCreated' || propKey === 'dateApplied') return (x, y) => {
+						var a = new Date(x[propKey]),
+							b = new Date(y[propKey]);
+						return a - b;	
+				};
+				
 				return (a, b) => {
 					let itemA = a[propKey].toUpperCase();
 					let itemB = b[propKey].toUpperCase();
@@ -81,7 +89,7 @@ class Dashboard extends React.Component {
 					return 0;
 				};
 			};
-			
+
 			const sortStr = compareFunc(sortOrder);
 
 			const sortedData = (filterSort, array) => {
@@ -91,16 +99,13 @@ class Dashboard extends React.Component {
 
 			const orderedList = sortedData(sortStr, entries);
 
-			console.log(`%csortOrder in function: ${sortOrder}`,'color:red');
-			console.table(orderedList);
-
 			return orderedList.map((item, index) => {
 				const showModal = () => {
 					if (this.state.showConfirm) {
 						return <DeleteBtn cb={() => dltData(item._id)} close={closeModal} />;
 					}
 				};
-			
+
 				return (
 					<SingleEntry key={index}>
 						<Link to={`/application/${item._id}`}>View Job Information</Link>
@@ -121,16 +126,26 @@ class Dashboard extends React.Component {
 
 	render() {
 		return (
-			<div className={`${this.state.order} dash`}>
-				<Aside>
+			<div className="dash-container">
+				<OrderMenu orderChanger={this.listSort} />
+				{/* <Aside>
 					<div className="sort-container">
 						<h3 className="sort-heading">Sort by...</h3>
-						<div className="sort-by" onClick={() => this.listSort('company')}>Company</div>
-						<div className="sort-by" onClick={() => this.listSort('position')}>Position</div>
-						<div className="sort-by" onClick={() => this.listSort('dateApplied')}>Date Applied</div>
-						<div className="sort-by" onClick={() => this.listSort('dateCreated')}>Date Created</div>
+						<div className="sort-by" onClick={() => this.listSort('company')}>
+							Company
+						</div>
+						<div className="sort-by" onClick={() => this.listSort('position')}>
+							Position
+						</div>
+						<div className="sort-by" onClick={() => this.listSort('dateApplied')}>
+							Date Applied
+						</div>
+						<div className="sort-by" onClick={() => this.listSort()}>
+							Date Created
+						</div>
 					</div>
-				</Aside>
+				</Aside> */}
+				<div className={`${this.state.order} dash`}>{this.renderEntries()}</div>
 				<div className="order-change" onClick={this.changeOrder}>
 					{this.showOrder()}
 				</div>
@@ -138,7 +153,6 @@ class Dashboard extends React.Component {
 				<Link to="/add">
 					<Icon icon={ic_add_circle} size={75} className="open-form" />
 				</Link>
-				{this.renderEntries()}
 			</div>
 		);
 	}
