@@ -1,7 +1,7 @@
 .index {
     position: relative;
-    top: -76px;
-    left: -21px;
+    top: -61px;
+    left: -18px;
     font-size: 80%;
     color: lightgray;
 }
@@ -72,7 +72,7 @@
 
 .sort-menu-heading {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     font-weight: 800;
     color: #433F3F;
 }
