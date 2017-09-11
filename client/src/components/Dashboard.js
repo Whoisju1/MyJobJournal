@@ -9,7 +9,6 @@ import { Glyphicon } from 'react-bootstrap';
 
 // import component
 import DeleteBtn from './DeleteBtn';
-import Aside from './Aside';
 import OrderMenu from './OrderMenu';
 
 class Dashboard extends React.Component {
@@ -56,7 +55,6 @@ class Dashboard extends React.Component {
 
 	listSort(order = null) {
 		this.setState({ sortOrder: order });
-		console.log(`%csortOrder: ${this.state.sortOrder}`, 'color:green');
 	}
 
 	renderEntries(filterSort) {
@@ -128,23 +126,6 @@ class Dashboard extends React.Component {
 		return (
 			<div className="dash-container">
 				<OrderMenu orderChanger={this.listSort} />
-				{/* <Aside>
-					<div className="sort-container">
-						<h3 className="sort-heading">Sort by...</h3>
-						<div className="sort-by" onClick={() => this.listSort('company')}>
-							Company
-						</div>
-						<div className="sort-by" onClick={() => this.listSort('position')}>
-							Position
-						</div>
-						<div className="sort-by" onClick={() => this.listSort('dateApplied')}>
-							Date Applied
-						</div>
-						<div className="sort-by" onClick={() => this.listSort()}>
-							Date Created
-						</div>
-					</div>
-				</Aside> */}
 				<div className={`${this.state.order} dash`}>{this.renderEntries()}</div>
 				<div className="order-change" onClick={this.changeOrder}>
 					{this.showOrder()}
