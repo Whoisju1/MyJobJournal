@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as actions from '../../actions/index';
 
 export default ComposedComponent => {
     class Authentication extends Component {
@@ -9,15 +10,19 @@ export default ComposedComponent => {
             router: React.PropTypes.object
         }
 
-        componentWillMount() {
-            // if (!this.props.auth) this.context.router.push('/');
-        }
+        // componentDidMount() {
+        //     const {auth} = this.props;
+        //     if (!auth) this.context.router.history.push('/');
+        // }
 
         componentWillUpdate(nextProps) {
-            // if (!nextProps.auth) return this.context.router.push('/');
+            if (!nextProps.auth) return this.context.router.history.push('/');
+        }
+
+        componentWillReceiveProps(nextProps) {
+            if (!nextProps.auth) return this.context.router.history.push('/');
         }
         render() {
-            console.log('Context: ',this.context);
             return <ComposedComponent {...this.props} />;
         }
     }
