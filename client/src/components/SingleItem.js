@@ -111,7 +111,7 @@ class SingleItem extends React.Component {
 								<span className="single-title"> Compensation:</span>{' '}
 								{item.compensation || <span className="no-content">Not Specified</span>}
 							</div>
-							<div className="single-output single-inline">
+							<div className="single-output">
 								<span className="single-title">Additional Details:</span>
 								<div className="larger-content">
 									{item.jobDetails || <span className="no-content">N/A</span>}

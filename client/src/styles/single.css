@@ -97,9 +97,8 @@
 }
 
 .single-title {
-    font-weight: bold;
-    text-decoration: underline;
-    font-weight: 400;
+    font-weight: bolder;
+    color: #285379;
 }
 
 .single-inline {
