@@ -19,6 +19,10 @@ header :any-link {
     margin-left: 10%;
 }
 
+.logo>a:hover {
+    outline: none;
+}
+
 #root>div>div>header>a {
     color: #fff;
     text-decoration: none;
