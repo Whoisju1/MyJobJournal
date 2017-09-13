@@ -46,7 +46,6 @@ class SingleItem extends React.Component {
 						return <DeleteBtn cb={() => dltData(item._id)} close={closeModal} />;
 					}
 				};
-				console.log('item in single item: ',item);
 				let param = this.props.match.params.id;
 				if (param === item._id) {
 					return (

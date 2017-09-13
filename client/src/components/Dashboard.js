@@ -56,10 +56,6 @@ class Dashboard extends React.Component {
 		this.props.fetchData();
 	}
 
-	componentWillUpdate() {
-		this.props.fetchData();
-	}
-
 	listSort(order = null) {
 		this.setState({ sortOrder: order });
 	}

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Glyphicon } from 'react-bootstrap';
+import * as actions from '../actions';
+import {connect} from 'react-redux';
 
 const DeleteBtn = props => {
 	const handleClick = () => {
 		props.cb();
+		props.fetchData();
 	};
 
 	const closeModal = () => {
@@ -20,4 +23,5 @@ const DeleteBtn = props => {
 	);
 };
 
-export default DeleteBtn;
+
+export default connect(null, actions)(DeleteBtn);
