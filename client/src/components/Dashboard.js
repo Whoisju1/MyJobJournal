@@ -45,7 +45,6 @@ class Dashboard extends React.Component {
 	requestConfirmation(id) {
 		const {showConfirm} = this.state;
 		!showConfirm ? this.setState({showConfirm: true}) :  this.setState({showConfirm: false});
-		console.log('showConfirm in request confirmation: ', showConfirm);
 		this.setState({ id });
 	}
 
@@ -64,7 +63,11 @@ class Dashboard extends React.Component {
 	renderEntries(filterSort) {
 		const self = this;
 		let { sortOrder } = this.state;
-		let dltData = this.props.deleteData.bind(this);
+		let dltData = function (itemID) {
+			self.props.deleteData(itemID);
+			self.closeModal();
+
+		}
 		let requestConfirmation = this.requestConfirmation.bind(this);
 		let closeModal = this.closeModal.bind(this);
 		if (this.props.data !== null) {
@@ -107,9 +110,6 @@ class Dashboard extends React.Component {
 				
 				const showModal = () => {
 					if (this.state.id === item._id && this.state.showConfirm) {
-						
-						console.log("showConfirm: ", showConfirm);
-						console.log(item._id);
 						return <DeleteBtn cb={() => dltData(item._id)} close={closeModal} />;
 					}
 				};
