@@ -14,7 +14,6 @@ export const storeData = submittedData => async dispatch => {
 };
 
 export const deleteData = entryID => async dispatch => {
-	console.log('delete action');
 	const res = await axios.delete(`/api/delete/id/${entryID}`);
 	dispatch({ type: DELETE_DATA, payload: res.data });
 };
