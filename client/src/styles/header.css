@@ -19,12 +19,18 @@ header :any-link {
     margin-left: 10%;
 }
 
+#root>div>div>header>a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .profile-area {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 5% 0 0;
     cursor: pointer;
+    position: relative;
 }
 
 .profile-img {
@@ -53,4 +59,35 @@ header :any-link {
     border: .4px solid gray;
     padding: 2%;
     width: 100%;
+}
+
+.account-menu-container {
+    bottom: -65px;
+    height: 150;
+    right: -65px;
+    position: absolute;
+    z-index: 1;
+    color: black;
+    background: white;
+    width: 200%;
+}
+
+.account-menu-item {
+    border: .5px solid lightgray;
+    text-align: center;
+    padding: 4%;
+    cursor: pointer;
+}
+
+.account-menu-item:hover {
+    background: #eff3f6;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+    text-decoration: none;
+}
+
+.account-menu-item {
+    width: 100%;
+    color: green;
 }

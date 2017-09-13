@@ -5,7 +5,19 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			isVisible: 'hidden'
+		};
+
 		this.renderUser = this.renderUser.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick() {
+		this.state.isVisible === 'visible'
+			? this.setState({ isVisible: 'hidden' })
+			: this.setState({ isVisible: 'visible' });
 	}
 
 	renderUser() {
@@ -15,12 +27,20 @@ class Header extends Component {
 			case false:
 				return <a href="/auth/google">Login With Google</a>;
 			default:
-				return <div className="profile-area" key="2">
+				return (
+					<div className="profile-area" key="2" onClick={this.handleClick}>
 						<img src={this.props.auth.image} className="profile-img" alt="profile" />
-						<p className="user-name">
-							{this.props.auth.firstName}
-						</p>
+						<p className="user-name">{this.props.auth.firstName}</p>
+						<div className="account-menu-container" style={{ visibility: this.state.isVisible }}>
+							<a href="/api/logout">
+								<div className="account-menu-item">Logout</div>
+							</a>
+							<Link to="/account">
+								<div className="account-menu-item">Account Information</div>
+							</Link>
+						</div>
 					</div>
+				);
 		}
 	}
 
