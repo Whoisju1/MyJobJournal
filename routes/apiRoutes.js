@@ -96,14 +96,12 @@ module.exports = app => {
 	//delete application
 	app.delete('/api/delete/id/:id', (req, res) => {
 		const entryID = req.params.id;
-		Application.findByIdAndRemove(entryID).then((err, entry) => {
+		Application.findByIdAndRemove(entryID).then((entry, err) => {
 			if (err) return console.log('Error: ', err);
-			entry.save((data, err) => {
+			entry.save((err, data) => {
 				if (err) return console.log('Error: ', err);
-				console.log('data: ', data);
 				User.update({ applications: entryID }, { $pull: { applications: entryID } }, (err, data) => {
 					if (err) console.log('Error: ', err);
-					console.log('Data: ', data);
 				});
 			});
 		});
