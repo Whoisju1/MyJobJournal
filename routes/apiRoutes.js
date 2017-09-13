@@ -96,7 +96,7 @@ module.exports = app => {
 	//delete application
 	app.delete('/api/delete/id/:id', (req, res) => {
 		const entryID = req.params.id;
-		Application.findByIdAndRemove(entryID).then((entry, err) => {
+		Application.findByIdAndRemove(entryID).then((err, entry) => {
 			if (err) return console.log('Error: ', err);
 			entry.save((data, err) => {
 				if (err) return console.log('Error: ', err);
