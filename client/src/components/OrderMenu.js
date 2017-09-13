@@ -47,7 +47,7 @@ class OrderMenu extends React.Component {
 		const { visibility, order } = this.state;
 
 		return (
-			<div className="dropdown">
+			<div className="dropdown" tabIndex="-2" onBlur={()=> this.setState({visibility: "none"})}>
 				<div className="sort-menu-heading" onClick={this.isVisible}>
 					Sort By {order}
 					<Glyphicon glyph="chevron-down" />
