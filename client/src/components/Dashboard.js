@@ -35,9 +35,9 @@ class Dashboard extends React.Component {
 
 	showOrder() {
 		if (this.state.order === 'forward') {
-			return <Glyphicon glyph="chevron-down" />;
+			return (<i className="fa fa-angle-up order-change" aria-hidden="true"onClick={this.changeOrder} ></i>)
 		} else {
-			return <Glyphicon glyph="chevron-up" />;
+			return (<i className="fa fa-angle-down order-change" aria-hidden="true"onClick={this.changeOrder} ></i>);
 		}
 	}
 
@@ -125,10 +125,10 @@ class Dashboard extends React.Component {
 	render() {
 		return (
 			<div className="dash-container">
+					{this.showOrder()}
 				<OrderMenu orderChanger={this.listSort} />
 				<div className={`${this.state.order} dash`}>{this.renderEntries()}</div>
 				<div className="order-change" onClick={this.changeOrder}>
-					{this.showOrder()}
 				</div>
 				<Glyphicon glyph="down" />
 				<Link to="/add">

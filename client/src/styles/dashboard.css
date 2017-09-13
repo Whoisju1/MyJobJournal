@@ -1,13 +1,14 @@
 .index {
-    position: relative;
-    top: -61px;
-    left: -18px;
+    position: absolute;
+    top: 6px;
+    left: 4px;
     font-size: 80%;
     color: lightgray;
 }
 
 .dash-container {
     /* height: calc(100% - 45px); */
+    position: relative;
     height: 100vh;
     padding: 5% 0;
     position: relative;
@@ -34,9 +35,9 @@
 
 .order-change {
     cursor: pointer;
-    position: absolute;
-    top: 12%;
-    left: 13%;
+    position: relative;
+    top: 26px;
+    left: 385px;
 }
 
 .dash {
@@ -49,6 +50,7 @@
 }
 
 .dropdown {
+    outline: none;
     position: absolute;
     left: 25%;
     top: 0;
