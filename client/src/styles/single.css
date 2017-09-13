@@ -35,7 +35,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: 50;
 }
 
 .dash-backdrop {
@@ -55,7 +55,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    z-index: 1;
+    z-index: 100;
 }
 
 .close-modal-icon {

@@ -15,6 +15,7 @@ class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			id: '',
 			showConfirm: false,
 			order: 'forward',
 			sortOrder: null
@@ -41,8 +42,11 @@ class Dashboard extends React.Component {
 		}
 	}
 
-	requestConfirmation() {
-		this.setState({ showConfirm: true });
+	requestConfirmation(id) {
+		const {showConfirm} = this.state;
+		!showConfirm ? this.setState({showConfirm: true}) :  this.setState({showConfirm: false});
+		console.log('showConfirm in request confirmation: ', showConfirm);
+		this.setState({ id });
 	}
 
 	closeModal() {
@@ -58,6 +62,7 @@ class Dashboard extends React.Component {
 	}
 
 	renderEntries(filterSort) {
+		const self = this;
 		let { sortOrder } = this.state;
 		let dltData = this.props.deleteData.bind(this);
 		let requestConfirmation = this.requestConfirmation.bind(this);
@@ -98,8 +103,13 @@ class Dashboard extends React.Component {
 			const orderedList = sortedData(sortStr, entries);
 
 			return orderedList.map((item, index) => {
+				const {showConfirm} = self.state;
+				
 				const showModal = () => {
-					if (this.state.showConfirm) {
+					if (this.state.id === item._id && this.state.showConfirm) {
+						
+						console.log("showConfirm: ", showConfirm);
+						console.log(item._id);
 						return <DeleteBtn cb={() => dltData(item._id)} close={closeModal} />;
 					}
 				};
@@ -113,7 +123,7 @@ class Dashboard extends React.Component {
 						<div className="position">
 							<span className="single-title">Position</span>: {item.position}
 						</div>
-						<Icon icon={ic_delete_forever} onClick={requestConfirmation} className="dlt" />
+						<Icon icon={ic_delete_forever} onClick={()=> requestConfirmation(item._id)} className="dlt" />
 						{showModal()}
 						<div className="index">{index + 1}</div>
 					</SingleEntry>
