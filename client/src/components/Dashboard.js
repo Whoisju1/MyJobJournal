@@ -66,18 +66,18 @@ class Dashboard extends React.Component {
 		let dltData = function (itemID) {
 			self.props.deleteData(itemID);
 			self.closeModal();
-
 		}
+
 		let requestConfirmation = this.requestConfirmation.bind(this);
 		let closeModal = this.closeModal.bind(this);
 		if (this.props.data !== null) {
 			let entries = this.props.data.applications;
 
-			// create function will be passed as an argument in the sort function
+			// compare function will be passed as an argument in the sort function
 			const compareFunc = propKey => {
 
 				if (propKey === 'dateCreated' || propKey === 'dateApplied') return (x, y) => {
-						var a = new Date(x[propKey]),
+						let a = new Date(x[propKey]),
 							b = new Date(y[propKey]);
 						return a - b;	
 				};
