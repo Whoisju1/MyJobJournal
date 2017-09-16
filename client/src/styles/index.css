@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
 html body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     border: 0;
+    font-family: 'Abel', sans-serif;
 }
 
 .main-container {

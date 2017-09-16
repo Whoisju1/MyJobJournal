@@ -95,15 +95,12 @@
     justify-content: center;
     text-decoration: underline;
     padding-bottom: 4%;
-    border-bottom: .5px solid #000000;
+    border-bottom: .5px solid lightgray;
     margin: 0 auto;
     width: 80%;
 }
 
 .content-container {
-    /* display: flex;
-    flex-flow: column;
-    justify-content: flex-start; */
     margin: 3% auto 0 auto;
     width: 80%;
 }
