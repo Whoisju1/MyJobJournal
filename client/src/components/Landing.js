@@ -17,7 +17,7 @@ export const Landing = props => {
 	};
 
 	return (
-		<div>
+		<div className='landing-page'>
 			{renderContent()}
 			<video className="video-source" autoPlay loop>
 				<source className="video-source" src={require('./../videos/MP4/In-And-Out.mp4')} />

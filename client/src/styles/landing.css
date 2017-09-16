@@ -1,7 +1,12 @@
-/* .landing {} */
+.landing-page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .video-source {
-    width: 100vw;
+    width: auto;
     height: 100vh;
     position: absolute;
     top: 0;
