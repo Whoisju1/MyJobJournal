@@ -23,6 +23,13 @@
     background-color: #eff3f6;
     min-height: 20vh;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+    -webkit-transition: transform .3s ease-in-out;
+    -moz-transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+}
+
+.single-entry:hover {
+    transform: scale(1.005)
 }
 
 .forward {
@@ -43,7 +50,6 @@
 }
 
 .dash {
-    /* background-color: #fff; */
     background-color: rgba(250, 251, 252, 0.85);
     border: .3px solid lightgray;
     overflow: 10% auto;
@@ -58,7 +64,6 @@
     top: 0;
     z-index: 1;
     width: 15%;
-    background: white;
 }
 
 .sort-menu-item,
@@ -67,6 +72,12 @@
     text-align: center;
     padding: 4%;
     cursor: pointer;
+}
+
+.sort-menu-heading {
+    z-index: 4;
+    background: white;
+    overflow: hidden;
 }
 
 .sort-menu-item:hover,
@@ -85,10 +96,30 @@
     cursor: pointer;
 }
 
-.menu-list {
+.sort-menu-item {
+    position: relative;
+    background: white;
     animation-name: menu-expand;
-    animation-duration: .5s;
+    animation-duration: .2s;
     animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+
+.menu-list {
+    background-color: rgba(250, 251, 252, 0.85);
+}
+
+@keyframes menu-expand {
+    from {
+        top: -40px;
+        opacity: 0;
+        transform: scaleY(0)
+    }
+    to {
+        opacity: 1;
+        top: 0px;
+        transform: scaleY(1);
+    }
 }
 
 .item-link {
