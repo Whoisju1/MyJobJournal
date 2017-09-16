@@ -6,6 +6,7 @@ import Icon from 'react-icons-kit';
 import { ic_delete_forever } from 'react-icons-kit/md/ic_delete_forever';
 import { ic_add_circle } from 'react-icons-kit/md/ic_add_circle';
 import { Glyphicon } from 'react-bootstrap';
+import moment from 'moment';
 
 // import component
 import DeleteBtn from './DeleteBtn';
@@ -35,10 +36,15 @@ class Dashboard extends React.Component {
 	}
 
 	showOrder() {
+		const {auth} = this.props;
+		if (auth) {
+			if (auth.applications.length < 2) return;
+		}
+
 		if (this.state.order === 'forward') {
-			return (<i className="fa fa-angle-up order-change" aria-hidden="true"onClick={this.changeOrder} ></i>)
-		} else {
 			return (<i className="fa fa-angle-down order-change" aria-hidden="true"onClick={this.changeOrder} ></i>);
+		} else {
+			return (<i className="fa fa-angle-up order-change" aria-hidden="true"onClick={this.changeOrder} ></i>);
 		}
 	}
 
@@ -116,16 +122,38 @@ class Dashboard extends React.Component {
 
 				return (
 					<SingleEntry key={index}>
+					<div className='item-link'>
 						<Link to={`/application/${item._id}`}>View Job Information</Link>
-						<div className="company">
+					</div> 
+					<div className='content-container'>
+						<div className="company info-item">
 							<span className="single-title">Company</span>: {item.company}
 						</div>
-						<div className="position">
+						<div className="position info-item">
 							<span className="single-title">Position</span>: {item.position}
+						</div>
+						<div className="info-item">
+							<span className="single-title">Date Applied</span>: {item.dateApplied ? (
+								`${moment(item.dateApplied)
+									.add(1, 'day')
+									.format('LL')} (${moment(item.dateApplied).fromNow()})`
+							) : (
+								<span className="no-content">Not Specified</span>
+							)}
+						</div>
+						<div className="info-item">
+							<span className="single-title">Date Create</span>: {item.dateCreated ? (
+								`${moment(item.dateCreated)
+									.add(1, 'day')
+									.format('LL')} (${moment(item.dateCreated).fromNow()})`
+							) : (
+								<span className="no-content">Not Specified</span>
+							)}
 						</div>
 						<Icon icon={ic_delete_forever} onClick={()=> requestConfirmation(item._id)} className="dlt" />
 						{showModal()}
 						<div className="index">{index + 1}</div>
+					</div>
 					</SingleEntry>
 				);
 			});

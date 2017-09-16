@@ -21,6 +21,7 @@
     width: 90%;
     padding: 2% 2% 2% 3%;
     background-color: #eff3f6;
+    min-height: 20vh;
 }
 
 .forward {
@@ -89,12 +90,20 @@
     animation-fill-mode: both;
 }
 
+.item-link {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    padding-bottom: 4%;
+    border-bottom: .5px solid #000000;
+    margin: 0 auto;
+    width: 80%;
+}
 
-/* @keyframes menu-expand {
-    0% {
-        background: white;
-    }
-    100% {
-        background: gray;
-    }
-} */
+.content-container {
+    /* display: flex;
+    flex-flow: column;
+    justify-content: flex-start; */
+    margin: 3% auto 0 auto;
+    width: 80%;
+}
