@@ -6,6 +6,7 @@ import updateReducer from './updateReducer';
 import {reducer as formReducer} from 'redux-form';
 import fetchReducer from './fetchReducer';
 import fetchApplication from './fetchApplication';
+import searchReducer from './searchReducer';
 
 export default combineReducers({
     auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     update: updateReducer,
     form: formReducer,
     data: fetchReducer,
-    application: fetchApplication
+    application: fetchApplication,
+    search: searchReducer
 });

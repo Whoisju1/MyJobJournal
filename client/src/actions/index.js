@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, STORE_DATA, DELETE_DATA, UPDATE_DATA, FETCH_DATA, FETCH_APPLICATION } from './types';
+import { FETCH_USER, STORE_DATA, DELETE_DATA, UPDATE_DATA, FETCH_DATA, FETCH_APPLICATION, SEARCH } from './types';
 
 export const fetchUser = () => async dispatch => {
 	const res = await axios.get('/api/current_user');
@@ -34,4 +34,9 @@ export const fetchApplication = id => async dispatch => {
 	const res = await axios.get(`/api/find-one/id/${id}`);
 
 	dispatch({ type: FETCH_APPLICATION, payload: res.data });
+};
+
+export const dataSearch = searchTerm => async dispatch => {
+	const res = await axios.get(`/api/search/${searchTerm}`);
+	dispatch({ type: SEARCH, payload: res.data });
 };
