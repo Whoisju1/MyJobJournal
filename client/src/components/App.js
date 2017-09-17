@@ -12,6 +12,7 @@ import requireAuth from './HOC/requireAuth';
 import SingleItem from './SingleItem';
 import UpdateForm from './UpdateForm';
 import NotFound from './NotFound.js';
+import searchResults from './searchResults';
 
 class App extends React.Component {
 
@@ -32,11 +33,12 @@ class App extends React.Component {
 					<div className='main-container'>
 						<Header />
 						<Switch>
-							<Route path='/add' component={FormData}/> 
+							<Route path='/add' component={requireAuth(FormData)}/> 
 							<Route exact path='/' component={Landing}/>
 							<Route exact path='/applications' component={requireAuth(Dashboard)}/>
-							<Route exact path='/application/:id' component={SingleItem}/>
-							<Route exact path='/edit/:id' component={UpdateForm}/>
+							<Route exact path='/application/:id' component={requireAuth(SingleItem)}/>
+							<Route exact path='/edit/:id' component={requireAuth(UpdateForm)}/>
+							<Route path='/search/:searchTerm' component={requireAuth(searchResults)}/>
 							<Route path='*' component={NotFound}/>
 						</Switch>
 					</div>
