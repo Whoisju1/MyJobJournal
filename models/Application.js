@@ -64,5 +64,7 @@ const applicationSchema = new Schema({
     }
 });
 
+applicationSchema.index({'$**':'text'});
+
 const Application = mongoose.model('Application', applicationSchema);
 module.exports = Application;

@@ -126,4 +126,21 @@ module.exports = app => {
 			console.log('application: ', application);
 		});
 	});
+	// search engine
+	
+	app.get('/api/search/:searchTerm', (req, res) => {
+		const {searchTerm} = req.params;
+		
+		Application.find(
+			{$text : {
+				$search: searchTerm
+			}}
+		)
+		.exec((err, data) => {
+			if (err) return console.log("Error: ", err);
+			res.send(data);
+			console.log('Data: ', data);
+		});
+	});
 };
+
