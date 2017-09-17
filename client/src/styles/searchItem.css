@@ -1,0 +1,10 @@
+.search-item {
+    border: .4 solid lightgray;
+    background: white;
+    margin: 2%;
+    padding: 1%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column;
+}

@@ -15,16 +15,11 @@ class SearchBar extends React.Component {
 		let searchTerm = e.target.value;
 		this.setState({ searchTerm: searchTerm });
 
-		if (searchTerm === '') return;
 		this.props.dataSearch(searchTerm);
 	}
 
 	handleClick(e) {
 		e.preventDefault();
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		console.log('component did update: ', this.props.search);
 	}
 
 	render() {
