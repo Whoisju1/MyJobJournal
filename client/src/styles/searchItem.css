@@ -10,7 +10,7 @@
 }
 
 .search-bar {
-    width: 60%;
+    width: 84%;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     border: 1px solid gray;
@@ -25,7 +25,7 @@
 }
 
 .search-form {
-    width: 80%;
+    width: 56%;
     display: flex;
     justify-content: center;
     border-left: .4px solid lightgray;

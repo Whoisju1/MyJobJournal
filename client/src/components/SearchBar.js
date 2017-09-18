@@ -2,7 +2,6 @@ import React from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
 import {withRouter} from 'react-router-dom';
 
 class SearchBar extends React.Component {
