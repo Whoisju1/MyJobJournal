@@ -1,36 +1,40 @@
 import React from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+// import { Redirect } from 'react-router';
+import {withRouter} from 'react-router-dom';
 
 class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { searchTerm: '' };
+		this.state = { 
+            searchTerm: '',
+         };
 		this.handleChange = this.handleChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleChange(e) {
 		let searchTerm = e.target.value;
-		this.setState({ searchTerm: searchTerm });
-
+        this.setState({ searchTerm: searchTerm });
+        
+        if(!searchTerm) return;
+        
 		this.props.dataSearch(searchTerm);
 	}
-
-	handleClick(e) {
-		e.preventDefault();
-	}
+    
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.history.push(`/search/${this.state.searchTerm}`);
+    }
 
 	render() {
 		return (
 			<div className="search-bar-container" style={{ color: 'black' }}>
-				<form className="search-form">
-					<input type="text" className="search-bar" onChange={this.handleChange} />
-
-					<button type="submit" className="search-btn" onClick={this.handleClick}>
-						<Link to={`/search/${this.state.searchTerm}`}>Search</Link>
-					</button>
+				<form className="search-form" onSubmit={this.handleSubmit}>
+					<input type="text" className="search-bar" onChange={this.handleChange} placeholder='Search through your applications...'/>
+					<input type="submit" className="search-btn" value='Search'/>
 				</form>
 			</div>
 		);
@@ -43,4 +47,4 @@ const mapStateToProps = ({ search }) => {
 	};
 };
 
-export default connect(mapStateToProps, actions)(SearchBar);
+export default connect(mapStateToProps, actions)(withRouter(SearchBar));
