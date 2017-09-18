@@ -64,7 +64,16 @@ const applicationSchema = new Schema({
     }
 });
 
-applicationSchema.index({'$**':'text'});
+// applicationSchema.index({'$**':'text'});
+applicationSchema.index(
+    {
+        'company':'text',
+        'companyEmail': 'text',
+        'companyInfo': 'text',
+        'jobDetails':'text',
+        'position': 'text',
+    }
+);
 
 const Application = mongoose.model('Application', applicationSchema);
 module.exports = Application;
