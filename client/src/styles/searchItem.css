@@ -8,3 +8,31 @@
     justify-content: space-around;
     flex-flow: column;
 }
+
+.search-bar {
+    width: 60%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid gray;
+    /* outline: none; */
+    -webkit-transition: transform .5s;
+    -moz-transition: transform .5s;
+    transition: transform .5s;
+}
+
+.search-bar:focus {
+    transform: scaleX(1.03)
+}
+
+.search-form {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    border-left: .4px solid lightgray;
+    border-right: .4px solid lightgray;
+    margin: 0 auto;
+}
+
+.search-bar-container {
+    width: 100%;
+}
