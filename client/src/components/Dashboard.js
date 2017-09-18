@@ -142,7 +142,7 @@ class Dashboard extends React.Component {
 							)}
 						</div>
 						<div className="info-item">
-							<span className="single-title">Date Create</span>: {item.dateCreated ? (
+							<span className="single-title">Date Created</span>: {item.dateCreated ? (
 								`${moment(item.dateCreated)
 									.add(1, 'day')
 									.format('LL')} (${moment(item.dateCreated).fromNow()})`
