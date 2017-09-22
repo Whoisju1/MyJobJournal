@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';      
 
 export const Overview = (props) => {
-    let applicationQuantity = props.auth.applications.length + 1;
+    let applicationQuantity = props.auth.applications.length;
     return(
         <div>
             <Link to='/applications'>View your applications</Link>
