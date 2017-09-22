@@ -27,6 +27,7 @@ module.exports = app => {
 			requirements = req.body.requirements,
 			compensation = req.body.compensation,
 			jobDetails = req.body.jobDetails;
+			application.favorite = req.body.favorite;
 
 		User.findById(userID).then((user, err) => {
 			if (err) return console.log('Error', err);
@@ -46,7 +47,8 @@ module.exports = app => {
 				requirements,
 				compensation,
 				source,
-				jobDetails
+				jobDetails,
+				favorite
 			});
 
 			application.save(err => {
@@ -83,6 +85,9 @@ module.exports = app => {
 			application.compensation = req.body.compensation;
 			application.jobDetails = req.body.jobDetails;
 			application.source = req.body.source;
+			application.favorite = req.body.favorite;
+
+			console.log('INSIDE OF PATCH: ', application.favorite);
 
 			application.save((err, data) => {
 				if (err) return console.log('Error: ', err);
@@ -128,19 +133,45 @@ module.exports = app => {
 	});
 	// search engine
 	
-	app.get('/api/search/:searchTerm', (req, res) => {
-		const {searchTerm} = req.params;
+	// app.get('/api/search/:searchTerm', (req, res) => {
+	// 	const {searchTerm} = req.params;
+	// 	let userID = req.user.id;
+
+	// 	User.find({_id: userID})
+	// 		.then((data, err) => {
+	// 			if (err) return console.log("Error: ", err);
+	// 			console.log("<<================search Term: ", searchTerm + "=========================>>");
+				
+	// 			//get the object of the array
+	// 			let [userObj] = data;
+
+	// 			// get the list of object IDs out of the object
+	// 			const {applications} = userObj;
+				
+	// 			// iterate through the array of referenced object IDs
+	// 			applications.reduce((acc, id) => {
+
+	// 				console.log("==========> id: ", id);
+
+	// 				// search all the applications
+	// 				Application.find(
+	// 							{$text : {
+	// 								$search: searchTerm
+	// 							}}
+	// 						)
+	// 						.exec((err, searchResults) => {
+	// 							if (err) return console.log("Error: ", err);
+								
+	// 							searchResults.map((application) => {
+	// 								if (application._id === id) {
+	// 									console.log('it is equal');
+	// 								}
+	// 							});
+								
+	// 						});
+	// 			});
+	// 		});
 		
-		Application.find(
-			{$text : {
-				$search: searchTerm
-			}}
-		)
-		.exec((err, data) => {
-			if (err) return console.log("Error: ", err);
-			res.send(data);
-			console.log('Data: ', data);
-		});
-	});
+	// });
 };
 
