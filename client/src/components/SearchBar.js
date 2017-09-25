@@ -1,49 +1,49 @@
-import React from 'react';
-import * as actions from '../actions';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
+// import React from 'react';
+// import * as actions from '../actions';
+// import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+// import {withRouter} from 'react-router-dom';
 
-class SearchBar extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { 
-            searchTerm: '',
-         };
-		this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-	}
+// class SearchBar extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = { 
+//             searchTerm: '',
+//          };
+// 		this.handleChange = this.handleChange.bind(this);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+// 	}
 
-	handleChange(e) {
-		let searchTerm = e.target.value;
-        this.setState({ searchTerm: searchTerm });
+// 	handleChange(e) {
+// 		let searchTerm = e.target.value;
+//         this.setState({ searchTerm: searchTerm });
         
-        if(!searchTerm) return;
+//         if(!searchTerm) return;
         
-		this.props.dataSearch(searchTerm);
-	}
+// 		this.props.dataSearch(searchTerm);
+// 	}
     
-    handleSubmit(e) {
-        e.preventDefault();
-        this.props.history.push(`/search/${this.state.searchTerm}`);
-    }
+//     handleSubmit(e) {
+//         e.preventDefault();
+//         this.props.history.push(`/search/${this.state.searchTerm}`);
+//     }
 
-	render() {
-		return (
-			<div className="search-bar-container" style={{ color: 'black' }}>
-				<form className="search-form" onSubmit={this.handleSubmit} >
-					<input type="text" className="search-bar" onChange={this.handleChange} placeholder='Search through your applications...' disabled/>
-					<input type="submit" className="search-btn" value='Search' disabled/>
-				</form>
-			</div>
-		);
-	}
-}
+// 	render() {
+// 		return (
+// 			<div className="search-bar-container" style={{ color: 'black' }}>
+// 				<form className="search-form" onSubmit={this.handleSubmit} >
+// 					<input type="text" className="search-bar" onChange={this.handleChange} placeholder='Search through your applications...' disabled/>
+// 					<input type="submit" className="search-btn" value='Search' disabled/>
+// 				</form>
+// 			</div>
+// 		);
+// 	}
+// }
 
-const mapStateToProps = ({ search }) => {
-	return {
-		search
-	};
-};
+// const mapStateToProps = ({ search }) => {
+// 	return {
+// 		search
+// 	};
+// };
 
-export default connect(mapStateToProps, actions)(withRouter(SearchBar));
+// export default connect(mapStateToProps, actions)(withRouter(SearchBar));
