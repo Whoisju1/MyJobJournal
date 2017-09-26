@@ -12,7 +12,7 @@ import requireAuth from './HOC/requireAuth';
 import SingleItem from './SingleItem';
 import UpdateForm from './UpdateForm';
 import NotFound from './NotFound.js';
-import searchResults from './searchResults';
+// import searchResults from './searchResults';
 
 class App extends React.Component {
 
