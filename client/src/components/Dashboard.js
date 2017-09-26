@@ -11,6 +11,7 @@ import moment from 'moment';
 // import component
 import DeleteBtn from './DeleteBtn';
 import OrderMenu from './OrderMenu';
+import Favorite from './Favorite';
 
 class Dashboard extends React.Component {
 	constructor(props) {
@@ -26,7 +27,21 @@ class Dashboard extends React.Component {
 		this.changeOrder = this.changeOrder.bind(this);
 		this.showOrder = this.showOrder.bind(this);
 		this.listSort = this.listSort.bind(this);
+		this.toggleFavorite = this.toggleFavorite.bind(this);
 	}
+
+	toggleFavorite (id, body, favorite) {
+		
+		const makeFalse = () => body.favorite = false;
+		const makeTrue = () => body.favorite = true;
+
+		(favorite) ? makeFalse() : makeTrue();
+
+		this.props.updateData(id, body);
+
+		this.forceUpdate();
+	}
+	
 	changeOrder() {
 		if (this.state.order === 'forward') {
 			this.setState({ order: 'backward' });
@@ -149,6 +164,12 @@ class Dashboard extends React.Component {
 								<span className="no-content">Not Specified</span>
 							)}
 						</div>
+						{/* <Favorite id={item._id}/> */}
+						<div>
+							{
+								item.favorite ? <i className="fa fa-star" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)}/> : <i className="fa fa-star-o" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
+							}
+						</div>
 						<Icon icon={ic_delete_forever} onClick={()=> requestConfirmation(item._id)} className="dlt" />
 						{showModal()}
 						<div className="index">{index + 1}</div>
@@ -175,9 +196,9 @@ class Dashboard extends React.Component {
 		);
 	}
 }
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data, update }) => {
 	return {
-		data
+		data, update
 	};
 };
 

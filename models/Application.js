@@ -61,6 +61,10 @@ const applicationSchema = new Schema({
     dateCreated: {
         type: Date,
         default: Date.now
+    },
+    favorite: {
+        type: Boolean,
+        default: false
     }
 });
 
