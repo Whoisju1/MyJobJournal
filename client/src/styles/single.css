@@ -140,5 +140,17 @@
 }
 
 .fav-wrapper {
+    color: #337ab7;
+}
+
+.dlt-container {
+    color: #337ab7;
+}
+
+.dlt-in-dash {
+    color: #337ab7;
+}
+
+.fav-true {
     color: goldenrod;
 }

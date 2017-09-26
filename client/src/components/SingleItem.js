@@ -17,7 +17,6 @@ class SingleItem extends React.Component {
 		super(props);
 		this.state = {
 			showConfirm: false,
-			applicationId: ''
 		};
 		this.requestConfirmation = this.requestConfirmation.bind(this);
 		this.closeModal = this.closeModal.bind(this);
@@ -130,10 +129,10 @@ class SingleItem extends React.Component {
 								<Icon icon={ic_add_circle} size={75} className="open-form" />
 							</Link>
 							<Link to={`/edit/${item._id}`}>
+							<i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+							
 								<Icon
 									icon={edit}
-									className="edit-btn"
-									onClick={() => this.setState({ applicationId: 'Nice' })}
 								/>
 							</Link>
 						</div>

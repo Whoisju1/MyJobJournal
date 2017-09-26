@@ -172,8 +172,10 @@ class Dashboard extends React.Component {
 							<Link to={`/edit/${item._id}`}>
 								<i className="fa fa-pencil-square-o" aria-hidden="true"></i>
 							</Link>
-							<i onClick={()=> requestConfirmation(item._id)} className="dlt fa fa-trash-o" aria-hidden="true">
-							</i>
+							<div className="dlt-container">
+								<i onClick={()=> requestConfirmation(item._id)} className="dlt-in-dash fa fa-trash-o" aria-hidden="true">
+								</i>
+							</div>
 						</div>
 						{showModal()}
 						<div className="index">{index + 1}</div>
