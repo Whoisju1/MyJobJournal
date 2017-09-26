@@ -42,7 +42,8 @@ class UpdateForm extends React.Component {
 				requirements: application.requirements || '',
 				compensation: application.compensation || '',
 				jobDetails: application.jobDetails || '',
-				source: application.source
+				source: application.source,
+				favorite: application.favorite || false
 			});
 		}
 	}
@@ -63,18 +64,17 @@ class UpdateForm extends React.Component {
 			requirements: '',
 			compensation: '',
 			jobDetails: '',
-			source: ''
+			source: '',
+			favorite: false
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.saveToState = this.saveToState.bind(this);
-		// this.setFormInput = this.setFormInput.bind(this);
 	}
 
 	handleSubmit(event) {
 		let id = this.props.match.params.id;
 		this.props.updateData(id, this.state);
-		console.log('stuff being updated: ',this.state);
 		event.preventDefault();
 		this.setState({
 			company: '',
@@ -90,7 +90,8 @@ class UpdateForm extends React.Component {
 			requirements: '',
 			compensation: '',
 			jobDetails: '',
-			source: ''
+			source: '',
+			favorite: false
 		});
 	}
 
