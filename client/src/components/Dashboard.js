@@ -163,12 +163,18 @@ class Dashboard extends React.Component {
 								<span className="no-content">Not Specified</span>
 							)}
 						</div>
-						<div>
-							{
-								item.favorite ? <i className="fa fa-star" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)}/> : <i className="fa fa-star-o" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
-							}
+						<div className="tools-container">
+							<div className='fav-wrapper'>
+								{
+									item.favorite ? <i className="fa fa-star fav fav-true" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} /> : <i className="fa fa-star-o fav fav-false" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
+								}
+							</div>
+							<Link to={`/edit/${item._id}`}>
+								<i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+							</Link>
+							<i onClick={()=> requestConfirmation(item._id)} className="dlt fa fa-trash-o" aria-hidden="true">
+							</i>
 						</div>
-						<Icon icon={ic_delete_forever} onClick={()=> requestConfirmation(item._id)} className="dlt" />
 						{showModal()}
 						<div className="index">{index + 1}</div>
 					</div>
