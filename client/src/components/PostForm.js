@@ -36,7 +36,8 @@ class PostForm extends React.Component {
 			requirements: '',
 			compensation: '',
 			jobDetails: '',
-			source: ''
+			source: '',
+			favorite: false
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.saveToState = this.saveToState.bind(this);
@@ -59,7 +60,8 @@ class PostForm extends React.Component {
 			requirements: '',
 			compensation: '',
 			jobDetails: '',
-			source: ''
+			source: '',
+			favorite: false
 		});
 	}
 	saveToState(e) {
