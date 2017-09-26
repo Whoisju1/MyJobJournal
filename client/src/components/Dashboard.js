@@ -11,7 +11,6 @@ import moment from 'moment';
 // import component
 import DeleteBtn from './DeleteBtn';
 import OrderMenu from './OrderMenu';
-import Favorite from './Favorite';
 
 class Dashboard extends React.Component {
 	constructor(props) {
@@ -164,7 +163,6 @@ class Dashboard extends React.Component {
 								<span className="no-content">Not Specified</span>
 							)}
 						</div>
-						{/* <Favorite id={item._id}/> */}
 						<div>
 							{
 								item.favorite ? <i className="fa fa-star" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)}/> : <i className="fa fa-star-o" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
