@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import SearchBar from './SearchBar';
+// import SearchBar from './SearchBar';
 
 class Header extends Component {
 	constructor(props) {
@@ -31,7 +31,7 @@ class Header extends Component {
 			default:
 				return (
 					[
-					<SearchBar key='1'/>,
+					// <SearchBar key='1'/>,
 					<div className="profile-area" key="2" onClick={this.handleClick}>
 						<img src={this.props.auth.image} className="profile-img" alt="profile" />
 						<p className="user-name">{this.props.auth.firstName}</p>
