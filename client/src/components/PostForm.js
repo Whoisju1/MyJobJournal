@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import {withRouter} from 'react-router';
 
 import {
 	Form,
@@ -18,6 +19,7 @@ import {
 import Icon from 'react-icons-kit';
 import { office } from 'react-icons-kit/icomoon/office';
 import { ic_work } from 'react-icons-kit/md/ic_work';
+
 
 class PostForm extends React.Component {
 	constructor() {
@@ -65,17 +67,15 @@ class PostForm extends React.Component {
 		});
 
 		this.props.fetchData();
+		this.props.history.goBack();
 	}
 	saveToState(e) {
 		const { name, value } = e.target;
 		this.setState({ [name]: value });
 	}
 
-	componentWillUpdate() {
-		this.props.fetchUser();
-	}
-
 	render() {
+		console.log(this.props);
 		return (
 			<Form horizontal className="entry-form post-form" onSubmit={this.handleSubmit}>
 				<FormGroup controlId="formHorizontalEmail" validationState='warning'>
@@ -90,7 +90,6 @@ class PostForm extends React.Component {
 							<FormControl
 								name="company"
 								type="text"
-								autofocus 
 								required
 								onChange={this.saveToState}
 								value={this.state.company}
@@ -111,7 +110,6 @@ class PostForm extends React.Component {
 							<FormControl
 								name="source"
 								type="text"
-								autofocus 
 								required
 								onChange={this.saveToState}
 								value={this.state.source}
@@ -170,7 +168,7 @@ class PostForm extends React.Component {
 								type="tel"
 								placeholder='Enter phone number' 
 								pattern="^(?:\(\d{3}\)|\d{3})[- . ]?\d{3}[- . ]?\d{4}$" 
-								maxlength="12"
+								// maxlength="12"
 								onChange={this.saveToState}
 								value={this.state.companyPhone}
 							/>
@@ -340,6 +338,6 @@ class PostForm extends React.Component {
 	}
 }
 
-export default connect(null, actions)(PostForm);
+export default connect(null, actions)(withRouter(PostForm));
 
 
