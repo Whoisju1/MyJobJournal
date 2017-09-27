@@ -75,7 +75,6 @@ class PostForm extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<Form horizontal className="entry-form post-form" onSubmit={this.handleSubmit}>
 				<FormGroup controlId="formHorizontalEmail" validationState='warning'>
