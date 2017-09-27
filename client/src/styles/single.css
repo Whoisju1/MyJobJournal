@@ -18,13 +18,13 @@
 
 .tools-container * {
     cursor: pointer;
-    -webkit-transition: transform .2s ease-in-out;
-    -moz-transition: transform .2s ease-in-out;
-    transition: transform .2s ease-in-out;
+    -webkit-transition: transform .3s ease-in-out;
+    -moz-transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
 }
 
 .tools-container *:hover {
-    transform: scale(1.25);
+    transform: scale(1.1);
 }
 
 .dlt {

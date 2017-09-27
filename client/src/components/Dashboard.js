@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
 		(favorite) ? makeFalse() : makeTrue();
 
 		this.props.updateData(id, body);
-
+		this.props.fetchData();
 		this.forceUpdate();
 	}
 	
@@ -166,14 +166,14 @@ class Dashboard extends React.Component {
 						<div className="tools-container">
 							<div className='fav-wrapper'>
 								{
-									item.favorite ? <i className="fa fa-star fav fav-true" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} /> : <i className="fa fa-star-o fav fav-false" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
+									item.favorite ? <i className="fa fa-star fav fav-true fa-lg" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} /> : <i className="fa fa-star-o fav fav-false fa-lg" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
 								}
 							</div>
 							<Link to={`/edit/${item._id}`}>
-								<i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+								<i className="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
 							</Link>
 							<div className="dlt-container">
-								<i onClick={()=> requestConfirmation(item._id)} className="dlt-in-dash fa fa-trash-o" aria-hidden="true">
+								<i onClick={()=> requestConfirmation(item._id)} className="dlt-in-dash fa fa-trash-o fa-lg" aria-hidden="true">
 								</i>
 							</div>
 						</div>

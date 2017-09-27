@@ -10,3 +10,9 @@
 .form-input {
     margin: 2% 0;
 }
+
+@media screen and (max-width: 700px) {
+    .post-form {
+        width: 90%;
+    }
+}
