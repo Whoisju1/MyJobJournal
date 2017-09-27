@@ -8,7 +8,8 @@
 
 .dash-container {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 115px);
+    overflow-y: auto;
 }
 
 .single-entry {
