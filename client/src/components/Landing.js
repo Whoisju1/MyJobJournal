@@ -1,10 +1,14 @@
 import React from 'react';
 import AuthButtons from './AuthButtons';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import Overview from './Overview';
 
 export const Landing = props => {
+
+	if (props.auth) props.history.push(`/applications`);
+	
 	const renderContent = () => {
 		switch (props.auth) {
 			case null:
@@ -34,4 +38,4 @@ const mapStateToProps = ({ auth }) => {
 	};
 };
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps)(withRouter(Landing));
