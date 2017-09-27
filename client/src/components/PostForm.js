@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
 
 import {
 	Form,
@@ -12,14 +12,14 @@ import {
 	ControlLabel,
 	InputGroup,
 	Glyphicon,
-	DropdownButton,
-	MenuItem
+	ToggleButtonGroup,
+	ToggleButton
 } from 'react-bootstrap';
+
 
 import Icon from 'react-icons-kit';
 import { office } from 'react-icons-kit/icomoon/office';
 import { ic_work } from 'react-icons-kit/md/ic_work';
-
 
 class PostForm extends React.Component {
 	constructor() {
@@ -70,14 +70,19 @@ class PostForm extends React.Component {
 		this.props.history.goBack();
 	}
 	saveToState(e) {
-		const { name, value } = e.target;
-		this.setState({ [name]: value });
+		if (e.target) {
+			const { name, value } = e.target;
+			this.setState({ [name]: value });
+			console.log('name: ', name);
+		} else {
+			this.setState({status: e});
+		}
 	}
 
 	render() {
 		return (
 			<Form horizontal className="entry-form post-form" onSubmit={this.handleSubmit}>
-				<FormGroup controlId="formHorizontalEmail" validationState='warning'>
+				<FormGroup controlId="formHorizontalEmail" validationState="warning">
 					<Col componentClass={ControlLabel} sm={2}>
 						Company
 					</Col>
@@ -109,7 +114,6 @@ class PostForm extends React.Component {
 							<FormControl
 								name="source"
 								type="text"
-								required
 								onChange={this.saveToState}
 								value={this.state.source}
 								placeholder="Where you found out about the position"
@@ -165,8 +169,8 @@ class PostForm extends React.Component {
 							<FormControl
 								name="companyPhone"
 								type="tel"
-								placeholder='Enter phone number' 
-								pattern="^(?:\(\d{3}\)|\d{3})[- . ]?\d{3}[- . ]?\d{4}$" 
+								placeholder="Enter phone number"
+								pattern="^(?:\(\d{3}\)|\d{3})[- . ]?\d{3}[- . ]?\d{4}$"
 								// maxlength="12"
 								onChange={this.saveToState}
 								value={this.state.companyPhone}
@@ -185,7 +189,7 @@ class PostForm extends React.Component {
 							<FormControl
 								name="companyEmail"
 								type="email"
-								pattern= "^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$"
+								pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$"
 								className="form-control"
 								onChange={this.saveToState}
 								value={this.state.companyEmail}
@@ -194,44 +198,44 @@ class PostForm extends React.Component {
 						</InputGroup>
 					</Col>
 				</FormGroup>
-				<FormGroup controlId="formHorizontalEmail" validationState='warning'>
-				<Col componentClass={ControlLabel} sm={2}>
-					Website
-				</Col>
-				<Col sm={10}>
-					<InputGroup>
-						<InputGroup.Addon>
-							<Icon icon={office} />
-						</InputGroup.Addon>
-						<FormControl
-							name="companyWebsite"
-							type="url"
-							onChange={this.saveToState}
-							value={this.state.companyWebsite}
-							placeholder="Employer Website"
-						/>
-					</InputGroup>
-				</Col>
-			</FormGroup>
-			<FormGroup controlId="formHorizontalEmail" validationState='warning'>
-			<Col componentClass={ControlLabel} sm={2}>
-				Location
-			</Col>
-			<Col sm={10}>
-				<InputGroup>
-					<InputGroup.Addon>
-						<Icon icon={office} />
-					</InputGroup.Addon>
-					<FormControl
-						name="companyLocation"
-						type="text"
-						onChange={this.saveToState}
-						value={this.state.companyLocation}
-						placeholder="Company's Location"
-					/>
-				</InputGroup>
-			</Col>
-		</FormGroup>
+				<FormGroup controlId="formHorizontalEmail" validationState="warning">
+					<Col componentClass={ControlLabel} sm={2}>
+						Website
+					</Col>
+					<Col sm={10}>
+						<InputGroup>
+							<InputGroup.Addon>
+								<Icon icon={office} />
+							</InputGroup.Addon>
+							<FormControl
+								name="companyWebsite"
+								type="url"
+								onChange={this.saveToState}
+								value={this.state.companyWebsite}
+								placeholder="Employer Website"
+							/>
+						</InputGroup>
+					</Col>
+				</FormGroup>
+				<FormGroup controlId="formHorizontalEmail" validationState="warning">
+					<Col componentClass={ControlLabel} sm={2}>
+						Location
+					</Col>
+					<Col sm={10}>
+						<InputGroup>
+							<InputGroup.Addon>
+								<Icon icon={office} />
+							</InputGroup.Addon>
+							<FormControl
+								name="companyLocation"
+								type="text"
+								onChange={this.saveToState}
+								value={this.state.companyLocation}
+								placeholder="Company's Location"
+							/>
+						</InputGroup>
+					</Col>
+				</FormGroup>
 				<FormGroup controlId="formHorizontalEmail">
 					<Col componentClass={ControlLabel} sm={2}>
 						Job ID
@@ -271,18 +275,13 @@ class PostForm extends React.Component {
 						Application Status
 					</Col>
 					<Col sm={10} lg={6}>
-						<DropdownButton
-							onChange={this.saveToState}
-							value={this.state.status}
-							name="status"
-							title="Application Status"
-							required
-						>
-							<MenuItem value="Applied">Applied</MenuItem>
-							<MenuItem value="Interview Received">Interview Received</MenuItem>
-							<MenuItem value="Job Offered">Job Offered</MenuItem>
-							<MenuItem value="Job Accepted">Job Accepted</MenuItem>
-						</DropdownButton>
+						<ToggleButtonGroup type="radio" name="status" value={this.state.status} onChange={this.saveToState}>
+							<ToggleButton value={`Haven't Applied`}> Haven't Applied </ToggleButton>
+							<ToggleButton value={`Applied`}> Applied </ToggleButton>
+							<ToggleButton value={`Job Offered`}> Job Offered </ToggleButton>
+							<ToggleButton value={`Interview Received`}> Interview Received </ToggleButton>
+							<ToggleButton value={`Job Accepted`}> Job Accepted </ToggleButton>
+						</ToggleButtonGroup>
 					</Col>
 				</FormGroup>
 				<FormGroup controlId="formHorizontalEmail">
@@ -338,5 +337,3 @@ class PostForm extends React.Component {
 }
 
 export default connect(null, actions)(withRouter(PostForm));
-
-

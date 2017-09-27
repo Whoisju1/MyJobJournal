@@ -11,8 +11,8 @@ import {
 	ControlLabel,
 	InputGroup,
 	Glyphicon,
-	DropdownButton,
-	MenuItem
+	ToggleButtonGroup,
+	ToggleButton
 } from 'react-bootstrap';
 
 import Icon from 'react-icons-kit';
@@ -96,8 +96,13 @@ class UpdateForm extends React.Component {
 	}
 
 	saveToState(e) {
-		const { name, value } = e.target;
-		this.setState({ [name]: value });
+		if (e.target) {
+			const { name, value } = e.target;
+			this.setState({ [name]: value });
+			console.log('name: ', name);
+		} else {
+			this.setState({status: e});
+		}
 	}
 
 	render() {
@@ -297,18 +302,13 @@ class UpdateForm extends React.Component {
 						Application Status
 					</Col>
 					<Col sm={10} lg={6}>
-						<DropdownButton
-							onChange={this.saveToState}
-							value={this.state.status}
-							name="status"
-							title="Application Status"
-							required
-						>
-							<MenuItem value="Applied">Applied</MenuItem>
-							<MenuItem value="Interview Received">Interview Received</MenuItem>
-							<MenuItem value="Job Offered">Job Offered</MenuItem>
-							<MenuItem value="Job Accepted">Job Accepted</MenuItem>
-						</DropdownButton>
+					<ToggleButtonGroup type="radio" name="status" value={this.state.status} onChange={this.saveToState}>
+							<ToggleButton value={`Haven't Applied`}> Haven't Applied </ToggleButton>
+							<ToggleButton value={`Applied`}> Applied </ToggleButton>
+							<ToggleButton value={`Job Offered`}> Job Offered </ToggleButton>
+							<ToggleButton value={`Interview Received`}> Interview Received </ToggleButton>
+							<ToggleButton value={`Job Accepted`}> Job Accepted </ToggleButton>
+						</ToggleButtonGroup>
 					</Col>
 				</FormGroup>
 				<FormGroup controlId="formHorizontalEmail">
