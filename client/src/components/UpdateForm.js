@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import {withRouter} from 'react-router-dom';
 
 import {
 	Form,
@@ -93,6 +94,9 @@ class UpdateForm extends React.Component {
 			source: '',
 			favorite: false
 		});
+
+		this.props.history.goBack();
+		
 	}
 
 	saveToState(e) {
@@ -369,4 +373,4 @@ const mapStateToProps = ({ application }) => {
 	};
 };
 
-export default connect(mapStateToProps, actions)(UpdateForm);
+export default connect(mapStateToProps, actions)(withRouter(UpdateForm));
