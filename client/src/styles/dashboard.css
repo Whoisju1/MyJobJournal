@@ -9,8 +9,6 @@
 .dash-container {
     position: relative;
     height: 100vh;
-    padding: 5% 0;
-    position: relative;
 }
 
 .single-entry {
@@ -72,7 +70,7 @@
     outline: none;
     position: absolute;
     left: 5%;
-    top: .6%;
+    top: 8.6px;
     z-index: 1;
     width: 170px;
 }
