@@ -7,7 +7,6 @@
 }
 
 .dash-container {
-    /* height: calc(100% - 45px); */
     position: relative;
     height: 100vh;
     padding: 5% 0;
@@ -29,7 +28,6 @@
 }
 
 .single-entry:hover {
-    /* transform: scale(1.005); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .25);
 }
 
@@ -47,7 +45,8 @@
     cursor: pointer;
     position: relative;
     top: 26px;
-    left: 385px;
+    left: calc(26% - 3px);
+    z-index: 2;
 }
 
 .dash {
@@ -56,22 +55,33 @@
     overflow: 10% auto;
     margin: 0 auto 2% auto;
     width: 50%;
+    padding: 32px 0 1% 0;
+    position: relative;
+}
+
+@media screen and (max-width: 830px) {
+    .dash {
+        width: 100%;
+    }
+    .order-change {
+        left: calc(2% - 3px);
+    }
 }
 
 .dropdown {
     outline: none;
     position: absolute;
-    left: 25%;
-    top: 0;
+    left: 5%;
+    top: .6%;
     z-index: 1;
-    width: 15%;
+    width: 170px;
 }
 
 .sort-menu-item,
 .sort-menu-heading {
     border: .5px solid lightgray;
     text-align: center;
-    padding: 4%;
+    padding: 6px;
     cursor: pointer;
 }
 

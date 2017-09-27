@@ -190,8 +190,7 @@ class Dashboard extends React.Component {
 		return (
 			<div className="dash-container">
 					{this.showOrder()}
-				<OrderMenu orderChanger={this.listSort} />
-				<div className={`${this.state.order} dash`}>{this.renderEntries()}</div>
+				<div className={`${this.state.order} dash`}><OrderMenu orderChanger={this.listSort} />{this.renderEntries()}</div>
 				<div className="order-change" onClick={this.changeOrder}>
 				</div>
 				<Glyphicon glyph="down" />
