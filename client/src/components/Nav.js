@@ -19,28 +19,35 @@ export const Nav = props => {
 		}
 	};
 
-	return (
-		<div>
+	const renderContent = () => {
+		if(!props.auth) return;
+		return (
 			<nav className="navbar">
-				<NavLink to="/applications" activeClass='nav-active'>
+				<NavLink to="/applications" activeClass="nav-active">
 					<div className="application-link-wrapper">
 						Dashboard
 						<div className="application-numbers">{showLength() || 0}</div>
 					</div>
 				</NavLink>
-				<NavLink to="/favorites" activeClass='nav-active'>
+				<NavLink to="/favorites" activeClass="nav-active">
 					<div className="application-link-wrapper">
 						Favorites
 						<div className="fav-numbers">{showFavLength() || 0}</div>
 					</div>
 				</NavLink>
 			</nav>
+		);
+	};
+
+	return (
+		<div>
+			{renderContent()}
 		</div>
-	);
+	)
 };
 
-const mapStateToProps = ({ data }) => {
-	return { data };
+const mapStateToProps = ({ data, auth }) => {
+	return { data, auth };
 };
 
 export default connect(mapStateToProps, actions)(Nav);
