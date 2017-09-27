@@ -27,7 +27,7 @@ module.exports = app => {
 			requirements = req.body.requirements,
 			compensation = req.body.compensation,
 			jobDetails = req.body.jobDetails;
-			application.favorite = req.body.favorite;
+			favorite = req.body.favorite;
 
 		User.findById(userID).then((user, err) => {
 			if (err) return console.log('Error', err);
@@ -64,10 +64,9 @@ module.exports = app => {
 	});
 
 	// update application
-	app.patch('/api/edit/id/:id', (req, res) => {
+	app.patch('/api/edit/id/:id*?', (req, res) => {
 		let id = req.params.id;
-
-		console.log('id: ', id);
+		console.log('=============== IN PATCH =====================');
 		Application.findById(id, (err, application) => {
 			if (err) return console.log('Error: ', err);
 
@@ -92,9 +91,10 @@ module.exports = app => {
 			application.save((err, data) => {
 				if (err) return console.log('Error: ', err);
 				res.send(data);
+				console.log("SUCCESSFULLY UPDATED: ", data.favorite);
 			});
 
-			console.log(application);
+			// console.log(application);
 		});
 	});
 
@@ -115,10 +115,11 @@ module.exports = app => {
 	// get user data
 	app.get('/api/find/', (req, res) => {
 		let userID = req.user.id;
+		console.log("============ INSIDE OF FIND ===============");
 		console.log('user ID', userID);
 		User.findOne({ _id: userID }).populate('applications').exec((err, data) => {
 			if (err) return console.log('Error: ', err);
-			console.log(data);
+			// console.log(data);
 			res.send(data);
 		});
 	});
