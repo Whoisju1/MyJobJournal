@@ -17,6 +17,7 @@ import './styles/single.css';
 import './styles/form.css';
 import './styles/dashboard.css';
 import './styles/searchItem.css';
+import './styles/nav.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 

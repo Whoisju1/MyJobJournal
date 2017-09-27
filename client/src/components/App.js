@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as actions from '../actions';
-import {connect} from 'react-redux';
+import {connect} from 'react-redux';	
 
 // import components
 import Header from './Header';	
@@ -12,6 +12,7 @@ import requireAuth from './HOC/requireAuth';
 import SingleItem from './SingleItem';
 import UpdateForm from './UpdateForm';
 import NotFound from './NotFound.js';
+import Nav from './Nav';
 // import searchResults from './searchResults';
 
 class App extends React.Component {
@@ -32,6 +33,7 @@ class App extends React.Component {
 				<BrowserRouter>
 					<div className='main-container'>
 						<Header />
+						<Nav />
 						<Switch>
 							<Route path='/add' component={requireAuth(FormData)}/> 
 							<Route exact path='/' component={Landing}/>

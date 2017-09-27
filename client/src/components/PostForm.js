@@ -63,6 +63,8 @@ class PostForm extends React.Component {
 			source: '',
 			favorite: false
 		});
+
+		this.props.fetchData();
 	}
 	saveToState(e) {
 		const { name, value } = e.target;
