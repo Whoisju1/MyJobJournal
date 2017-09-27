@@ -22,7 +22,7 @@ export const Nav = props => {
 	const renderContent = () => {
 		if(!props.auth) return;
 		return (
-			<nav className="navbar">
+			<nav className="nav-bar">
 				<NavLink to="/applications" activeClass="nav-active">
 					<div className="application-link-wrapper">
 						Dashboard
