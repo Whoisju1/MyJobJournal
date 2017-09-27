@@ -1,0 +1,26 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+    height: 45px;
+}
+
+.application-link-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 105%;
+}
+
+.application-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: #E40B0B;
+    color: #fff;
+    border-radius: 50%;
+    height: 18px;
+    padding: 4px;
+}
