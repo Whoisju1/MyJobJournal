@@ -13,29 +13,16 @@
     width: 105%;
 }
 
-.application-numbers {
+.category-quanitity {
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    background: #E40B0B;
-    color: #fff;
-    /* border-radius: 12%; */
+    color: lightgray;
     height: 18px;
     padding: 4px;
 }
 
-.fav-numbers {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    background: goldenrod;
-    color: #000;
-    border-radius: 12%;
-    height: 18px;
-    padding: 4px;
-}
 
 .nav-active {
     border-bottom: 3px solid green;

@@ -26,13 +26,13 @@ export const Nav = props => {
 				<NavLink to="/applications" activeClass="nav-active">
 					<div className="application-link-wrapper">
 						Dashboard
-						<div className="application-numbers">{showLength() || 0}</div>
+						<div className="category-quanitity">{showLength() || 0}</div>
 					</div>
 				</NavLink>
 				<NavLink to="/favorites" activeClass="nav-active">
 					<div className="application-link-wrapper">
 						Favorites
-						<div className="fav-numbers">{showFavLength() || 0}</div>
+						<div className="category-quanitity">{showFavLength() || 0}</div>
 					</div>
 				</NavLink>
 			</nav>
