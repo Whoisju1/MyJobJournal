@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link } from 'react-router-dom';
 import Icon from 'react-icons-kit';
-import { ic_delete_forever } from 'react-icons-kit/md/ic_delete_forever';
 import { ic_add_circle } from 'react-icons-kit/md/ic_add_circle';
 import { Glyphicon } from 'react-bootstrap';
 import moment from 'moment';
@@ -126,7 +125,6 @@ class Dashboard extends React.Component {
 			const orderedList = sortedData(sortStr, entries);
 
 			return orderedList.map((item, index) => {
-				const {showConfirm} = self.state;
 				
 				const showModal = () => {
 					if (this.state.id === item._id && this.state.showConfirm) {

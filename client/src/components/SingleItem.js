@@ -4,10 +4,9 @@ import * as actions from '../actions';
 import Icon from 'react-icons-kit';
 import { ic_delete_forever } from 'react-icons-kit/md/ic_delete_forever';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { ic_add_circle } from 'react-icons-kit/md/ic_add_circle';
-import { edit } from 'react-icons-kit/typicons/edit';
-import { Glyphicon } from 'react-bootstrap';
+
 
 // import component
 import DeleteBtn from './DeleteBtn';
@@ -121,9 +120,6 @@ class SingleItem extends React.Component {
 							<div className="single-output">
 								<Icon icon={ic_delete_forever} className="dlt" onClick={requestConfirmation} />
 							</div>
-							<Link to="/applications" className="back">
-								<Glyphicon glyph="triangle-left" />Back
-							</Link>
 							{showModal()}
 							<Link to="/add">
 								<Icon icon={ic_add_circle} size={75} className="open-form" />
@@ -135,6 +131,7 @@ class SingleItem extends React.Component {
 					);
 				}
 			});
+			return;
 	}
 
 	render() {
@@ -149,12 +146,5 @@ const mapStateToProps = ({ data, application }) => {
 	};
 };
 
-export default connect(mapStateToProps, actions)(SingleItem);
+export default connect(mapStateToProps, actions)(withRouter(SingleItem));
 
-const CompanyURL = (props) => {
-	return( 
-		<a href={props.url} target='_blank'>
-			{props.url}
-		</a>
-		)
-};
