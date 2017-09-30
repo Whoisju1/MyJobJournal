@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -23,18 +23,18 @@ export const Nav = props => {
 		if(!props.auth) return;
 		return (
 			<nav className="nav-bar">
-				<NavLink to="/applications" activeClass="nav-active">
+				<Link to="/applications">
 					<div className="application-link-wrapper">
 						Dashboard
 						<div className="category-quanitity">{showLength() || 0}</div>
 					</div>
-				</NavLink>
-				<NavLink to="/favorites" activeClass="nav-active">
+				</Link>
+				<Link to="/favorites">
 					<div className="application-link-wrapper">
 						Favorites
 						<div className="category-quanitity">{showFavLength() || 0}</div>
 					</div>
-				</NavLink>
+				</Link>
 			</nav>
 		);
 	};
