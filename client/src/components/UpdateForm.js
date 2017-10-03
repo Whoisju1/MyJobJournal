@@ -96,14 +96,12 @@ class UpdateForm extends React.Component {
 		});
 
 		this.props.history.goBack();
-		
 	}
 
 	saveToState(e) {
 		if (e.target) {
 			const { name, value } = e.target;
 			this.setState({ [name]: value });
-			console.log('name: ', name);
 		} else {
 			this.setState({status: e});
 		}
@@ -112,7 +110,7 @@ class UpdateForm extends React.Component {
 	render() {
 		return (
 			<Form horizontal className="entry-form post-form" onSubmit={this.handleSubmit}>
-				<FormGroup controlId="formHorizontalEmail" validationState="warning">
+				<FormGroup controlId="formHorizontalEmail">
 					<Col componentClass={ControlLabel} sm={2}>
 						Company
 					</Col>
@@ -164,7 +162,6 @@ class UpdateForm extends React.Component {
 						<FormControl
 							name="source"
 							type="text"
-							autofocus 
 							onChange={this.saveToState}
 							value={this.state.source}
 							placeholder="Where you found out about the position"
@@ -202,7 +199,6 @@ class UpdateForm extends React.Component {
 								type="tel"
 								placeholder="Enter phone number"
 								pattern="^(?:\(\d{3}\)|\d{3})[- . ]?\d{3}[- . ]?\d{4}$"
-								maxlength="12"
 								onChange={this.saveToState}
 								value={this.state.companyPhone}
 							/>
@@ -248,7 +244,7 @@ class UpdateForm extends React.Component {
 						</InputGroup>
 					</Col>
 				</FormGroup>
-				<FormGroup controlId="formHorizontalEmail" validationState="">
+				<FormGroup controlId="formHorizontalEmail">
 					<Col componentClass={ControlLabel} sm={2}>
 						Location
 					</Col>
@@ -362,7 +358,7 @@ class UpdateForm extends React.Component {
 					</Col>
 				</FormGroup>
 				<Button type="submit">Update</Button>
-				<Button type="danger">Cancel</Button>
+				<Button type="reset">Cancel</Button>
 			</Form>
 		);
 	}
