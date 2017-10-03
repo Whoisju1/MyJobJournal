@@ -18,9 +18,19 @@ import './styles/form.css';
 import './styles/dashboard.css';
 import './styles/searchItem.css';
 import './styles/nav.css';
+import './styles/favorites.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
+//listen to see when state changes
+const changeCallback = () => {
+	console.log("state has changed: ", store.getState());
+};
+
+changeCallback();
+
+// const unsubscribe = store.listen(changeCallback);
+ 
 ReactDOM.render(
 	<Provider store={store}>
 		<App />
