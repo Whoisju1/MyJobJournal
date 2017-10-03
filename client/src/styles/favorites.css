@@ -1,0 +1,22 @@
+.fav-item {
+    border: 1px solid black;
+}
+
+.fav-item {
+    border-top: .5px solid gray;
+    border-bottom: .5px solid gray;
+    border-left: none;
+    border-right: none;
+    margin: .5% auto;
+    width: 80%;
+    height: 160px;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column;
+    align-items: center;
+    padding: 2%;
+}
+
+.fav-position {
+    font-size: 230%;
+}
