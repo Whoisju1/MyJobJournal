@@ -31,7 +31,6 @@ class Header extends Component {
 			default:
 				return (
 					[
-					// <SearchBar key='1'/>,
 					<div className="profile-area" key="2" onClick={this.handleClick}>
 						<img src={this.props.auth.image} className="profile-img" alt="profile" />
 						<p className="user-name">{this.props.auth.firstName}</p>

@@ -43,7 +43,8 @@ class App extends React.Component {
 							<Route exact path='/application/:id' component={requireAuth(SingleItem)}/>
 							<Route exact path='/edit/:id' component={requireAuth(UpdateForm)}/>
 							{/* <Route path='/search/:searchTerm' component={requireAuth(searchResults)}/> */}
-							<Route path='*' component={requireAuth(Favorites)}/>
+							<Route path='/favorites' component={requireAuth(Favorites)}/>
+							<Route path='*' component={NotFound}/>
 						</Switch>
 					</div>
 				</BrowserRouter>
