@@ -148,7 +148,7 @@ class Dashboard extends React.Component {
 							<span className="single-title">Date Applied</span>: {item.dateApplied ? (
 								`${moment(item.dateApplied)
 									.add(1, 'day')
-									.format('LL')} (${moment(item.dateApplied).fromNow()})`
+									.format('LL')} (${(moment(item.dateApplied).fromNow()).includes("hours") ? "today" : "about " + moment(item.dateApplied).fromNow()})`
 							) : (
 								<span className="no-content">Not Specified</span>
 							)}

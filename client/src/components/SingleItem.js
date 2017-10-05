@@ -95,11 +95,12 @@ class SingleItem extends React.Component {
 								{item.dateApplied ? (
 									`${moment(item.dateApplied)
 										.add(1, 'day')
-										.format('LL')} (${moment(item.dateApplied).fromNow()})`
+										.format('LL')} (${(moment(item.dateApplied).fromNow()).includes("hours") ? "today" : "about " + moment(item.dateApplied).fromNow()})`
 								) : (
 									<span className="no-content">Not Specified</span>
 								)}
 							</div>
+							{console.log((moment(item.dateApplied).fromNow()).includes("hours"))}
 							<div className="single-output">
 								<span className="single-title"> Requirements:</span>{' '}
 								{item.requirements || <span className="no-content">Not Specified</span>}
