@@ -95,7 +95,7 @@ class SingleItem extends React.Component {
 								{item.dateApplied ? (
 									`${moment(item.dateApplied)
 										.add(1, 'day')
-										.format('LL')} (${(moment(item.dateApplied).fromNow()).includes("hours") ? "today" : "about " + moment(item.dateApplied).fromNow()})`
+										.format('LL')} (${(moment(Date.parse(item.dateApplied)).fromNow()).includes("hours") ? "today" : "about " + moment(item.dateApplied).fromNow()})`
 								) : (
 									<span className="no-content">Not Specified</span>
 								)}
