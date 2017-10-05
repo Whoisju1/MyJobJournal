@@ -98,7 +98,7 @@ class Dashboard extends React.Component {
 				if (propKey === 'dateCreated' || propKey === 'dateApplied') return (x, y) => {
 						let a = new Date(x[propKey]),
 							b = new Date(y[propKey]);
-						return a - b;	
+						return b - a;	
 				};
 				
 				return (a, b) => {
