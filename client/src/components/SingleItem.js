@@ -100,7 +100,6 @@ class SingleItem extends React.Component {
 									<span className="no-content">Not Specified</span>
 								)}
 							</div>
-							{console.log((moment(item.dateApplied).fromNow()).includes("hours"))}
 							<div className="single-output">
 								<span className="single-title"> Requirements:</span>{' '}
 								{item.requirements || <span className="no-content">Not Specified</span>}
