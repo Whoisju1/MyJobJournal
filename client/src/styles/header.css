@@ -12,6 +12,10 @@ header :any-link {
     color: black;
 }
 
+.header-login {
+    margin-right: 4%;
+}
+
 .logo {
     text-decoration: none;
     font-family: Courier New, Courier, monospace;
