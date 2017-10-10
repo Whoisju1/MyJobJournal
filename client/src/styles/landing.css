@@ -1,37 +1,48 @@
 .landing-page {
-    height: 100%;
+    height: calc(100vh - 45px);
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
-.video-source {
-    width: auto;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
+
+/* .video-source {} */
 
 .sign-up-btn-container {
     width: 3000px;
 }
 
 .login-container {
+    position: absolute;
     margin: 0 auto;
     background: #fff;
     width: 20%;
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    height: 290px;
+    min-width: 290px;
+    opacity: .9;
+    border: .3px solid gray;
+    border-radius: 2px;
+    padding: 4% 0;
 }
 
-.login-heading {
+a.login-heading {
     font-weight: bolder;
+    font-size: 200%;
+    text-decoration: none;
 }
 
 .login-btn {
     width: 150px;
+}
+
+button.auth-btn {
+    opacity: 1;
+    border: none;
+    padding: .4em;
+    color: red;
 }
