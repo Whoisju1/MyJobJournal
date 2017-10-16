@@ -1,5 +1,5 @@
 {
-    "name": "jobnotes",
+    "name": "my job journal",
     "version": "1.0.0",
     "description": "An app to help you keep track of your own job hunt. ",
     "main": "server.js",
