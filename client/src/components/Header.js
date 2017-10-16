@@ -52,7 +52,7 @@ class Header extends Component {
 		return (
 			<header className="header">
 				<Link to="/" className="logo">
-					JobJournal
+					My Job-Journal
 				</Link>
 				{this.renderUser()}
 			</header>
