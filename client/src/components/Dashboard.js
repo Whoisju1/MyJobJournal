@@ -30,11 +30,17 @@ class Dashboard extends React.Component {
 
 	toggleFavorite (id, body, favorite) {
 		
+		// the issue with this is that when you change the value of favorite
+		// it takes time to return the results so you might be changing 
+		// favorites to true when it is already true on the back end or visa versa.
+		// The value on the client side does not accurately reflect 
+		// the value on the back end (the single source of truth)
+		
 		const makeFalse = () => body.favorite = false;
 		const makeTrue = () => body.favorite = true;
 
 		(favorite) ? makeFalse() : makeTrue();
-
+		console.log("favorite in toggle: ", favorite);
 		this.props.updateData(id, body);
 		this.props.fetchData();
 		this.forceUpdate();
@@ -205,9 +211,7 @@ const mapStateToProps = ({ data, update }) => {
 	};
 };
 
-class SingleEntry extends React.Component {
-	render() {
-		return <div className="single-entry">{this.props.children}</div>;
-	}
+const SingleEntry = (props) => {
+	return <div className="single-entry">{props.children}</div>;
 }
 export default connect(mapStateToProps, actions)(Dashboard);
