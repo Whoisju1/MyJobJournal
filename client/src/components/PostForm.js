@@ -43,6 +43,14 @@ class PostForm extends React.Component {
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.saveToState = this.saveToState.bind(this);
+		this.isValid = this.isValid.bind(this);
+	}
+
+	isValid(pattern, str) {
+		if (str === "") return 'default'; 
+		let validity = pattern.test(str);
+		if (!validity) return 'warning';
+		else return 'success';
 	}
 
 	handleSubmit(event) {
@@ -73,7 +81,6 @@ class PostForm extends React.Component {
 		if (e.target) {
 			const { name, value } = e.target;
 			this.setState({ [name]: value });
-			console.log('name: ', name);
 		} else {
 			this.setState({status: e});
 		}
@@ -82,7 +89,7 @@ class PostForm extends React.Component {
 	render() {
 		return (
 			<Form horizontal className="entry-form post-form" onSubmit={this.handleSubmit}>
-				<FormGroup controlId="formHorizontalEmail" validationState="warning">
+				<FormGroup controlId="formHorizontalEmail">
 					<Col componentClass={ControlLabel} sm={2}>
 						Company
 					</Col>
@@ -157,7 +164,7 @@ class PostForm extends React.Component {
 						/>
 					</Col>
 				</FormGroup>
-				<FormGroup controlId="formHorizontalEmail">
+				<FormGroup controlId="formHorizontalEmail" validationState={this.isValid(/^(?:\(\d{3}\)|\d{3})[- . ]?\d{3}[- . ]?\d{4}$/, this.state.companyPhone)}>
 					<Col componentClass={ControlLabel} sm={2}>
 						Phone
 					</Col>
@@ -179,7 +186,7 @@ class PostForm extends React.Component {
 					</Col>
 				</FormGroup>
 
-				<FormGroup controlId="formHorizontalEmail">
+				<FormGroup controlId="formHorizontalEmail" validationState={this.isValid(/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$/, this.state.companyEmail)}>
 					<Col componentClass={ControlLabel} sm={2}>
 						Email
 					</Col>
@@ -198,7 +205,7 @@ class PostForm extends React.Component {
 						</InputGroup>
 					</Col>
 				</FormGroup>
-				<FormGroup controlId="formHorizontalEmail" validationState="warning">
+				<FormGroup controlId="formHorizontalEmail" validationState={this.isValid(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, this.state.companyWebsite)}>
 					<Col componentClass={ControlLabel} sm={2}>
 						Website
 					</Col>
@@ -209,7 +216,7 @@ class PostForm extends React.Component {
 							</InputGroup.Addon>
 							<FormControl
 								name="companyWebsite"
-								type="url"
+								pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$"
 								onChange={this.saveToState}
 								value={this.state.companyWebsite}
 								placeholder="Employer Website"
@@ -217,7 +224,7 @@ class PostForm extends React.Component {
 						</InputGroup>
 					</Col>
 				</FormGroup>
-				<FormGroup controlId="formHorizontalEmail" validationState="warning">
+				<FormGroup controlId="formHorizontalEmail">
 					<Col componentClass={ControlLabel} sm={2}>
 						Location
 					</Col>
