@@ -71,6 +71,7 @@ class UpdateForm extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.saveToState = this.saveToState.bind(this);
+		this.isValid = this.isValid.bind(this);
 	}
 
 	handleSubmit(event) {
@@ -107,6 +108,13 @@ class UpdateForm extends React.Component {
 		}
 	}
 
+	isValid(pattern, str) {
+		if (str === "") return 'default'; 
+		let validity = pattern.test(str);
+		if (!validity) return 'warning';
+		else return 'success';
+	}
+	
 	render() {
 		return (
 			<Form horizontal className="entry-form post-form" onSubmit={this.handleSubmit}>
@@ -185,7 +193,7 @@ class UpdateForm extends React.Component {
 						/>
 					</Col>
 				</FormGroup>
-				<FormGroup controlId="formHorizontalEmail">
+				<FormGroup controlId="formHorizontalEmail" validationState={this.isValid(/^(?:\(\d{3}\)|\d{3})[- . ]?\d{3}[- . ]?\d{4}$/, this.state.companyPhone)}>
 					<Col componentClass={ControlLabel} sm={2}>
 						Phone
 					</Col>
@@ -206,7 +214,7 @@ class UpdateForm extends React.Component {
 					</Col>
 				</FormGroup>
 
-				<FormGroup controlId="formHorizontalEmail">
+				<FormGroup controlId="formHorizontalEmail" validationState={this.isValid(/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$/, this.state.companyEmail)}>
 					<Col componentClass={ControlLabel} sm={2}>
 						Email
 					</Col>
@@ -225,7 +233,7 @@ class UpdateForm extends React.Component {
 						</InputGroup>
 					</Col>
 				</FormGroup>
-				<FormGroup controlId="formHorizontalEmail" validationState="">
+				<FormGroup controlId="formHorizontalEmail" validationState={this.isValid(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, this.state.companyWebsite)}>
 					<Col componentClass={ControlLabel} sm={2}>
 						Website
 					</Col>
@@ -236,7 +244,7 @@ class UpdateForm extends React.Component {
 							</InputGroup.Addon>
 							<FormControl
 								name="companyWebsite"
-								type="url"
+								pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$"
 								onChange={this.saveToState}
 								value={this.state.companyWebsite}
 								placeholder="Employer Website"
