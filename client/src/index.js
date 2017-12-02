@@ -9,16 +9,7 @@ import App from './components/App';
 import reducers from './reducers';
 
 // import styles
-import './styles/reset.css';
 import './styles/index.css';
-import './styles/header.css';
-import './styles/landing.css';
-import './styles/single.css';
-import './styles/form.css';
-import './styles/dashboard.css';
-import './styles/searchItem.css';
-import './styles/nav.css';
-import './styles/favorites.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 

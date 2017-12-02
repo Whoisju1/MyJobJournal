@@ -1,4 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
+@import url('./reset.css');
+@import url('./header.css');
+@import url('./landing.css');
+@import url('./single.css');
+@import url('./form.css');
+@import url('./dashboard.css');
+@import url('./searchItem.css');
+@import url('./nav.css');
+@import url('./favorites.css');
+@import url('./account.css');
+
+/* @import url('./videoBackground.css'); */
+
+:root {
+    --header-height: 45px;
+    --nav-height: 45px;
+    --color-primary: #2c3e50;
+}
+
 html body {
     margin: 0;
     padding: 0;

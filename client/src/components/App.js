@@ -14,6 +14,7 @@ import UpdateForm from './UpdateForm';
 import NotFound from './NotFound.js';
 import Nav from './Nav';
 import Favorites from './Favorites';
+import AccountInfo from './AccountInfo';
 // import searchResults from './searchResults';
 
 class App extends React.Component {
@@ -43,6 +44,8 @@ class App extends React.Component {
 							<Route exact path='/application/:id' component={requireAuth(SingleItem)}/>
 							<Route exact path='/edit/:id' component={requireAuth(UpdateForm)}/>
 							{/* <Route path='/search/:searchTerm' component={requireAuth(searchResults)}/> */}
+							<Route path='/account' component={requireAuth(AccountInfo)}/>
+							
 							<Route path='/favorites' component={requireAuth(Favorites)}/>
 							<Route path='*' component={NotFound}/>
 						</Switch>

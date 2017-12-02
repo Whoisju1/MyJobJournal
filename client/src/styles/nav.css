@@ -11,6 +11,9 @@
     justify-content: space-between;
     align-items: center;
     width: 105%;
+    font-weight: bolder;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .category-quanitity {
@@ -18,11 +21,15 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    color: lightgray;
+    background: #e2e2e29f;
+    color: black;
     height: 18px;
     padding: 4px;
 }
 
+.nav-link:hover {
+    text-decoration: none;
+}
 
 .nav-active {
     border-bottom: 3px solid green;

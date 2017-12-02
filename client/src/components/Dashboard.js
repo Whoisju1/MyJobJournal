@@ -30,20 +30,22 @@ class Dashboard extends React.Component {
 
 	toggleFavorite (id, body, favorite) {
 		
-		// the issue with this is that when you change the value of favorite
-		// it takes time to return the results so you might be changing 
-		// favorites to true when it is already true on the back end or visa versa.
-		// The value on the client side does not accurately reflect 
-		// the value on the back end (the single source of truth)
-		
-		const makeFalse = () => body.favorite = false;
-		const makeTrue = () => body.favorite = true;
 
-		(favorite) ? makeFalse() : makeTrue();
-		console.log("favorite in toggle: ", favorite);
-		this.props.updateData(id, body);
+		let changeFav = (obj, bool) => {
+			let bodyCopy = Object.assign({}, body);
+			bodyCopy.favorite = bool;
+			return bodyCopy;
+		};
+
+		let falseFav = changeFav(body, false);
+		let trueFav = changeFav(body, true);
+
+		// console.log('false: ', falseFav.favorite);
+		// console.log('true: ', trueFav.favorite);
+
+		(favorite) ? this.props.updateData(id, falseFav) : this.props.updateData(id, trueFav);
+		
 		this.props.fetchData();
-		this.forceUpdate();
 	}
 	
 	changeOrder() {
@@ -80,6 +82,12 @@ class Dashboard extends React.Component {
 	componentDidMount() {
 		this.props.fetchData();
 	}
+
+	
+	componentWillReceiveProps(nextProps) {
+		console.log('NextProps: ', nextProps);
+	}
+	
 
 	listSort(order = null) {
 		this.setState({ sortOrder: order });
@@ -191,6 +199,8 @@ class Dashboard extends React.Component {
 	}
 
 	render() {
+		{console.clear()}
+		{console.log(this.props)}
 		return (
 			<div className="dash-container">
 					{this.showOrder()}
