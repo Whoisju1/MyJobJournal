@@ -88,7 +88,7 @@ header :any-link {
 }
 
 .account-menu-item:hover {
-    background: #eff3f6;
+    background: var(--color-secondary);
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;

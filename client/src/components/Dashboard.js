@@ -40,9 +40,6 @@ class Dashboard extends React.Component {
 		let falseFav = changeFav(body, false);
 		let trueFav = changeFav(body, true);
 
-		// console.log('false: ', falseFav.favorite);
-		// console.log('true: ', trueFav.favorite);
-
 		(favorite) ? this.props.updateData(id, falseFav) : this.props.updateData(id, trueFav);
 		
 		this.props.fetchData();
@@ -148,50 +145,50 @@ class Dashboard extends React.Component {
 
 				return (
 					<SingleEntry key={index}>
-					<div className='item-link'>
-						<Link to={`/application/${item._id}`}>View Job Information</Link>
-					</div> 
-					<div className='content-container'>
-						<div className="company info-item">
-							<span className="single-title">Company</span>: {item.company}
-						</div>
-						<div className="position info-item">
-							<span className="single-title">Position</span>: {item.position}
-						</div>
-						<div className="info-item">
-							<span className="single-title">Date Applied</span>: {item.dateApplied ? (
-								`${moment(item.dateApplied)
-									.add(1, 'day')
-									.format('LL')} (${moment(Date.parse(item.dateCreated)).fromNow().includes("hours") ? "today" : "about " + moment(Date.parse(item.dateApplied)).fromNow()})`
-							) : (
-								<span className="no-content">Not Specified</span>
-							)}
-						</div>
-						<div className="info-item">
-							<span className="single-title">Date Created</span>: {item.dateCreated ? (
-								`${moment(item.dateCreated)
-									.format('llll')} (${moment(item.dateCreated).fromNow()})`
-							) : (
-								<span className="no-content">Not Specified</span>
-							)}
-						</div>
-						<div className="tools-container">
-							<div className='fav-wrapper'>
-								{
-									item.favorite ? <i className="fa fa-star fav fav-true fa-lg" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} /> : <i className="fa fa-star-o fav fav-false fa-lg" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
-								}
+						<div className='item-link'>
+							<Link to={`/application/${item._id}`}>View Job Information</Link>
+						</div> 
+						<div className='content-container'>
+							<div className="company info-item">
+								<span className="single-title">Company</span>: {item.company}
 							</div>
-							<Link to={`/edit/${item._id}`}>
-								<i className="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
-							</Link>
-							<div className="dlt-container">
-								<i onClick={()=> requestConfirmation(item._id)} className="dlt-in-dash fa fa-trash-o fa-lg" aria-hidden="true">
-								</i>
+							<div className="position info-item">
+								<span className="single-title">Position</span>: {item.position}
 							</div>
+							<div className="info-item">
+								<span className="single-title">Date Applied</span>: {item.dateApplied ? (
+									`${moment(item.dateApplied)
+										.add(1, 'day')
+										.format('LL')} (${moment(Date.parse(item.dateCreated)).fromNow().includes("hours") ? "today" : "about " + moment(Date.parse(item.dateApplied)).fromNow()})`
+								) : (
+									<span className="no-content">Not Specified</span>
+								)}
+							</div>
+							<div className="info-item">
+								<span className="single-title">Date Created</span>: {item.dateCreated ? (
+									`${moment(item.dateCreated)
+										.format('llll')} (${moment(item.dateCreated).fromNow()})`
+								) : (
+									<span className="no-content">Not Specified</span>
+								)}
+							</div>
+							<div className="tools-container">
+								<div className='fav-wrapper'>
+									{
+										item.favorite ? <i className="fa fa-star fav fav-true fa-lg" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} /> : <i className="fa fa-star-o fav fav-false fa-lg" aria-hidden="true" onClick={()=> self.toggleFavorite(item._id, item, item.favorite)} />
+									}
+								</div>
+								<Link to={`/edit/${item._id}`}>
+									<i className="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+								</Link>
+								<div className="dlt-container">
+									<i onClick={()=> requestConfirmation(item._id)} className="dlt-in-dash fa fa-trash-o fa-lg" aria-hidden="true">
+									</i>
+								</div>
+							</div>
+							{showModal()}
+							<div className="index">{index + 1}</div>
 						</div>
-						{showModal()}
-						<div className="index">{index + 1}</div>
-					</div>
 					</SingleEntry>
 				);
 			});

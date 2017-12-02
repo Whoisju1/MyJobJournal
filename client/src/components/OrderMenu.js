@@ -48,26 +48,26 @@ class OrderMenu extends React.Component {
 
 		return (
 			<div className="dropdown">
-				<div className="sort-menu-heading" onClick={this.isVisible}>
+				<div className="dropdown__heading" onClick={this.isVisible}>
 					Sort By {order}
 					<Glyphicon glyph="chevron-down" />
 				</div>
-				<div className="menu-list" style={{ display: visibility }}>
-					<div className="sort-menu-item" onClick={() => this.changeOrder('company')} ref={this.state.order}>
+				<div className="dropdown-list" style={{ display: visibility }}>
+					<div className="dropdown-list__item" onClick={() => this.changeOrder('company')} ref={this.state.order}>
 						Company
 					</div>
-					<div className="sort-menu-item" onClick={() => this.changeOrder('position')} ref={this.state.order}>
+					<div className="dropdown-list__item" onClick={() => this.changeOrder('position')} ref={this.state.order}>
 						Position
 					</div>
 					<div
-						className="sort-menu-item"
+						className="dropdown-list__item"
 						onClick={() => this.changeOrder('dateApplied')}
 						ref={this.state.order}
 					>
 						Date Applied
 					</div>
 					<div
-						className="sort-menu-item"
+						className="dropdown-list__item"
 						onClick={() => this.changeOrder('dateCreated')}
 						ref={this.state.order}
 					>

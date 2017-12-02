@@ -16,6 +16,7 @@
     --header-height: 45px;
     --nav-height: 45px;
     --color-primary: #2c3e50;
+    --color-secondary: #eff3f6;
 }
 
 html body {
@@ -31,7 +32,7 @@ html body {
     width: 100%;
     overflow-x: hidden;
     position: relative;
-    /* background-image: linear-gradient(to right, #dae3e9, #eff3f6); */
+    /* background-image: linear-gradient(to right, #dae3e9, var(--color-secondary)); */
     background-image: url(https://images.contentful.com/e5mq1t8pfsum/Nbich7UcMwUSAWEYOIGWC/5900f92fe1c1c7991ef8110cba17f33e/zejiukzcd8c-luis-llerena.jpg);
     background-size: cover;
 }
