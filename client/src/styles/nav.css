@@ -2,19 +2,29 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: #fff;
+    /* background: #fff; */
+    background: var(--color-secondary);
     height: 45px;
     box-shadow: 0px 1px 7px rgba(0, 0, 0, .2);
 }
 
 .application-link-wrapper {
     display: flex;
+    color: var(--color-primary);
     justify-content: space-between;
     align-items: center;
     width: 105%;
     font-weight: bolder;
     text-decoration: none;
     text-transform: uppercase;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.application-link-wrapper:hover {
+    color: white;
+    background: var(--color-primary);
 }
 
 .category-quanitity {

@@ -45,6 +45,7 @@
     position: fixed;
     right: 10%;
     bottom: 10%;
+    color: var(--color-primary);
 }
 
 .modal-outer {
@@ -117,7 +118,7 @@
 
 .single-title {
     font-weight: bolder;
-    color: #285379;
+    color: var(--color-primary);
 }
 
 .single-inline {
