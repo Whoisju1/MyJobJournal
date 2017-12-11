@@ -16,7 +16,7 @@
     --header-height: 45px;
     --nav-height: 45px;
     --color-primary: #27ae60;
-    --color-secondary: #eff3f6;
+    --color-secondary: #FFFBFF;
 }
 
 html body {
@@ -34,6 +34,12 @@ html body {
     position: relative;
     /* background-image: linear-gradient(to right, rgba(218, 227, 233, 0.685), var(--color-secondary)), url("../images/tarun-ram-454974.jpg"); */
     background-size: cover;
+    background: #FFFBFF;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #eef2f3, #FFFBFF);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #eef2f3, #FFFBFF);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .main-container::after {

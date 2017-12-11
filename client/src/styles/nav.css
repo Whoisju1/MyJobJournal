@@ -3,9 +3,10 @@
     justify-content: space-around;
     align-items: center;
     /* background: #fff; */
-    background: var(--color-secondary);
+    /* background: var(--color-secondary); */
     height: 45px;
-    box-shadow: 0px 1px 7px rgba(0, 0, 0, .2);
+    box-shadow: 0px 7px 17px rgba(0, 0, 0, .2);
+    border-top: .5px solid gray;
 }
 
 .application-link-wrapper {
