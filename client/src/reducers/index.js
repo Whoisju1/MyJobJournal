@@ -3,7 +3,6 @@ import authReducer from './authReducer';
 import storeReducer from './storeReducer';
 import deleteReducer from './deleteReducer';
 import updateReducer from './updateReducer';
-import {reducer as formReducer} from 'redux-form';
 import fetchReducer from './fetchReducer';
 import fetchApplication from './fetchApplication';
 import searchReducer from './searchReducer';
@@ -13,7 +12,6 @@ export default combineReducers({
     added : storeReducer,
     delete : deleteReducer,
     update: updateReducer,
-    form: formReducer,
     data: fetchReducer,
     application: fetchApplication,
     search: searchReducer
