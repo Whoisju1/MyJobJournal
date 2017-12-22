@@ -1,11 +1,14 @@
 header {
-    height: var(--header-height);
-    display: flex;
-    justify-content: space-between;
+    /* height: var(--header-height); */
+    height: 6vh;
     align-items: center;
-    /* background-color: var(--color-primary); */
-    /* color: #fff; */
+    display: grid;
+    grid-gap: 1%;
+    grid-template-columns: 4% max-content auto 6% 1%;
+    border-bottom: .3px solid lightgray;
     color: var(--color-primary);
+    box-shadow: 0px 4px 27px rgba(0, 0, 0, .1);
+    /* margin-bottom: 2%; */
 }
 
 header :any-link {
@@ -22,7 +25,9 @@ header :any-link {
     text-decoration: none;
     font-family: Courier New, Courier, monospace;
     font-size: 250%;
-    margin-left: 10%;
+    grid-column: 2/3;
+    text-shadow: 1px 5px 20px rgba(0, 0, 0, .2);
+    text-align: center;
 }
 
 .logo>a:hover {
@@ -42,21 +47,26 @@ header :any-link {
 .profile-area {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 0 5% 0 0;
+    justify-content: space-around;
     cursor: pointer;
     position: relative;
+    height: 100%;
 }
 
 .profile-img {
     border: 2px solid lightgray;
-    border-radius: 50px;
-    width: 43%;
+    border-radius: 100px;
+    width: 41%;
     height: auto;
+    flex-flow: nowrap;
 }
 
 .user-name {
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120%;
+    height: 100%;
 }
 
 .account-container {
@@ -66,7 +76,7 @@ header :any-link {
     border: .4px solid gray;
     color: black;
     cursor: pointer;
-    z-index: 2;
+    /* z-index: 2; */
     background: white;
 }
 
@@ -81,7 +91,7 @@ header :any-link {
     height: 150;
     right: -65px;
     position: absolute;
-    z-index: 1;
+    /* z-index: 1; */
     color: black;
     background: white;
     width: 200%;

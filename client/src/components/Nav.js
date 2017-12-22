@@ -22,25 +22,26 @@ export const Nav = props => {
 	const renderContent = () => {
 		if(!props.auth) return;
 		return (
-			<nav className="nav-bar">
-				<Link to="/applications">
+			[
+				<Link to="/applications" className='dash-link' key='1'>
 					<div className="application-link-wrapper">
 						Dashboard
-						<div className="category-quanitity">{showLength() || 0}</div>
+						<div className="category-quantity">{showLength() || 0}</div>
 					</div>
 				</Link>
-				<Link to="/favorites">
+				,
+				<Link to="/favorites" className='fav-link' key='2'>
 					<div className="application-link-wrapper">
 						Favorites
-						<div className="category-quanitity">{showFavLength() || 0}</div>
+						<div className="category-quantity">{showFavLength() || 0}</div>
 					</div>
 				</Link>
-			</nav>
+			]
 		);
 	};
 
 	return (
-		<div>
+		<div className='nav-bar'>
 			{renderContent()}
 		</div>
 	)

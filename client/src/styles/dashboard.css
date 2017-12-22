@@ -10,7 +10,7 @@
     position: relative;
     height: calc(100vh - 95px);
     overflow-y: auto;
-    /* background-image: url("../images/joel-peel-131757.jpg"); */
+    background-image: url("../images/joel-peel-131757.jpg");
     background-size: cover;
 }
 
@@ -46,7 +46,7 @@
     position: relative;
     top: 26px;
     left: calc(26% - 3px);
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .dash {
@@ -95,7 +95,7 @@
     justify-content: space-between;
     font-weight: 800;
     color: #433F3F;
-    z-index: 4;
+    /* z-index: 4; */
     background: white;
 }
 

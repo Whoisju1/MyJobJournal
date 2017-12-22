@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AccountInfo = (...proops) => (
+const AccountInfo = (...props) => (
     <div className="account">
         <h1 className="account__info">
             Coming Soon (Under Construction)

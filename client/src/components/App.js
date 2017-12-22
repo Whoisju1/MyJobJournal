@@ -12,7 +12,7 @@ import requireAuth from './HOC/requireAuth';
 import SingleItem from './SingleItem';
 import UpdateForm from './UpdateForm';
 import NotFound from './NotFound.js';
-import Nav from './Nav';
+// import Nav from './Nav';
 import Favorites from './Favorites';
 import AccountInfo from './AccountInfo';
 // import searchResults from './searchResults';
@@ -36,7 +36,7 @@ class App extends React.Component {
 				<BrowserRouter>
 					<div className='main-container'>
 						<Header />
-						<Nav />
+						{/* <Nav /> */}
 						<Switch>
 							<Route path='/add' component={requireAuth(FormData)}/> 
 							<Route exact path='/' component={Landing}/>

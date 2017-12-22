@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Nav from './Nav';
 
 // import SearchBar from './SearchBar';
 
@@ -54,6 +55,7 @@ class Header extends Component {
 				<Link to="/" className="logo">
 					My JobJournal
 				</Link>
+				<Nav />
 				{this.renderUser()}
 			</header>
 		);
