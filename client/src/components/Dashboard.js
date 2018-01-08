@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faSortAlphaDown, faSortAlphaUp, faTrash, faPlusCircle, faSort } from '@fortawesome/fontawesome-free-solid';
+import { faHeart, faEdit } from '@fortawesome/fontawesome-free-regular';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,7 +28,7 @@ class Dashboard extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) this.setState({ jobNotes: nextProps.data.applications });
     if (nextProps.deleted !== this.props.deleted) this.setState({ jobNotes: nextProps.deleted.applications });
     if (nextProps.added !== this.props.added) this.setState({ jobNotes: nextProps.added.applications });
@@ -232,7 +234,30 @@ class Dashboard extends Component {
         }
     `;
 
-    const Favorite = styled(FontAwesome)`
+    const AddWrapper = styled(Link).attrs({
+      to: '/add',
+    })`
+        transform: scale(4);
+        position: fixed;
+        right: 10%;
+        bottom: 10%;
+    `;
+
+    const Add = styled(FontAwesomeIcon).attrs({
+      icon: faPlusCircle,
+      size: '1x',
+    })`
+        text-shadow: 2px 6px 20px rgba(0, 0, 0, .3);
+        z-index: 1;
+        &:hover {
+          color: ${primaryColor};
+        }
+    `;
+
+    const Favorite = styled(FontAwesomeIcon).attrs({
+      icon: faHeart,
+    })`
+      transform: scale(1.2);
       transition: all .5s ease;
       fill: none;
       color: gray;
@@ -245,26 +270,11 @@ class Dashboard extends Component {
       }
     `;
 
-    const Add = styled(FontAwesome)`
-        text-shadow: 2px 6px 20px rgba(0, 0, 0, .3);
-        z-index: 1;
-        &:hover {
-          color: ${primaryColor};
-        }
-    `;
-
-    const AddWrapper = styled(Link).attrs({
-      to: '/add',
+    const Edit = styled(FontAwesomeIcon).attrs({
+      icon: faEdit,
     })`
-        transform: scale(4);
-        position: fixed;
-        right: 10%;
-        bottom: 10%;
-    `;
-
-    const Edit = styled(FontAwesome)`
       transition: all .5s ease;
-      transform: scale(1.3);
+      transform: scale(1.2);
       color: gray;
       &:hover {
         transform: scale(1.5);
@@ -272,8 +282,10 @@ class Dashboard extends Component {
       }
     `;
 
-    const Delete = styled(FontAwesome)`
-      transform: scale(1.3);
+    const Delete = styled(FontAwesomeIcon).attrs({
+      icon: faTrash,
+    })`
+      transform: scale(1.2);
       transition: all .5s ease;
       color: gray;
       cursor: pointer;
@@ -293,40 +305,36 @@ class Dashboard extends Component {
       grid-gap: 5px;
       grid-row: 1/2;
       grid-column: 2/3;
-      grid-template-columns: 9% 9% auto;
-      
+      grid-auto-flow: column;
+      justify-content: start;
     `;
 
-    const SortUp = styled(FontAwesome).attrs({
-      name: 'sort-up',
-      size: 'lg',
-    })`
-    grid-column: 2/3;
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 3px 2px 10px rgba(0, 0, 0, .2);
-      color: ${props => (props.isSelected ? primaryColor : 'gray')};
+    const ReverseSortWrapper = styled.a`
+      &,
+      &:link,
+      &:visited {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 3px 2px 10px rgba(0, 0, 0, .2);
+        width: 2em;
+        cursor: pointer;
+        transition: all 1ms ease;
+        color: gray;
+      }
       &:hover {
-        
         color: ${primaryColor};
+      }
+      &:active {
+        transform: translateY(2px);
+        ${'' /* border: 1px solid ${primaryColor}; */}
       }
     `;
-    const SortDown = styled(FontAwesome).attrs({
-      name: 'sort-down',
+
+    const ReverseSort = styled(FontAwesomeIcon).attrs({
+      icon: faSort,
       size: 'lg',
     })`
-      display: grid;
-    grid-column: 1/2;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 3px 2px 10px rgba(0, 0, 0, .2);
-      color: ${props => (!props.isSelected ? primaryColor : 'gray')};
-      &:hover {
-        color: ${primaryColor};
-      }
     `;
 
     const ModalBackground = styled.div`
@@ -462,8 +470,13 @@ class Dashboard extends Component {
     return (
       <Container class="container">
         <SortWrapper>
-          <SortDown onClick={() => this.setState({ isReversed: false })} isSelected={this.state.isReversed} />
-          <SortUp onClick={() => this.setState({ isReversed: true })} isSelected={this.state.isReversed} />
+          <ReverseSortWrapper
+            onClick={() => this.setState({ isReversed: this.state.isReversed ? !this.state.isReversed : true })}
+          >
+            <ReverseSort
+              isSelected={this.state.isReversed}
+            />
+          </ReverseSortWrapper>
           <DropDownMenu
             items={[
               {

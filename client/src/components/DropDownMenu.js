@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/fontawesome-free-solid';
 
 class DropDownMenu extends Component {
   constructor(props) {
@@ -35,14 +37,15 @@ class DropDownMenu extends Component {
     `;
 
     const DropDownHeading = styled.div`
-        padding: 3% 0;
         display: grid;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+        grid-auto-flow: column;
         text-transform: uppercase;
         font-weight: 800;
         cursor: pointer;
         color: #433F3F;
+        padding: 3% 0;
         position: relative;
         &:hover {
           background: #FFFBFF;
@@ -101,7 +104,7 @@ class DropDownMenu extends Component {
     return (
       <DropDown>
         <DropDownHeading onClick={this.handleClick} content={`-- Sorted by ${selected}.`}>
-          { this.props.heading }
+          { this.props.heading } <FontAwesomeIcon icon={faAngleDown} />
         </DropDownHeading>
         <DropDownBody style={{ display: this.state.isOpen ? 'grid' : 'none' }}>
           {this.props.items.map(item => (
