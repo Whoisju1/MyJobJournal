@@ -20,6 +20,7 @@
     border: .5px solid darkgray;
     width: 90%;
     padding: 2% 2% 2% 3%;
+    background-color: #ffffff;
     min-height: 20vh;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
     -webkit-transition: box-shadow .3s ease-in-out;
@@ -51,7 +52,6 @@
 
 .dash {
     background-color: rgba(238, 242, 245, 0.884);
-    background-color: var(--color-secondary);
     border: .3px solid lightgray;
     overflow: 10% auto;
     margin: 0 auto 2% auto;
