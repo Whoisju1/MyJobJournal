@@ -13,18 +13,18 @@ import './styles/index.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-//listen to see when state changes
+// listen to see when state changes
 const changeCallback = () => {
-	console.log("state has changed: ", store.getState());
+  console.log('state has changed: ', store.getState());
 };
 
 changeCallback();
 
 // const unsubscribe = store.listen(changeCallback);
- 
+
 ReactDOM.render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.querySelector('#root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#root'),
 );

@@ -1,11 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-export const NotFound = (props) => {
-    return(
-        <div style={{textAlign: 'center'}}>
-            Page Not Found
-        </div>
-    )
-}
+const NotFound = () => <div style={{ textAlign: 'center' }}className="not-found">Page Not Found</div>;
 
-export default NotFound
+export default NotFound;

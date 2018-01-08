@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import storeReducer from './storeReducer';
 import deleteReducer from './deleteReducer';
@@ -8,11 +8,11 @@ import fetchApplication from './fetchApplication';
 import searchReducer from './searchReducer';
 
 export default combineReducers({
-    auth: authReducer,
-    added : storeReducer,
-    delete : deleteReducer,
-    update: updateReducer,
-    data: fetchReducer,
-    application: fetchApplication,
-    search: searchReducer
+  auth: authReducer,
+  added: storeReducer,
+  deleted: deleteReducer,
+  update: updateReducer,
+  data: fetchReducer,
+  application: fetchApplication,
+  search: searchReducer,
 });
