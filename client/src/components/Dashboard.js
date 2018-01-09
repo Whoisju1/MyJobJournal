@@ -297,29 +297,17 @@ class Dashboard extends Component {
       grid-row: 1/2;
       grid-column: 2/3;
       grid-auto-flow: column;
-      justify-content: start;
+      justify-content: space-between;
     `;
 
-    const ReverseSortWrapper = styled.a`
-      &,
-      &:link,
-      &:visited {
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 3px 2px 10px rgba(0, 0, 0, .2);
-        width: 2em;
-        cursor: pointer;
-        transition: all 1ms ease;
-        color: gray;
-      }
-      &:hover {
-        color: ${primaryColor};
-      }
-      &:active {
-        transform: translateY(2px);
-        ${''}
-      }
+    const ReverseSortWrapper = styled.div`
+      display: grid;
+      grid-auto-flow: column;
+      grid-gap: 10px;
+      grid-template-columns: max-content;
+      cursor: pointer;
+      transition: all 1ms ease;
+      color: gray;
     `;
 
     const SortDescending = styled(FontAwesomeIcon).attrs({
@@ -327,6 +315,9 @@ class Dashboard extends Component {
       size: 'lg',
     })`
       color: ${props => (!props.isSelected ? primaryColor : 'gray')};
+      &:hover {
+        color: ${primaryColor};
+      }
     `;
 
     const SortAscending = styled(FontAwesomeIcon).attrs({
@@ -334,6 +325,9 @@ class Dashboard extends Component {
       size: 'lg',
     })`
       color: ${props => (props.isSelected ? primaryColor : 'gray')};
+      &:hover {
+        color: ${primaryColor};
+      }
     `;
 
     const ModalBackground = styled.div`
@@ -469,18 +463,6 @@ class Dashboard extends Component {
     return (
       <Container class="container">
         <SortWrapper>
-          <ReverseSortWrapper>
-            <SortDescending
-              onClick={() => this.setState({ isReversed: !this.state.isReversed })}
-              isSelected={this.state.isReversed}
-            />
-          </ReverseSortWrapper>
-          <ReverseSortWrapper>
-            <SortAscending
-              onClick={() => this.setState({ isReversed: true })}
-              isSelected={this.state.isReversed}
-            />
-          </ReverseSortWrapper>
           <DropDownMenu
             items={[
               {
@@ -508,6 +490,16 @@ class Dashboard extends Component {
             heading="Sort by..."
             current={this.state.sort}
           />
+          <ReverseSortWrapper>
+            <SortDescending
+              onClick={() => this.setState({ isReversed: !this.state.isReversed })}
+              isSelected={this.state.isReversed}
+            />
+            <SortAscending
+              onClick={() => this.setState({ isReversed: true })}
+              isSelected={this.state.isReversed}
+            />
+          </ReverseSortWrapper>
         </SortWrapper>
         {
            (this.state.jobNotes) ? (sorter(this.state.jobNotes, this.state.sort, this.state.isReversed).map((job) => {
