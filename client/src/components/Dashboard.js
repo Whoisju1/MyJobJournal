@@ -569,18 +569,12 @@ class Dashboard extends Component {
                    </JobDetail>
                  </Content>
                  <IconsContainer>
-                   <Favorite
-                     name="heart"
-                   />
+                   <Favorite />
                    <Link to={`/edit/${job._id}`}>
-                     <Edit
-                       name="edit"
-                     />
+                     <Edit />
                    </Link>
                    <IconWrapper href={`#${job._id}`}>
-                     <Delete
-                       name="trash"
-                     />
+                     <Delete />
                    </IconWrapper>
                  </IconsContainer>
                </Application>
