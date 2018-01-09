@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faSortAlphaDown, faSortAlphaUp, faTrash, faPlusCircle, faSort } from '@fortawesome/fontawesome-free-solid';
+import { faSortAmountDown, faSortAmountUp, faTrash, faPlusCircle } from '@fortawesome/fontawesome-free-solid';
 import { faHeart, faEdit } from '@fortawesome/fontawesome-free-regular';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import * as actions from '../actions';
 import DropDownMenu from './DropDownMenu';
 
@@ -33,15 +33,6 @@ class Dashboard extends Component {
     if (nextProps.deleted !== this.props.deleted) this.setState({ jobNotes: nextProps.deleted.applications });
     if (nextProps.added !== this.props.added) this.setState({ jobNotes: nextProps.added.applications });
   }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    console.log('nextProps in cwu: ', nextProps);
-  }
-
 
   handleClick(item) {
     this.setState({ sort: item });
@@ -327,14 +318,22 @@ class Dashboard extends Component {
       }
       &:active {
         transform: translateY(2px);
-        ${'' /* border: 1px solid ${primaryColor}; */}
+        ${''}
       }
     `;
 
-    const ReverseSort = styled(FontAwesomeIcon).attrs({
-      icon: faSort,
+    const SortDescending = styled(FontAwesomeIcon).attrs({
+      icon: faSortAmountDown,
       size: 'lg',
     })`
+      color: ${props => (!props.isSelected ? primaryColor : 'gray')};
+    `;
+
+    const SortAscending = styled(FontAwesomeIcon).attrs({
+      icon: faSortAmountUp,
+      size: 'lg',
+    })`
+      color: ${props => (props.isSelected ? primaryColor : 'gray')};
     `;
 
     const ModalBackground = styled.div`
@@ -470,10 +469,15 @@ class Dashboard extends Component {
     return (
       <Container class="container">
         <SortWrapper>
-          <ReverseSortWrapper
-            onClick={() => this.setState({ isReversed: this.state.isReversed ? !this.state.isReversed : true })}
-          >
-            <ReverseSort
+          <ReverseSortWrapper>
+            <SortDescending
+              onClick={() => this.setState({ isReversed: !this.state.isReversed })}
+              isSelected={this.state.isReversed}
+            />
+          </ReverseSortWrapper>
+          <ReverseSortWrapper>
+            <SortAscending
+              onClick={() => this.setState({ isReversed: true })}
               isSelected={this.state.isReversed}
             />
           </ReverseSortWrapper>
@@ -592,9 +596,9 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
-  data: PropTypes.object,
-};
+// Dashboard.propTypes = {
+//   data: PropTypes.object,
+// };
 
 const mapStateToProps = ({
   data, update, deleted, added,
