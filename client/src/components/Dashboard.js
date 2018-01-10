@@ -541,7 +541,7 @@ class Dashboard extends Component {
             />
             <ReverseSortWrapper>
               <SortDescending
-                onClick={() => this.setState({ isReversed: !this.state.isReversed })}
+                onClick={() => this.setState({ isReversed: false })}
                 isSelected={this.state.isReversed}
               />
               <SortAscending
