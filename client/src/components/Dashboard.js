@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faSortAmountDown, faSortAmountUp, faTrash, faPlusCircle } from '@fortawesome/fontawesome-free-solid';
-import { faHeart, faEdit } from '@fortawesome/fontawesome-free-regular';
+import { faSortAmountDown, faSortAmountUp, faPlusCircle } from '@fortawesome/fontawesome-free-solid';
+import { faHeart, faEdit, faTrashAlt } from '@fortawesome/fontawesome-free-regular';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -274,7 +274,7 @@ class Dashboard extends Component {
     `;
 
     const Delete = styled(FontAwesomeIcon).attrs({
-      icon: faTrash,
+      icon: faTrashAlt,
     })`
       transform: scale(1.2);
       transition: all .5s ease;
