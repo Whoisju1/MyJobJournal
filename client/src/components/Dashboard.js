@@ -56,7 +56,7 @@ class Dashboard extends Component {
         min-height: 90vh;
         align-items: center;
         margin: 0 auto;
-        justify-content: center;
+        justify-item: center;
         grid-auto-rows: max-content;
         grid-auto-flow: row;
         grid-template-columns: ${props => (props.content ? 'repeat(3, 1fr)' : 'none')};
