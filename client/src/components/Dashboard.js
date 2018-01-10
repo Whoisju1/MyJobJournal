@@ -53,13 +53,57 @@ class Dashboard extends Component {
     const Container = styled.section`
         display: grid;
         min-width: 100%;
+        min-height: 90vh;
+        align-items: center;
         margin: 0 auto;
-        justify-items: center;
+        justify-content: center;
         grid-auto-rows: max-content;
         grid-auto-flow: row;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: ${props => (props.content ? 'repeat(3, 1fr)' : 'none')};
         grid-gap: 10px;
         margin: 1% 0;
+    `;
+
+    const Instructions = styled.h1`
+      width: 100%;
+      grid-column: 1/-1;
+      grid-row: 1/-1;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      color: ${primaryColor};
+      font-weight: bold;
+      font-size: 2em;
+    `;
+
+    const spin = keyframes`
+      0% {
+        transform: rotateZ(1deg);
+      }
+      0% {
+        transform: rotateZ(360deg);
+      }
+    `;
+
+    const Spinner = styled.div`
+      border-top: 5px solid ${primaryColor};
+      width: 100px;
+      height: 100px;
+      animation-name: ${spin};
+      animation-duration: 1s;
+      animation-direction: normal;
+      animation-play-mode: running;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+      border-radius: 100px;
+      margin: 0 auto;
+      color: ${primaryColor};
+      font-weight: 800;
+      position: relative;
+      grid-column: 2/3;
+      display: grid;
+      align-items: center;
+      justify-content: center;
     `;
 
     const Application = styled.section`
@@ -416,7 +460,6 @@ class Dashboard extends Component {
           border-radius: 0px;
         }
       }
-    
       &,
       &:link {
         display: flex;
@@ -462,9 +505,11 @@ class Dashboard extends Component {
 
     return (
       <Container class="container">
-        <SortWrapper>
-          <DropDownMenu
-            items={[
+        {
+          (this.state.jobNotes && this.state.jobNotes.length > 1) &&
+          <SortWrapper>
+            <DropDownMenu
+              items={[
               {
                 val: 'position',
                 alias: 'Position',
@@ -486,23 +531,28 @@ class Dashboard extends Component {
                 alias: 'Status',
                 },
               ]}
-            callback={this.handleClick}
-            heading="Sort by..."
-            current={this.state.sort}
-          />
-          <ReverseSortWrapper>
-            <SortDescending
-              onClick={() => this.setState({ isReversed: !this.state.isReversed })}
-              isSelected={this.state.isReversed}
+              callback={this.handleClick}
+              heading="Sort by..."
+              current={this.state.sort}
             />
-            <SortAscending
-              onClick={() => this.setState({ isReversed: true })}
-              isSelected={this.state.isReversed}
-            />
-          </ReverseSortWrapper>
-        </SortWrapper>
+            <ReverseSortWrapper>
+              <SortDescending
+                onClick={() => this.setState({ isReversed: !this.state.isReversed })}
+                isSelected={this.state.isReversed}
+              />
+              <SortAscending
+                onClick={() => this.setState({ isReversed: true })}
+                isSelected={this.state.isReversed}
+              />
+            </ReverseSortWrapper>
+          </SortWrapper>
+        }
         {
-           (this.state.jobNotes) ? (sorter(this.state.jobNotes, this.state.sort, this.state.isReversed).map((job) => {
+           (this.state.jobNotes === null) ?
+           (<Spinner>Loading...</Spinner>) :
+           (this.state.jobNotes.length) ?
+           (sorter(this.state.jobNotes, this.state.sort, this.state.isReversed)
+             .map((job) => {
              const {
                  _id,
                  position,
@@ -576,7 +626,7 @@ class Dashboard extends Component {
                </Application>
              );
            })) :
-            (<p>No data yet</p>)
+            (<Instructions>Click on the plus sign below to start keeping record of where you've applied for employment.</Instructions>)
         }
         <AddWrapper>
           <Add
