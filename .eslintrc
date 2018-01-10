@@ -18,6 +18,7 @@
         "linebreak-style": [
             "error",
             "windows"
-        ]
+        ],
+        "no-nested-ternary": 0
     }
 }
