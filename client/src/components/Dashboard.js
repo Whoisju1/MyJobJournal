@@ -34,6 +34,10 @@ class Dashboard extends Component {
     if (nextProps.added !== this.props.added) this.setState({ jobNotes: nextProps.added.applications });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(this.state.jobNotes && this.state.jobNotes.length > 0)
+  }
+
   handleClick(item) {
     this.setState({ sort: item });
   }
@@ -100,7 +104,7 @@ class Dashboard extends Component {
       color: ${primaryColor};
       font-weight: 800;
       position: relative;
-      grid-column: 2/3;
+      grid-column: 1/-1;
       display: grid;
       align-items: center;
       justify-content: center;
@@ -504,7 +508,7 @@ class Dashboard extends Component {
     `;
 
     return (
-      <Container class="container">
+      <Container content={this.state.jobNotes && this.state.jobNotes.length}>
         {
           (this.state.jobNotes && this.state.jobNotes.length > 1) &&
           <SortWrapper>
@@ -549,7 +553,7 @@ class Dashboard extends Component {
         }
         {
            (this.state.jobNotes === null) ?
-           (<Spinner>Loading...</Spinner>) :
+           (<Spinner />) :
            (this.state.jobNotes.length) ?
            (sorter(this.state.jobNotes, this.state.sort, this.state.isReversed)
              .map((job) => {
