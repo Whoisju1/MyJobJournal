@@ -17,24 +17,23 @@ mongoose.connect(keys.mongoURI);
 
 // mongoose.Promise = global.Promise;
 // mongoose.connect('mongodb://localhost/job-note', {
-// 	useMongoClient: true
+// useMongoClient: true
 // });
 // const db = mongoose.connection;
 // db.on('error', console.error.bind(console, 'connection error:'));
 // db.once('open', function() {
-// 	console.log(`mongoose connected successfully`);
+// console.log(`mongoose connected successfully`);
 // });
 
 // user express sessions as a middleware
 
-app.use(
-  session({
-    secret: keys.cookieKey,
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  }));
+app.use(session({
+  secret: keys.cookieKey,
+  maxAge: 30 * 24 * 60 * 60 * 1000,
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());

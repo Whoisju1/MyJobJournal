@@ -65,7 +65,6 @@ module.exports = (app) => {
   // update application
   app.patch('/api/edit/id/:id*?', (req, res) => {
     const { id } = req.params;
-    console.log('=============== IN PATCH =====================');
     Application.findById(id, (err, application) => {
       if (err) return console.log('Error: ', err);
 
@@ -90,7 +89,6 @@ module.exports = (app) => {
       application.save((err, data) => {
         if (err) return console.log('Error: ', err);
         res.send(data);
-        console.log('SUCCESSFULLY UPDATED: ', data.favorite);
       });
     });
   });
@@ -106,7 +104,6 @@ module.exports = (app) => {
           if (err) return console.log('Error: ', err);
           User.findOne({ _id: req.user._id }).populate('applications').exec((err, data) => {
             if (err) return console.log('Error: ', err);
-            console.log('in dlt: ', data);
             res.send(data);
           });
         });
@@ -117,64 +114,51 @@ module.exports = (app) => {
   // get user data
   app.get('/api/find/', (req, res) => {
     const userID = req.user.id;
-    console.log('============ INSIDE OF FIND ===============');
-    console.log('user ID', userID);
     User.findOne({ _id: userID }).populate('applications').exec((err, data) => {
       if (err) return console.log('Error: ', err);
-      // console.log(data);
       res.send(data);
     });
   });
 
   app.get('/api/find-one/id/:id', (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     Application.findById(id, (err, application) => {
       if (err) return console.log('Error: ', err);
       res.send(application);
-      console.log('application: ', application);
     });
   });
   // search engine
 
   // app.get('/api/search/:searchTerm', (req, res) => {
-  // 	const {searchTerm} = req.params;
-  // 	let userID = req.user.id;
+  //   const { searchTerm } = req.params;
+  //   const userID = req.user.id;
 
-  // 	User.find({_id: userID})
-  // 		.then((data, err) => {
-  // 			if (err) return console.log("Error: ", err);
-  // 			console.log("<<================search Term: ", searchTerm + "=========================>>");
-
-  // 			//get the object of the array
-  // 			let [userObj] = data;
-
-  // 			// get the list of object IDs out of the object
-  // 			const {applications} = userObj;
-
-  // 			// iterate through the array of referenced object IDs
-  // 			applications.reduce((acc, id) => {
-
-  // 				console.log("==========> id: ", id);
-
-  // 				// search all the applications
-  // 				Application.find(
-  // 							{$text : {
-  // 								$search: searchTerm
-  // 							}}
-  // 						)
-  // 						.exec((err, searchResults) => {
-  // 							if (err) return console.log("Error: ", err);
-
-  // 							searchResults.map((application) => {
-  // 								if (application._id === id) {
-  // 									console.log('it is equal');
-  // 								}
-  // 							});
-
-  // 						});
-  // 			});
-  // 		});
-
+  //   User.find({ _id: userID })
+  //     .then((data, err) => {
+  //       if (err) return console.log('Error: ', err);
+  //       // get the object of the array
+  //       const [userObj] = data;
+  //       // get the list of object IDs out of the object
+  //       const { applications } = userObj;
+  //       // iterate through the array of referenced object IDs
+  //       applications.reduce((acc, id) => {
+  //         console.log('==========> id: ', id);
+  //         // search all the applications
+  //         Application.find({
+  //           $text: {
+  //             $search: searchTerm,
+  //           },
+  //         })
+  //           .exec((err, searchResults) => {
+  //             if (err) return console.log('Error: ', err);
+  //             searchResults.map((application) => {
+  //               if (application._id === id) {
+  //                 console.log('it is equal');
+  //               }
+  //             });
+  //           });
+  //       });
+  //     });
   // });
 };
 
