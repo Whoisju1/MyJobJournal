@@ -5,16 +5,27 @@ import styled from 'styled-components';
 import AuthButtons from './AuthButtons';
 import Overview from './Overview';
 
-export const Landing = (props) => {
+const Landing = (props) => {
+  if (props.auth) props.history.push('/applications');
+
   const VideoWrapper = styled.div`
-    height: calc(100vh - 45px);
+    ${'' /* height: calc(100vh - 45px); */}
+    height: 100vh;
     display: grid;
-    justify-content: center;
-    align-items: center;
+    top: 0;
+    left: 0;
     overflow: hidden;
   `;
 
-  if (props.auth) props.history.push('/applications');
+  // const BackDrop = styled.div`
+  //   height: 100vh;
+  //   display: grid;
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   overflow: hidden;
+  //   background: rgba(0, 0, 0, .3);
+  // `;
 
   const renderContent = () => {
     switch (props.auth) {
@@ -28,14 +39,17 @@ export const Landing = (props) => {
   };
 
   return (
-    <VideoWrapper>
-      <video autoPlay loop>
-        <source src={require('./../videos/MP4/In-And-Out.mp4')} />
-        <source src={require('./../videos/OGV/In-And-Out.ogv')} />
-        <source src={require('./../videos/WEBM/In-And-Out.webm')} />
-      </video>
-      {renderContent()}
-    </VideoWrapper>
+    <React.Fragment>
+      <VideoWrapper>
+        <video autoPlay loop>
+          <source src={require('./../videos/MP4/In-And-Out.mp4')} />
+          <source src={require('./../videos/OGV/In-And-Out.ogv')} />
+          <source src={require('./../videos/WEBM/In-And-Out.webm')} />
+        </video>
+        {renderContent()}
+      </VideoWrapper>
+      {/* <BackDrop /> */}
+    </React.Fragment>
   );
 };
 

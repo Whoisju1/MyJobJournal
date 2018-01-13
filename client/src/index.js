@@ -9,7 +9,7 @@ import App from './components/App';
 import reducers from './reducers';
 
 // import styles
-import './styles/index.css';
+// import './styles/index.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 

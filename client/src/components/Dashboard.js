@@ -56,16 +56,17 @@ class Dashboard extends Component {
     `;
     const Container = styled.section`
         display: grid;
+        grid-row: 2/-1;
         min-width: 100%;
-        min-height: 90vh;
         align-items: center;
+        padding-top: 1%;
+        overflow: auto;
         margin: 0 auto;
         justify-item: center;
         grid-auto-rows: max-content;
         grid-auto-flow: row;
         grid-template-columns: ${props => (props.content ? 'repeat(3, 1fr)' : 'none')};
         grid-gap: 10px;
-        margin: 1% 0;
     `;
 
     const Instructions = styled.h1`
@@ -164,7 +165,7 @@ class Dashboard extends Component {
         width: 100%;
         height: 100%;
         justify-content: center;
-        align-items: end;
+        align-items: center;
         padding: 1%;
         text-decoration: none;
         text-transform: uppercase;
@@ -237,7 +238,6 @@ class Dashboard extends Component {
       position: relative;
       grid-auto-flow: column;
       &>p {
-        overflow-y: hidden;
         height: 1em;
       }
       &>p::after {
