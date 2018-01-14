@@ -1,48 +1,104 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import * as actions from '../actions';
 
-const Nav = (props) => {
-  const showLength = () => {
-    if (props.data) return props.data.applications.length;
-  };
+class Nav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      favQuantity: 0,
+      entryQuantity: 0,
+    };
+  }
 
-  const showFavLength = () => {
-    if (props.data) {
-      const { applications } = props.data;
-      const favorites = applications.filter(item => item.favorite === true);
-      return favorites.length;
+  componentWillReceiveProps(nextProps) {
+    if (this.props.data !== nextProps.data) {
+      this.setState({ entryQuantity: nextProps.data.applications.length });
+      const favQuantity = nextProps.data.applications.filter(item => item.favorite).length;
+      this.setState({ favQuantity });
     }
-  };
 
-  const renderContent = () => {
-    if (!props.auth) return;
+    if (this.props.auth !== nextProps.auth) {
+      this.setState({ entryQuantity: nextProps.auth.applications.length });
+      const favQuantity = nextProps.auth.applications.filter(item => item.favorite).length;
+      this.setState({ favQuantity });
+    }
+
+    if (this.props.deleted !== nextProps.deleted) {
+      this.setState({ entryQuantity: nextProps.deleted.applications.length });
+      const favQuantity = nextProps.deleted.applications.filter(item => item.favorite).length;
+      this.setState({ favQuantity });
+    }
+  }
+
+  render() {
+    const primaryColor = '#27ae60';
+
+    const NavBar = styled.nav`
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      border-right: .5px solid lightgray;
+      border-left: .5px solid lightgray;
+      grid-column: 2/3;
+    `;
+
+    const NavigationLink = styled(NavLink).attrs({
+      activeClassName: 'active',
+    })`
+      &,
+      &:link,
+      &:active {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 15px;   
+        text-transform: uppercase;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 150%;
+        color: ${primaryColor};
+        text-decoration: none;
+        box-sizing: content-box;
+        font-weight: bold;
+        border-bottom: 5px solid transparent;
+      }
+      &:hover {
+        color: ${primaryColor};
+        border-bottom: 5px solid lightgray;
+      }
+      &:nth-of-type(1) {
+        border-right: .5px solid lightgray;
+      }
+      &.active {
+        border-bottom: 5px solid ${primaryColor};
+      }
+    `;
+
+    const Quantity = styled.span`
+      background-color: lightgray;
+      display: inline-block;
+      width: 1.2em;
+      border-radius: 3px;
+      text-align: center;
+      color: white;
+    `;
+
     return (
-      [
-        <Link to="/applications" className="dash-link" key="1">
-          <div className="application-link-wrapper">
-			Dashboard
-			<div className="category-quantity">{showLength() || 0}</div>
-          </div>
-        </Link>,
-        <Link to="/favorites" className="fav-link" key="2">
-          <div className="application-link-wrapper">
-			Favorites
-			<div className="category-quantity">{showFavLength() || 0}</div>
-          </div>
-        </Link>
-      ]
+      <NavBar>
+        <NavigationLink to="/applications">
+          Dashboard <Quantity>{this.state.entryQuantity}</Quantity> 
+        </NavigationLink>
+        <NavigationLink to="/favorites">
+          Favorites <Quantity>{this.state.favQuantity}</Quantity>
+        </NavigationLink>
+      </NavBar>
     );
-  };
+  }
+}
 
-  return (
-    <div className="nav-bar">
-      {renderContent()}
-    </div>
-  );
-};
-
-const mapStateToProps = ({ data, auth }) => ({ data, auth });
+const mapStateToProps = ({ data, auth, deleted }) => ({ data, auth, deleted });
 
 export default connect(mapStateToProps, actions)(Nav);

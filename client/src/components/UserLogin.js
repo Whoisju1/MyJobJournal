@@ -56,6 +56,7 @@ class UserLogin extends React.Component {
       align-items: center;
       color: ${this.props.auth ? primaryColor : '#FFFFFF'};
       grid-auto-flow: column;
+      grid-column: 6/8;
     `;
 
     return (

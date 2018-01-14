@@ -43,7 +43,7 @@ class App extends Component {
       display: grid;
       height: 100vh;
       min-width: 100%;
-      grid-template-rows: minmax(80px,100px) auto;
+      grid-template-rows: minmax(60px,70px) auto;
       background: #FFFBFF;
     `;
     return (

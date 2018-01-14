@@ -53,30 +53,41 @@ class Header extends Component {
 
   render() {
     const HeaderElement = styled.header`
-			display: grid;
-			grid-auto-flow: column;
+      display: grid;
+      grid-auto-flow: column;
       box-shadow: 1px 4px 15px rgba(0, 0, 0, .3);
-			justify-content: space-between;
-			grid-template-columns: repeat(3, 1fr);
+      justify-content: space-between;
+      grid-template-columns: 25% 50% repeat(6, 1fr);
       z-index: 1;
       grid-row: 1/2;
-		`;
+      grid-gap: 10px;
+      max-width: 100%;
+    `;
 
     const Logo = styled(Link).attrs({
       to: '/',
     })`
-			text-decoration: none;
-			font-family: Courier New, Courier, monospace;
-			font-size: 250%;
-			grid-column: 2/3;
-			text-shadow: 1px 5px 20px rgba(0, 0, 0, .2);
-			text-align: center;
-			grid-column: 1/2;
-			&:hover {
-				outline: none;
-			}
-		`;
-
+      &,
+      &:link,
+      &:visited {
+        display: grid;
+        justify-content: center;
+        align-items: center;  
+        text-decoration: none;
+        font-family: Courier New, Courier, monospace;
+        font-size: 210%;
+        grid-column: 2/3;
+        text-shadow: 1px 5px 20px rgba(0, 0, 0, .2);
+        text-align: center;
+        grid-column: 1/2;
+        outline: none;
+        color: #27ae60;
+        font-weight: 800;
+      }
+      &:hover {
+        outline: none;
+      }
+    `;
 
     return (
       <HeaderElement auth={this.props.auth}>

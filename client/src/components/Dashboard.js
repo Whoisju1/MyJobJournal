@@ -34,10 +34,6 @@ class Dashboard extends Component {
     if (nextProps.added !== this.props.added) this.setState({ jobNotes: nextProps.added.applications });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // console.log(this.state.jobNotes && this.state.jobNotes.length > 0)
-  }
-
   handleClick(item) {
     this.setState({ sort: item });
   }
@@ -55,18 +51,18 @@ class Dashboard extends Component {
         }
     `;
     const Container = styled.section`
-        display: grid;
-        grid-row: 2/-1;
-        min-width: 100%;
-        align-items: center;
-        padding-top: 1%;
-        overflow: auto;
-        margin: 0 auto;
-        justify-item: center;
-        grid-auto-rows: max-content;
-        grid-auto-flow: row;
-        grid-template-columns: ${props => (props.content ? 'repeat(3, 1fr)' : 'none')};
-        grid-gap: 10px;
+      display: grid;
+      grid-row: 2/-1;
+      min-width: 100%;
+      align-items: center;
+      padding-top: 2%;
+      overflow: auto;
+      margin: 0 auto;
+      width: 100vw;
+      grid-auto-rows: max-content;
+      grid-auto-flow: row;
+      grid-template-columns: ${props => (props.content ? '25% 50% 25%' : 'none')};
+      grid-gap: 10px;
     `;
 
     const Instructions = styled.h1`
@@ -116,8 +112,8 @@ class Dashboard extends Component {
         grid-auto-flow: row;
         grid-auto-rows: max-content;
         box-shadow: 3px 2px 10px rgba(0, 0, 0, .2);
-        width: 51%;
-        min-width: 723px;
+        ${'' /* width: 51%; */}
+        ${'' /* min-width: 723px; */}
         grid-column: 2/3;
         ${''}
         padding: 1% 2%;
@@ -135,7 +131,7 @@ class Dashboard extends Component {
           }
         }
         @media screen and (max-width: 900px ) {
-          min-width: 95vw;
+          ${'' /* min-width: 95vw; */}
           border: .5px solid gray;
         }
     `;
