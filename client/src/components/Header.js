@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './Nav';
 import UserLogin from './UserLogin';
@@ -92,4 +92,4 @@ const mapStateToProps = ({ auth }) => ({
   auth,
 });
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
