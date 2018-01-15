@@ -13,6 +13,10 @@ class Nav extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.fetchData();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.data !== nextProps.data) {
       this.setState({ entryQuantity: nextProps.data.applications.length });
