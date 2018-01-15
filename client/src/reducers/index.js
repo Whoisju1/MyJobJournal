@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import authReducer from './authReducer';
 import storeReducer from './storeReducer';
 import deleteReducer from './deleteReducer';
@@ -15,4 +16,5 @@ export default combineReducers({
   data: fetchReducer,
   application: fetchApplication,
   search: searchReducer,
+  form: formReducer,
 });
