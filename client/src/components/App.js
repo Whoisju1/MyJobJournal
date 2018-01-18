@@ -9,6 +9,7 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import FormData from './PostForm';
+import AppForm from './AppForm';
 import SingleItem from './SingleItem';
 import UpdateForm from './UpdateForm';
 import NotFound from './NotFound';
@@ -52,11 +53,11 @@ class App extends Component {
           <Header />
           {/* <Nav /> */}
           <Switch>
-            <Route path="/add" component={requireAuth(FormData)} />
+            <Route path="/add" component={requireAuth(AppForm)} />
             <Route exact path="/" component={Landing} />
             <Route exact path="/applications" component={requireAuth(Dashboard)} />
             <Route exact path="/application/:id" component={requireAuth(SingleItem)} />
-            <Route exact path="/edit/:id" component={requireAuth(UpdateForm)} />
+            <Route exact path="/edit/:id" component={requireAuth(AppForm)} />
             {/* <Route path='/search/:searchTerm' component={requireAuth(searchResults)}/> */}
             <Route path="/account" component={requireAuth(AccountInfo)} />
             <Route path="/favorites" component={requireAuth(Favorites)} />
