@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import * as actions from '../actions';
 
 const expand = keyframes`
@@ -8,7 +10,7 @@ const expand = keyframes`
     height: 3em;
   }
   100% {
-    height: 7.5em;
+    min-height: 7.5em;
   }
 `;
 
@@ -23,9 +25,9 @@ const FormContainer = styled.main.attrs({
 
 const Form = styled.form`
   border: .5px solid lightgray;
-  ${'' /* background: white; */}
+  ${''}
   background: #ffffff;  
-  ${'' /* background: linear-gradient(to right, #bdc3c7, #e4e4d9); */}
+  ${''}
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
   padding: .5% 3%;
   display: grid;
@@ -35,7 +37,7 @@ const Form = styled.form`
   margin-top: .5%;
   grid-template-columns: repeat(12, 1fr);
   &>label {
-    ${'' /* text-align: center; */}
+    ${''}
     text-transform: uppercase;
     border-left: 3px solid #27ae60;
     padding: 0;
@@ -77,11 +79,11 @@ const Form = styled.form`
     &:focus {
       animation-name: ${expand};
       animation-direction: forward;
-      animation-fill-mode: both;
+      animation-fill-mode: forwards;
       animation-duration: .5s;
       animation-timing-function: ease;
       backface-visibility: hidden;
-      ${'' /* background-color: #edfbf3; */}
+      ${''}
       &::placeholder {  
         color: #27ae60;
       }
@@ -99,7 +101,7 @@ const Form = styled.form`
 
 const Heading = styled.h2`
   border-bottom: 1px solid #27ae60;
-  ${'' /* padding-bottom: 1%; */}
+  ${''}
   grid-column: 1/-1;
   color: #27ae60;
   margin: 0 0 1% 0;
@@ -353,6 +355,13 @@ class AppForm extends Component {
     };
 
     this.saveToState = this.saveToState.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   }
 
   componentDidMount() {
@@ -413,10 +422,19 @@ class AppForm extends Component {
     // }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const { id = false } = this.props.match.params;
+    (false) ? 
+    (this.props.updateData(this.props.match.id, this.props.state)) :
+    (this.props.storeData(this.state));
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <FormContainer>
-        <Form>
+        <Form onSubmit={this.handleSubmit} >
           <Heading> Position & Company </Heading>
           <PositionLabel>Position</PositionLabel>
           <Position onChange={this.saveToState} value={this.state.position} required autofocus />
@@ -446,7 +464,7 @@ class AppForm extends Component {
           <JobDetails onChange={this.saveToState} value={this.state.jobDetails} />
           <RequirementsLabel>Job Requirements</RequirementsLabel>
           <Requirements onChange={this.saveToState} value={this.state.requirements} />
-          <Submit /> <Cancel>Discard</Cancel>
+          <Submit /> <Cancel onClick={() => console.log(this.props.history.push('/'))}>Discard</Cancel>
         </Form>
       </FormContainer>
     );
