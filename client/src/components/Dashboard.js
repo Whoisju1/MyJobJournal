@@ -234,14 +234,16 @@ class Dashboard extends Component {
       position: relative;
       grid-auto-flow: column;
       &>p {
-        height: 1em;
+        height: 1.5em;
+        overflow-y: hidden;
+        margin: 0;
       }
       &>p::after {
         content: " ";
         position: absolute;
-        bottom: 0;
+        top: 0;
         right: 0;
-        height: 1em;
+        height: 1.5em;
         width: 20%;
         text-align: right;
         background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
