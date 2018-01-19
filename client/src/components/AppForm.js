@@ -394,7 +394,7 @@ class AppForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {added = false, update = false, application = false} = nextProps
+    const {added, update, application} = nextProps
     
     if (application) {
       const {
@@ -434,12 +434,12 @@ class AppForm extends Component {
       });
     }
 
-    if (added && added !== 'undefined') {
+    if (added !== this.props.added && added !== 'undefined') {
       const { _id } = added;
       this.props.history.push(`/application/${_id}`);
     }
 
-    if (update && update !== 'undefined') {
+    if (update !== this.props.update && update !== 'undefined') {
       const { _id } = update;
       this.props.history.push(`/application/${_id}`);
     }
