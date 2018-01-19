@@ -1,5 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const NotFound = () => <div style={{ textAlign: 'center' }}className="not-found">Page Not Found</div>;
+const NotFoundMsg = styled.div`
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 200%;
+`;
+
+const NotFound = () => <NotFoundMsg>Page Not Found</NotFoundMsg>;
 
 export default NotFound;
