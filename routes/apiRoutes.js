@@ -84,8 +84,6 @@ module.exports = (app) => {
       application.source = req.body.source;
       application.favorite = req.body.favorite;
 
-      console.log('INSIDE OF PATCH: ', application.favorite);
-
       application.save((err, data) => {
         if (err) return console.log('Error: ', err);
         res.send(data);
