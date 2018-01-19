@@ -8,10 +8,9 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import FormData from './PostForm';
 import AppForm from './AppForm';
+import ComingSoon from './ComingSoon';
 import SingleItem from './SingleItem';
-import UpdateForm from './UpdateForm';
 import NotFound from './NotFound';
 // import Nav from './Nav';
 import Favorites from './Favorites';
@@ -59,8 +58,10 @@ class App extends Component {
             <Route exact path="/application/:id" component={requireAuth(SingleItem)} />
             <Route exact path="/edit/:id" component={requireAuth(AppForm)} />
             {/* <Route path='/search/:searchTerm' component={requireAuth(searchResults)}/> */}
-            <Route path="/account" component={requireAuth(AccountInfo)} />
-            <Route path="/favorites" component={requireAuth(Favorites)} />
+            {/* <Route path="/account" component={requireAuth(AccountInfo)} /> */}
+            <Route path="/account" component={requireAuth(ComingSoon)} />
+            {/* <Route path="/favorites" component={requireAuth(Favorites)} /> */}
+            <Route path="/favorites" component={requireAuth(ComingSoon)} />
             <Route path="*" component={NotFound} />
           </Switch>
         </MainContainer>
