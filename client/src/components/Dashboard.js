@@ -237,6 +237,7 @@ class Dashboard extends Component {
         height: 1.5em;
         overflow-y: hidden;
         margin: 0;
+        width: 100%;
       }
       &>p::after {
         content: " ";
