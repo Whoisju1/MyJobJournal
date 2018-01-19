@@ -20,30 +20,30 @@ const FormContainer = styled.main.attrs({
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 60% 1fr;
+  grid-template-columns: 1fr 50% 1fr;
 `;
 
 const Form = styled.form`
   border: .5px solid lightgray;
-  ${''}
-  background: #ffffff;  
-  ${''}
+  background: linear-gradient(to right, #ddf0d6, #d1e0d9);
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
-  padding: .5% 3%;
+  padding: 3%;
   display: grid;
-  grid-gap: 4px;
+  grid-gap: 8px;
   grid-column: 2/3;
   grid-auto-flow: dense;
-  margin-top: .5%;
+  margin: 2.5% 0;
   grid-template-columns: repeat(12, 1fr);
   &>label {
     ${''}
     text-transform: uppercase;
     border-left: 3px solid #27ae60;
     padding: 0;
+    margin-bottom: 0;
     padding-left: 3%;
     height: 1.5em;
-    color: #7f8c8d;
+    color: #2c3e50;
+    font-weight: 100;
   }
   &>input[type=text],
     input[type=tel],
@@ -51,14 +51,15 @@ const Form = styled.form`
     input[type=datetime-local],
     input[type=url], 
     textarea{
-    text-align: start;
-    color: green;
-    margin-bottom: 10px;
-    &::placeholder {
-      text-align: center;
-      text-transform: uppercase;
+      text-align: start;
+      color: green;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      &::placeholder {
+        text-align: center;
+        color: #bdc3c7;
+      }
     }
-  }
   &>input[type=text],
     input[type=tel],
     input[type=email],
@@ -66,24 +67,22 @@ const Form = styled.form`
     input[type=url] {
       height: 3em;
       border: .4px solid gray;
+      padding-left: 2%;
       &:focus {
         background-color: #edfbf3;
         &::placeholder {
-          color: #27ae60;
+          ${'' /* color: #27ae60; */}
+        }
       }
-      }
-  }
+   }
   &>textarea {
     min-width: 100%;
     box-sizing: border-box;
+    min-height: 8em;
+    &::placeholder {  
+        text-align: start;
+      }
     &:focus {
-      animation-name: ${expand};
-      animation-direction: forward;
-      animation-fill-mode: forwards;
-      animation-duration: .5s;
-      animation-timing-function: ease;
-      backface-visibility: hidden;
-      ${''}
       &::placeholder {  
         color: #27ae60;
       }
@@ -91,12 +90,10 @@ const Form = styled.form`
     
   }
   &>input[type=submit] {
-    ${'' /* background: white;
-    color: #27ae60; */}
+
   }
-  &>input:required {
-    border-bottom: .4px solid red;
-  }
+  ${'' /* &>input:required {
+  } */}
 `;
 
 const Heading = styled.h2`
@@ -109,7 +106,7 @@ const Heading = styled.h2`
 
 const Position = styled.input.attrs({
   name: 'position',
-  placeholder: 'Position',
+  placeholder: 'Full-Stack Web Developer',
   required: true,
   type: 'text',
 })`
@@ -129,7 +126,7 @@ const Position = styled.input.attrs({
 
 const Company = Position.extend.attrs({
   name: 'company',
-  placeholder: 'Company Name',
+  placeholder: 'Some Company',
   required: true,
   type: 'text',
 })`
@@ -138,19 +135,6 @@ const Company = Position.extend.attrs({
   &::placeholder {
     align-items: center;
     color: #27ae60;
-  }
-`;
-
-const CompanyInfo = styled.textarea.attrs({
-  name: 'companyInfo',
-  placeholder: 'Information About This company',
-})`
-  resize: vertical;
-  min-width: 100%;
-  grid-column: 1/-1;
-  &::placeholder {
-    align-items: center;
-    grid-row: 5/6;
   }
 `;
 
@@ -169,22 +153,31 @@ const JobDetails = styled.textarea.attrs({
 const Phone = styled.input.attrs({
   name: 'companyPhone',
   type: 'tel',
-  placeholder: 'Company Phone Number',
+  placeholder: '888 888 8888',
 })`
   grid-column: 1/4;
-  grid-row: 8/9;
+  grid-row: 6/7;
   &::placeholder {
     align-items: center;
   }
  `;
 
+const CompanyWebsite = styled.input.attrs({
+  name: 'companyWebsite',
+  type: 'url',
+  placeholder: 'www.company.org',
+})`
+  grid-column: 4/-1;
+  grid-row: 6/7;
+`;
+
 const Location = styled.input.attrs({
   name: 'location',
-  placeholder: 'Company Location',
+  placeholder: 'Manhattan, New York',
   type: 'text',
 })`
    grid-column: 4/-1;
-   grid-row: 10/11;
+   grid-row: 8/9;
    &::placeholder {
     align-items: center;
   }
@@ -193,9 +186,10 @@ const Location = styled.input.attrs({
 const Email = styled.input.attrs({
   name: 'companyEmail',
   type: 'email',
-  placeholder: 'Company Email Address',
+  placeholder: 'john.doe@domain.com',
 })`
   grid-column: 1/4;
+  grid-row: 8/9;
   &::placeholder {
     align-items: center;
   }
@@ -203,7 +197,7 @@ const Email = styled.input.attrs({
 
 const JobID = styled.input.attrs({
   name: 'jobID',
-  placeholder: 'Jod ID',
+  placeholder: 'Job Number/ID?',
   type: 'text',
 })`
   grid-column: 5/7;
@@ -212,7 +206,7 @@ const JobID = styled.input.attrs({
 
 const Source = styled.input.attrs({
   name: 'source',
-  placeholder: 'Where you found out about the job',
+  placeholder: 'Where did you here about this position?',
   type: 'text',
 })`
   grid-column: 9/-1;
@@ -224,7 +218,7 @@ const Source = styled.input.attrs({
 
 const Compensation = styled.input.attrs({
   name: 'compensation',
-  placeholder: 'Compensation',
+  placeholder: '$55k-$80k',
   type: 'text',
 })`
   grid-column: 7/9;
@@ -243,48 +237,78 @@ const DateApplied = styled.input.attrs({
   }
 `;
 
-const CompanyWebsite = styled.input.attrs({
-  name: 'companyWebsite',
-  type: 'url',
-  placeholder: 'Company\'s Website',
-})`
-  grid-column: 4/-1;
-  grid-row: 8/9;
-`;
-
-const Requirements = styled.textarea.attrs({
-  name: 'requirements',
-  placeholder: 'The Job Requirements',
-})`
-  resize: vertical;
-  grid-column: 1/-1;
-  grid-row: 17/18;
-  &::placeholder {
-    align-items: center;
-  }
-`;
-
 const Submit = styled.input.attrs({
   type: 'submit',
   value: 'Submit',
 })`
   grid-row: 18/19;
   grid-column: 1/ span 2;
+  background: #2ecc71;
+  color: #FFFFFF;
+  transition: all .3s ease;
+  border: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .3);
+  font-size: 120%;
+  :hover {
+    transform: translateY(-3px);
+    box-shadow: 1px 5px 4px rgba(0, 0, 0, .3);
+  }
+  :focus {
+    background-color: #dfefdc;
+  }
 `;
 
 const Cancel = styled.button`
   grid-row: 18/19;
   grid-column: span 2;
+  margin-left: 2%;
+  background: #bdc3c7;
+  color: #ffffff;
+  transition: all .3s ease;
+  border: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .3);
+  font-size: 120%;
+  :hover {
+    transform: translateY(-3px);
+    box-shadow: 1px 5px 4px rgba(0, 0, 0, .3);
+  }
+  :focus {
+    background-color: #dfefdc;
+  }
 `;
 
 // Labels
 const PositionLabel = styled.label`
   grid-column: 1/7;
   grid-row: 2/3;
+  position: relative;
+  &::after {
+    content: "( Required )";
+    color: #e74c3c;
+    text-transform: none;
+    position: absolute;
+    top: 0;
+    left: 66px;
+    font-style: italic;
+  }
 `;
 const CompanyLabel = styled.label`
   grid-column: 7/-1;
   grid-row: 2/3;
+  position: relative;
+  &::after {
+    content: "(Required)";
+    color: #e74c3c;
+    text-transform: none;
+    position: absolute;
+    top: 0;
+    left: 66px;
+    font-style: italic;
+  }
 `;
 
 const CompanyInfoLabel = styled.label`
@@ -294,19 +318,19 @@ const CompanyInfoLabel = styled.label`
 
 const CompanyPhoneLabel = styled.label`
   grid-column: 1/4;
-  grid-row: 7/8;
+  grid-row: 5/6;
 `;
 const CompanyWebsiteLabel = styled.label`
   grid-column: 4/-1;
-  grid-row: 7/8;
+  grid-row: 5/6;
 `;
 const CompanyEmailLabel = styled.label`
   grid-column: 1/4;
-  grid-row: 9/10;
+  grid-row: 7/8;
 `;
 const CompanyLocationLabel = styled.label`
   grid-column: 4/-1;
-  grid-row: 9/10;
+  grid-row: 7/8;
 `;
 const DateAppliedLabel = styled.label`
   grid-column: 1/5;
@@ -440,16 +464,14 @@ class AppForm extends Component {
           <Position onChange={this.saveToState} value={this.state.position} required autofocus />
           <CompanyLabel>Company</CompanyLabel>
           <Company onChange={this.saveToState} value={this.state.company} required />
-          <CompanyInfoLabel>Company Information</CompanyInfoLabel>
-          <CompanyInfo onBlur={e => console.log(e)} onChange={this.saveToState} value={this.state.companyInfo} />
           <Heading>Company Contact Info</Heading>
-          <CompanyPhoneLabel>Company's Telephone Number</CompanyPhoneLabel>
+          <CompanyPhoneLabel>Telephone Number</CompanyPhoneLabel>
           <Phone onChange={this.saveToState} value={this.state.companyPhone} />
-          <CompanyWebsiteLabel>Company's Website</CompanyWebsiteLabel>
+          <CompanyWebsiteLabel>Website</CompanyWebsiteLabel>
           <CompanyWebsite onChange={this.saveToState} value={this.state.companyWebsite} />
-          <CompanyEmailLabel>Company's Email</CompanyEmailLabel>
+          <CompanyEmailLabel>Email Address</CompanyEmailLabel>
           <Email onChange={this.saveToState} value={this.state.companyEmail} />
-          <CompanyLocationLabel>Comapany's Location</CompanyLocationLabel>
+          <CompanyLocationLabel>Location</CompanyLocationLabel>
           <Location onChange={this.saveToState} value={this.state.companyLocation} />
           <Heading>Job Information</Heading>
           <DateAppliedLabel>Date Applied</DateAppliedLabel>
@@ -460,11 +482,9 @@ class AppForm extends Component {
           <Compensation onChange={this.saveToState} value={this.state.compensation} />
           <SourceLabel>Source</SourceLabel>
           <Source onChange={this.saveToState} value={this.state.source} />
-          <JobDetailsInfo>Job Information</JobDetailsInfo>
+          <JobDetailsInfo>Additional Information</JobDetailsInfo>
           <JobDetails onChange={this.saveToState} value={this.state.jobDetails} />
-          <RequirementsLabel>Job Requirements</RequirementsLabel>
-          <Requirements onChange={this.saveToState} value={this.state.requirements} />
-          <Submit /> <Cancel onClick={() => console.log(this.props.history.push('/'))}>Discard</Cancel>
+          <Submit /> <Cancel onClick={() => console.log(this.props.history.push('/'))}>Cancel</Cancel>
         </Form>
       </FormContainer>
     );
