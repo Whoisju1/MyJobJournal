@@ -605,9 +605,6 @@ class Dashboard extends Component {
                      <JobDetailHeading content={status}> Status: </JobDetailHeading> {status}
                    </JobDetail>
                    <DetailInfoSample>
-                     <JobDetailHeading content={companyInfo}> Company Information: </JobDetailHeading> <p> {companyInfo || 'NO INFORMATION'} </p>
-                   </DetailInfoSample>
-                   <DetailInfoSample>
                      <JobDetailHeading content={jobDetails}> Additional Information: </JobDetailHeading> <p> {jobDetails || 'NO INFORMATION'} </p>
                    </DetailInfoSample>
                    <JobDetail>
