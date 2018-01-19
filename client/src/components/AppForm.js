@@ -496,7 +496,7 @@ class AppForm extends Component {
           <Source onChange={this.saveToState} value={this.state.source} />
           <JobDetailsInfo>Additional Information</JobDetailsInfo>
           <JobDetails onChange={this.saveToState} value={this.state.jobDetails} />
-          <Submit /> <Cancel onClick={() => console.log(this.props.history.push('/'))}>Cancel</Cancel>
+          <Submit /> <Cancel onClick={() => this.props.history.push('/')}>Cancel</Cancel>
         </Form>
       </FormContainer>
     );
