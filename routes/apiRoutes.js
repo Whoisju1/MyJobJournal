@@ -50,14 +50,14 @@ module.exports = (app) => {
         favorite,
       });
 
-      application.save((err) => {
+      application.save((err, createdApplication) => {
         if (err) return console.log('Error: ', err);
+        res.send({ _id: createdApplication._id });
       });
 
       user.applications.push(application);
       user.save((err, data) => {
         if (err) return console.log('Error: ', err);
-        res.send(data);
       });
     });
   });
