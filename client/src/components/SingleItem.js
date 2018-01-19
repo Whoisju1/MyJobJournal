@@ -271,7 +271,7 @@ class SingleItem extends React.Component {
             <DateApplied>
               {
                 `${moment(dateApplied)
-                  .add(1, 'day')
+                  .add('day')
                   .format('LL')} (${(moment(Date.parse(dateApplied))
                   .fromNow()).includes('hours') ?
                   'today' :
