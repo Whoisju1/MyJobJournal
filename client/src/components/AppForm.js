@@ -172,7 +172,7 @@ const CompanyWebsite = styled.input.attrs({
 `;
 
 const Location = styled.input.attrs({
-  name: 'location',
+  name: 'companyLocation',
   placeholder: 'Manhattan, New York',
   type: 'text',
 })`
@@ -394,7 +394,9 @@ class AppForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.application) {
+    const {added = false, update = false, application = false} = nextProps
+    
+    if (application) {
       const {
         company,
         companyInfo,
@@ -411,7 +413,7 @@ class AppForm extends Component {
         jobDetails,
         source,
         favorite,
-      } = nextProps.application;
+      } = application;
 
       this.setState({
         company,
@@ -431,6 +433,16 @@ class AppForm extends Component {
         favorite,
       });
     }
+
+    if (added && added !== 'undefined') {
+      const { _id } = added;
+      this.props.history.push(`/application/${_id}`);
+    }
+
+    if (update && update !== 'undefined') {
+      const { _id } = update;
+      this.props.history.push(`/application/${_id}`);
+    }
   }
 
   shouldComponentUpdate() {
@@ -448,11 +460,11 @@ class AppForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    // if id evaluates to true then it's an update
     const { id = false } = this.props.match.params;
-    (false) ? 
-    (this.props.updateData(this.props.match.id, this.props.state)) :
+    (id) ? 
+    (this.props.updateData(id, this.state)) :
     (this.props.storeData(this.state));
-    this.props.history.push('/');
   }
 
   render() {
@@ -491,6 +503,6 @@ class AppForm extends Component {
   }
 }
 
-const mapStateToProps = ({ application }) => ({ application });
+const mapStateToProps = ({ application, added, update }) => ({ application, added, update });
 
 export default connect(mapStateToProps, actions)(AppForm);
