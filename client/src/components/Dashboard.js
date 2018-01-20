@@ -564,7 +564,6 @@ class Dashboard extends Component {
                  dateCreated,
                  status,
                  jobDetails,
-                 companyInfo,
                  } = job;
              return (
                <Application key={_id}>
@@ -626,7 +625,7 @@ class Dashboard extends Component {
                </Application>
              );
            })) :
-            (<Instructions>Click on the plus sign below to start keeping record of where you've applied for employment.</Instructions>)
+            (<Instructions>{'Click on the plus sign below to start keeping record of where you\'ve applied for employment.'}</Instructions>)
         }
         <AddWrapper>
           <Add
