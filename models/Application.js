@@ -10,6 +10,7 @@ const applicationSchema = new Schema({
   company: {
     type: String,
     trim: true,
+    required: true,
   },
   companyPhone: {
     type: Number,
