@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import * as actions from '../actions';
 
@@ -370,7 +369,7 @@ class AppForm extends Component {
       jobID: '',
       position: '',
       status: 'Applied',
-      dateApplied: Date.now(),
+      dateApplied: new Date(),
       requirements: '',
       compensation: '',
       jobDetails: '',
