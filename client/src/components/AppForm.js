@@ -14,6 +14,8 @@ const Favorite = styled(FontAwesomeIcon).attrs({
       cursor: pointer;
       color: ${props=> (props.fav ? 'red' : 'gray')};
       z-index: 1;
+      justify-self: end;
+      align-self: center;
     `;
 
 const expand = keyframes`
