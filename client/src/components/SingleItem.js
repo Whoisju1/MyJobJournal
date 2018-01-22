@@ -64,7 +64,7 @@ class SingleItem extends React.Component {
       grid-column: 3/span 8; 
       margin: 2% 0;
     `;
-    
+
     const Section = styled.section`
       margin-bottom: 3%;
       display: grid;
@@ -79,13 +79,13 @@ class SingleItem extends React.Component {
         grid-row: span 1;
       }
     `;
-    
+
     const HeadingPrimary = styled.h2`
       color: #27ae60;
       grid-column: 1/ -1;
       padding-bottom: 9px;
     `;
-    
+
     const HeadingSecondary = styled.h3`
       grid-column: 1/span 3;
       color: #34495e;
