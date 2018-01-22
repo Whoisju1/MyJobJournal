@@ -3,6 +3,18 @@ import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../actions';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/fontawesome-free-regular';
+
+const Favorite = styled(FontAwesomeIcon).attrs({
+      icon: faHeart,
+    })`
+      grid-column: -2/-1;
+      grid-row: 1/2;
+      cursor: pointer;
+      color: ${props=> (props.fav ? 'red' : 'gray')};
+      z-index: 1;
+    `;
 
 const expand = keyframes`
   0% {
@@ -23,6 +35,7 @@ const FormContainer = styled.main.attrs({
 `;
 
 const Form = styled.form`
+  position: relative;
   border: .5px solid lightgray;
   background: linear-gradient(to right, #ddf0d6, #d1e0d9);
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
@@ -470,14 +483,21 @@ class AppForm extends Component {
     return (
       <FormContainer>
         <Form onSubmit={this.handleSubmit} >
-          <Heading> Position & Company </Heading>
+          <Favorite
+            onClick={()=> {
+              this.setState({ favorite: !this.state.favorite });
+              console.log('favorite: ', this.state.favorite)
+            }}
+            fav={this.state.favorite}
+          />
+          <Heading style={{gridColumn: '1/-1', gridRow: '1/2'}}> Position & Company </Heading>
           <PositionLabel>Position</PositionLabel>
           <Position onChange={this.saveToState} value={this.state.position} required autofocus />
           <CompanyLabel>Company</CompanyLabel>
           <Company onChange={this.saveToState} value={this.state.company} required />
           <Heading>Company Contact Info</Heading>
           <CompanyPhoneLabel>Telephone Number</CompanyPhoneLabel>
-          <Phone onChange={this.saveToState} value={this.state.companyPhone} />
+          <Phone onChange={this.saveToState} value={this.state.companyPhone} pattern={/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/g} />
           <CompanyWebsiteLabel>Website</CompanyWebsiteLabel>
           <CompanyWebsite onChange={this.saveToState} value={this.state.companyWebsite} />
           <CompanyEmailLabel>Email Address</CompanyEmailLabel>
