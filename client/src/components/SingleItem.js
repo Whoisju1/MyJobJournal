@@ -53,6 +53,7 @@ class SingleItem extends React.Component {
       }
       grid-auto-flow: row;
       overflow: auto;
+      grid-auto-rows: min-content;
     `;
 
     const Container = styled.article`
@@ -63,6 +64,9 @@ class SingleItem extends React.Component {
       grid-auto-flow: row;
       grid-column: 3/span 8; 
       margin: 2% 0;
+      &>p{
+        color: #34495e;
+      }
     `;
 
     const Section = styled.section`
@@ -84,11 +88,13 @@ class SingleItem extends React.Component {
       color: #27ae60;
       grid-column: 1/ -1;
       padding-bottom: 9px;
+      white-space: pre-wrap;
     `;
 
     const HeadingSecondary = styled.h3`
       grid-column: 1/span 3;
-      color: #34495e;
+      color: #3498db;
+      white-space: pre-wrap;
     `;
 
     const Position = styled.h1`
@@ -96,43 +102,54 @@ class SingleItem extends React.Component {
       border-bottom: 2px solid #27ae60;
       text-align: center;
       text-transform: uppercase;
+      word-break: break-all;
     `;
 
     const Company = styled.h3`
       text-align: center;
       text-transform: uppercase;
+      word-break: break-all;
+      color: #3498db;
     `;
 
     const CompanyPhone = styled.p`
       grid-column: 4/ -1;
+      white-space: pre-wrap;
     `;
 
     const CompanyEmail = styled.p`
       grid-column: 4/ -1;
+      word-break: break-all;
     `;
 
     const CompanyLocation = styled.p`
       grid-column: 4/ -1;
+      white-space: pre-wrap;
     `;
 
     const JobID = styled.p`
       grid-column: 4/ -1;
+      word-break: break-all;
     `;
 
     const Status = styled.p`
       grid-column: 4/ -1;
+      word-break: break-all;
     `;
 
     const DateApplied = styled.p`
       grid-column: 4/ -1;
+      word-break: break-all;
     `;
 
     const Source = styled.p`
       grid-column: 4/ -1;
+      word-break: break-all;
     `;
 
-    const Compensation = styled.div`
+    const Compensation = styled.p`
       grid-column: 4/ -1;
+      word-break: break-all;
     `;
 
     const JobDetails = styled.p`
@@ -143,7 +160,7 @@ class SingleItem extends React.Component {
 
     const DateCreated = styled.p`
       text-align: end;
-
+      word-break: break-all;
     `;
 
     return (
