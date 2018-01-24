@@ -109,7 +109,7 @@ class SingleItem extends React.Component {
       text-align: center;
       text-transform: uppercase;
       word-break: break-all;
-      color: #3498db;
+      color: green;
     `;
 
     const CompanyPhone = styled.p`
