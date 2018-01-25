@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Nav from './Nav';
 import UserLogin from './UserLogin';
 import UserInfoDropDown from './UserInfoDropDown';
-
-// import SearchBar from './SearchBar';
 
 class Header extends Component {
   constructor(props) {
@@ -82,5 +81,9 @@ class Header extends Component {
 const mapStateToProps = ({ auth }) => ({
   auth,
 });
+
+Header.prototype = {
+  auth: PropTypes.object,
+};
 
 export default withRouter(connect(mapStateToProps)(Header));
