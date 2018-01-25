@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 
 class UserInfoDropDown extends Component {
   constructor(props) {
@@ -81,5 +82,15 @@ class UserInfoDropDown extends Component {
     );
   }
 }
+
+UserInfoDropDown.defaultProps = {
+  heading: 'User Information',
+  children: 'loading...',
+};
+
+UserInfoDropDown.propTypes = {
+  heading: PropTypes.element,
+  children: PropTypes.element,
+};
 
 export default UserInfoDropDown;
