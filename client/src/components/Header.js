@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './Nav';
 import UserLogin from './UserLogin';
+import UserInfoDropDown from './UserInfoDropDown';
 
 // import SearchBar from './SearchBar';
 
@@ -15,7 +16,6 @@ class Header extends Component {
       isVisible: 'hidden',
     };
 
-    this.renderUser = this.renderUser.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -23,32 +23,6 @@ class Header extends Component {
     this.state.isVisible === 'visible'
       ? this.setState({ isVisible: 'hidden' })
       : this.setState({ isVisible: 'visible' });
-  }
-
-  renderUser() {
-    switch (this.props.auth) {
-      case null:
-        return;
-      case false:
-        return <a href="/auth/google" className="header-login">Login With Google</a>;
-      default:
-        return (
-          [
-            <div className="profile-area" onClick={this.handleClick}>
-              <img src={this.props.auth.image} className="profile-img" alt="profile" />
-              <p className="user-name">{this.props.auth.firstName}</p>
-              <div className="account-menu-container" style={{ visibility: this.state.isVisible }}>
-                <a href="/api/logout">
-                  <div className="account-menu-item">Logout</div>
-                </a>
-                <Link to="/account">
-                  <div className="account-menu-item">Account Information</div>
-                </Link>
-              </div>
-            </div>,
-          ]
-        );
-    }
   }
 
   render() {
@@ -93,8 +67,14 @@ class Header extends Component {
       <HeaderElement auth={this.props.auth}>
         <Logo>My JobJournal</Logo>
         <Nav />
-        {/* {this.renderUser()} */}
-        <UserLogin />
+        <UserInfoDropDown heading={<UserLogin />}>
+          <a href="/api/logout">
+            <div className="account-menu-item">Logout</div>
+          </a>
+          <Link to="/account">
+            <div className="account-menu-item">Account Information</div>
+          </Link>
+        </UserInfoDropDown>
       </HeaderElement>
     );
   }
