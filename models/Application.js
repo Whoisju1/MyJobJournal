@@ -13,6 +13,7 @@ const applicationSchema = new Schema({
     required: true,
   },
   companyPhone: {
+    default: '',
     type: Number,
   },
   companyEmail: {

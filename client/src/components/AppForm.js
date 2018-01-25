@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as actions from '../actions';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/fontawesome-free-regular';
+import * as actions from '../actions';
 
 const Favorite = styled(FontAwesomeIcon).attrs({
-      icon: faHeart,
-    })`
+  icon: faHeart,
+})`
       grid-column: -2/-1;
       grid-row: 1/2;
       cursor: pointer;
-      color: ${props=> (props.fav ? 'red' : 'gray')};
+      color: ${props => (props.fav === 'true' ? 'red' : 'gray')};
       z-index: 1;
       justify-self: end;
       align-self: center;
     `;
-
-const expand = keyframes`
-  0% {
-    height: 3em;
-  }
-  100% {
-    min-height: 7.5em;
-  }
-`;
 
 const FormContainer = styled.main.attrs({
   role: 'main',
@@ -85,7 +76,7 @@ const Form = styled.form`
       &:focus {
         background-color: #edfbf3;
         &::placeholder {
-          ${'' /* color: #27ae60; */}
+          ${''}
         }
       }
    }
@@ -325,11 +316,6 @@ const CompanyLabel = styled.label`
   }
 `;
 
-const CompanyInfoLabel = styled.label`
-  grid-column: 1/-1;
-  grid-row: 4/5;
-`;
-
 const CompanyPhoneLabel = styled.label`
   grid-column: 1/4;
   grid-row: 5/6;
@@ -366,17 +352,12 @@ const JobDetailsInfo = styled.label`
   grid-column: 1/-1;
   grid-row: 14/15;
 `;
-const RequirementsLabel = styled.label`
-  grid-column: 1/-1;
-  grid-row: 16/17;
-`;
 
 class AppForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       company: '',
-      companyInfo: '',
       companyPhone: '',
       companyEmail: '',
       companyWebsite: '',
@@ -385,7 +366,6 @@ class AppForm extends Component {
       position: '',
       status: 'Applied',
       dateApplied: new Date(),
-      requirements: '',
       compensation: '',
       jobDetails: '',
       source: '',
@@ -408,13 +388,12 @@ class AppForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {added, update, application} = nextProps
-    
+    const { added, update, application } = nextProps;
+
     if (application) {
       const {
         company,
-        companyInfo,
-        companyPhone,
+        companyPhone = '',
         companyEmail,
         companyWebsite,
         companyLocation,
@@ -422,7 +401,6 @@ class AppForm extends Component {
         position,
         status,
         dateApplied,
-        requirements,
         compensation,
         jobDetails,
         source,
@@ -431,7 +409,6 @@ class AppForm extends Component {
 
       this.setState({
         company,
-        companyInfo,
         companyPhone,
         companyEmail,
         companyWebsite,
@@ -440,7 +417,6 @@ class AppForm extends Component {
         position,
         status,
         dateApplied,
-        requirements,
         compensation,
         jobDetails,
         source,
@@ -467,18 +443,15 @@ class AppForm extends Component {
       const { name, value } = e.target;
       this.setState({ [name]: value });
     }
-    //  else {
-    //   this.setState({ status: e });
-    // }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     // if id evaluates to true then it's an update
     const { id = false } = this.props.match.params;
-    (id) ? 
-    (this.props.updateData(id, this.state)) :
-    (this.props.storeData(this.state));
+    (id) ?
+      (this.props.updateData(id, this.state)) :
+      (this.props.storeData(this.state));
   }
 
   render() {
@@ -486,19 +459,19 @@ class AppForm extends Component {
       <FormContainer>
         <Form onSubmit={this.handleSubmit} >
           <Favorite
-            onClick={()=> {
+            onClick={() => {
               this.setState({ favorite: !this.state.favorite });
             }}
-            fav={this.state.favorite}
+            fav={this.state.favorite.toString()}
           />
-          <Heading style={{gridColumn: '1/-1', gridRow: '1/2'}}> Position & Company </Heading>
+          <Heading style={{ gridColumn: '1/-1', gridRow: '1/2' }}> Position & Company </Heading>
           <PositionLabel>Position</PositionLabel>
           <Position onChange={this.saveToState} value={this.state.position} required autofocus />
           <CompanyLabel>Company</CompanyLabel>
           <Company onChange={this.saveToState} value={this.state.company} required />
           <Heading>Company Contact Info</Heading>
           <CompanyPhoneLabel>Telephone Number</CompanyPhoneLabel>
-          <Phone onChange={this.saveToState} value={this.state.companyPhone} pattern={/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/g} />
+          <Phone onChange={this.saveToState} value={this.state.companyPhone || ''} pattern={/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/g} />
           <CompanyWebsiteLabel>Website</CompanyWebsiteLabel>
           <CompanyWebsite onChange={this.saveToState} value={this.state.companyWebsite} />
           <CompanyEmailLabel>Email Address</CompanyEmailLabel>
@@ -522,6 +495,30 @@ class AppForm extends Component {
     );
   }
 }
+
+AppForm.defaultProps = {
+  application: null,
+  added: null,
+  update: null,
+  match: {
+    params: null,
+  },
+};
+
+AppForm.propTypes = {
+  updateData: PropTypes.func.isRequired,
+  storeData: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  fetchApplication: PropTypes.func.isRequired,
+  application: PropTypes.object,
+  added: PropTypes.object,
+  update: PropTypes.object,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+};
 
 const mapStateToProps = ({ application, added, update }) => ({ application, added, update });
 

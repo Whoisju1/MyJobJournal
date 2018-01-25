@@ -90,7 +90,7 @@ UserInfoDropDown.defaultProps = {
 
 UserInfoDropDown.propTypes = {
   heading: PropTypes.element,
-  children: PropTypes.element,
+  children: PropTypes.array,
 };
 
 export default UserInfoDropDown;
