@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Icon from 'react-icons-kit';
-import { ic_delete_forever } from 'react-icons-kit/md/ic_delete_forever';
+import PropTypes from 'prop-types';
+// import Icon from 'react-icons-kit';
+// import { ic_delete_forever } from 'react-icons-kit/md/ic_delete_forever';
 import styled from 'styled-components';
 import moment from 'moment';
-import { Link, withRouter } from 'react-router-dom';
-import { ic_add_circle } from 'react-icons-kit/md/ic_add_circle';
+import { withRouter } from 'react-router-dom';
+// import { ic_add_circle } from 'react-icons-kit/md/ic_add_circle';
 import * as actions from '../actions';
 
 // import component
@@ -24,7 +25,6 @@ class SingleItem extends React.Component {
     if (nextProps.application) {
       const { application } = nextProps;
       this.setState({ application });
-      console.log('state: ', this.state.application);
     }
   }
 
@@ -41,7 +41,7 @@ class SingleItem extends React.Component {
       compensation,
       jobDetails,
       source,
-      favorite,
+      // favorite,
       dateCreated,
     } = this.state.application;
 
@@ -211,9 +211,30 @@ class SingleItem extends React.Component {
     );
   }
 }
+SingleItem.defaultProps = {
+  application: {
+    application: null,
+  },
+  match: {
+    params: {
+      id: null,
+    },
+  },
+};
 
-const mapStateToProps = ({ data, application }) => ({
-  data,
+SingleItem.propTypes = {
+  application: PropTypes.shape({
+    application: PropTypes.array,
+  }),
+  fetchApplication: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+};
+
+const mapStateToProps = ({ application }) => ({
   application,
 });
 
