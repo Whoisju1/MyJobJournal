@@ -488,7 +488,6 @@ class AppForm extends Component {
           <Favorite
             onClick={()=> {
               this.setState({ favorite: !this.state.favorite });
-              console.log('favorite: ', this.state.favorite)
             }}
             fav={this.state.favorite}
           />

@@ -70,14 +70,17 @@ class UserLogin extends React.Component {
 
 UserLogin.defaultProps = {
   auth: {
-    image: 'image',
+    image: 'User Image',
     firstName: 'First Name',
   },
 };
 
 UserLogin.propTypes = {
   auth: PropTypes.shape({
-    image: PropTypes.element,
+    image: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.string,
+    ]),
     firstName: PropTypes.string,
   }),
 };

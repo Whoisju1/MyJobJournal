@@ -8,7 +8,6 @@ export const Overview = (props) => {
         <div>
             <Link to='/applications'>View your applications</Link>
             <div className="application-number">{`Number of applications ${applicationQuantity}`}</div>
-            {console.log()}
         </div>
     )
 }
