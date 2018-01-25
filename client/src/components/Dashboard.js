@@ -5,6 +5,7 @@ import { faHeart, faEdit, faTrashAlt } from '@fortawesome/fontawesome-free-regul
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 // import PropTypes from 'prop-types';
 import * as actions from '../actions';
@@ -112,10 +113,7 @@ class Dashboard extends Component {
         grid-auto-flow: row;
         grid-auto-rows: max-content;
         box-shadow: 3px 2px 10px rgba(0, 0, 0, .2);
-        ${'' /* width: 51%; */}
-        ${'' /* min-width: 723px; */}
         grid-column: 2/3;
-        ${''}
         padding: 1% 2%;
         transition: box-shadow .5s ease;
         background: #FFFFFF;
@@ -131,7 +129,6 @@ class Dashboard extends Component {
           }
         }
         @media screen and (max-width: 900px ) {
-          ${'' /* min-width: 95vw; */}
           border: .5px solid gray;
         }
     `;
@@ -637,9 +634,14 @@ class Dashboard extends Component {
   }
 }
 
-// Dashboard.propTypes = {
-//   data: PropTypes.object,
-// };
+Dashboard.propTypes = {
+  fetchData: PropTypes.func.isRequired,
+  deleteData: PropTypes.func.isRequired,
+  data: PropTypes.object,
+  update: PropTypes.object,
+  added: PropTypes.object,
+  deleted: PropTypes.object,
+};
 
 const mapStateToProps = ({
   data, update, deleted, added,

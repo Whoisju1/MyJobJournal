@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled, { injectGlobal } from 'styled-components';
 import * as actions from '../actions';
@@ -13,8 +14,8 @@ import ComingSoon from './ComingSoon';
 import SingleItem from './SingleItem';
 import NotFound from './NotFound';
 // import Nav from './Nav';
-import Favorites from './Favorites';
-import AccountInfo from './AccountInfo';
+// import Favorites from './Favorites';
+// import AccountInfo from './AccountInfo';
 import requireAuth from './HOC/requireAuth';
 // import searchResults from './searchResults';
 
@@ -69,5 +70,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  fetchUser: PropTypes.func.isRequired,
+  fetchData: PropTypes.func.isRequired,
+};
 
 export default connect(null, actions)(App);
