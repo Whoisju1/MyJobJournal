@@ -82,7 +82,7 @@ const mapStateToProps = ({ auth }) => ({
   auth,
 });
 
-Header.prototype = {
+Header.propTypes = {
   auth: PropTypes.object,
 };
 

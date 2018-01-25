@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const primaryColor = '#27ae60';
 
@@ -66,6 +67,20 @@ class UserLogin extends React.Component {
     );
   }
 }
+
+UserLogin.defaultProps = {
+  auth: {
+    image: 'image',
+    firstName: 'First Name',
+  },
+};
+
+UserLogin.propTypes = {
+  auth: PropTypes.shape({
+    image: PropTypes.element,
+    firstName: PropTypes.string,
+  }),
+};
 
 const mapStateToProps = ({ auth }) => ({
   auth,
