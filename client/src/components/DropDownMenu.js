@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import { faAngleDown } from '@fortawesome/fontawesome-free-solid';
 
 class DropDownMenu extends Component {
@@ -110,7 +111,7 @@ class DropDownMenu extends Component {
           {this.props.items.map(item => (
             <DropDownItem
               key={item.val}
-              onClick={() => this.props.callback(item.val)} 
+              onClick={() => this.props.callback(item.val)}
               isSelected={item.alias === selected}
             >
               { item.alias }
@@ -121,5 +122,12 @@ class DropDownMenu extends Component {
     );
   }
 }
+
+DropDownMenu.propTypes = {
+  callback: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  heading: PropTypes.any,
+  current: PropTypes.string.isRequired,
+};
 
 export default DropDownMenu;
