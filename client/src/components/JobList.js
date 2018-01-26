@@ -226,7 +226,7 @@ const IconWrapper = styled.a`
 `;
 
 
-const JobList = ({ jobs }) => jobs.map(job => (
+const JobList = ({ jobs, callback }) => jobs.map(job => (
   <Application key={job._id}>
     <HeadingWrapper>
       <Position to={`/application/${job._id}`}> {job.position} </Position>
@@ -256,13 +256,13 @@ const JobList = ({ jobs }) => jobs.map(job => (
         <Edit />
       </Link>
       <IconWrapper
-        // onClick={() => this.setState(() => {
-        //   const { modal } = this.state;
-        //   modal.id = job._id;
-        //   modal.company = job.company;
-        //   modal.isModalVisible = true;
-        //   if (!this.state.isReversed) return modal;
-        // })}
+        onClick={() => {
+          const { _id, company } = job;
+          callback({
+            _id,
+            company,
+          });
+        }}
         href={`#${job._id}`}
       >
         <Delete />
@@ -273,6 +273,7 @@ const JobList = ({ jobs }) => jobs.map(job => (
 
 JobList.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  callback: PropTypes.func.isRequired,
 };
 
 export default JobList;

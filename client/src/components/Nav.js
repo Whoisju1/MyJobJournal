@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as actions from '../actions';
 
@@ -14,8 +15,9 @@ class Nav extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    if (!this.state) this.props.fetchData();
   }
+
 
   componentWillReceiveProps(nextProps) {
     if (this.props.data !== nextProps.data) {
@@ -35,6 +37,10 @@ class Nav extends Component {
       const favQuantity = nextProps.deleted.applications.filter(item => item.favorite).length;
       this.setState({ favQuantity });
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state !== nextState;
   }
 
   render() {
@@ -93,7 +99,7 @@ class Nav extends Component {
     return (
       <NavBar>
         <NavigationLink to="/applications">
-          Dashboard <Quantity>{this.state.entryQuantity}</Quantity> 
+          Dashboard <Quantity>{this.state.entryQuantity}</Quantity>
         </NavigationLink>
         <NavigationLink to="/favorites">
           Favorites <Quantity>{this.state.favQuantity}</Quantity>
@@ -102,6 +108,18 @@ class Nav extends Component {
     );
   }
 }
+
+Nav.defaultProps = {
+  data: null,
+  auth: null,
+  deleted: null,
+};
+
+Nav.propTypes = {
+  data: PropTypes.object,
+  auth: PropTypes.object,
+  deleted: PropTypes.object,
+};
 
 const mapStateToProps = ({ data, auth, deleted }) => ({ data, auth, deleted });
 

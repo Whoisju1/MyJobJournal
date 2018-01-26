@@ -38,6 +38,10 @@ class Dashboard extends Component {
     if (added !== this.props.added) this.setState({ jobNotes: added.applications });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props !== nextProps;
+  }
+
   handleClick(item) {
     this.setState({ sort: item });
   }
@@ -144,6 +148,13 @@ class Dashboard extends Component {
            (this.state.jobNotes.length) ?
            (<JobList
              jobs={sorter(this.state.jobNotes, this.state.sort, this.state.isReversed)}
+             callback={(values) => {
+               const { modal } = this.state;
+               console.log('values: ', values);
+               modal.id = values._id;
+               modal.company = values.company;
+               this.setState({ modal });
+             }}
            />) :
             (<Instructions>{'Click on the plus sign below to start keeping record of where you\'ve applied for employment.'}</Instructions>)
         }
