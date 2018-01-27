@@ -117,6 +117,7 @@ const Position = styled.input.attrs({
   grid-row: 3/4;
   text-align: center;
   position: relative;
+  ${'' /* ${props => console.log(props)}; */}
   &::after {
     content: "Testing";
     position: absolute;
@@ -157,16 +158,20 @@ const Phone = styled.input.attrs({
   name: 'companyPhone',
   type: 'tel',
   placeholder: '888 888 8888',
-  title:`123-456-7890
-  (123) 456-7890
-  123 456 7890
-  123.456.7890
-  +91 (123) 456-7890`
+  // title:`123-456-7890
+  // (123) 456-7890
+  // 123 456 7890
+  // 123.456.7890
+  // +91 (123) 456-7890`
 })`
   grid-column: 1/4;
   grid-row: 6/7;
+  ${props => console.log(props)};
   &::placeholder {
     align-items: center;
+  }
+  &:invalid: {
+    ${props => props.value && 'box-shadow: 0px 0px 9px rgba(238,88,88,.8)'};
   }
  `;
 
@@ -175,6 +180,9 @@ const CompanyWebsite = styled.input.attrs({
   type: 'url',
   placeholder: 'www.company.org',
 })`
+   &:invalid: {
+    ${props => props.value && 'box-shadow: 0px 0px 9px rgba(238,88,88,.8)'};
+  }
   grid-column: 4/-1;
   grid-row: 6/7;
 `;
@@ -392,8 +400,9 @@ class AppForm extends Component {
       favorite: false,
     };
 
-    this.saveToState = this.saveToState.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.inputTitle = inputName => `Please enter a valid ${inputName}`;
   }
 
   static propTypes = {
@@ -458,7 +467,20 @@ class AppForm extends Component {
   shouldComponentUpdate() {
     return true;
   }
-  saveToState(e) {
+  handleChange(e) {
+    // get input input and validation values
+    const { valid: isValid } = e.target.validity;
+    const { value: input } = e.target;
+
+    // if (input && !isValid) e.target.title = `"${input}" is not a valid phone number`;
+    // if (input && !isValid) console.log(`"${input}" is not a valid phone number`);
+
+    this.inputTitle = (inputName, patternHint) => {
+      if(input && !isValid) return `"${input}" is not ${inputName}.`;
+      else return patternHint || `Please enter ${inputName}.`; 
+    }
+    
+    
     if (e.target) {
       const { name, value } = e.target;
       this.setState({ [name]: value });
@@ -486,7 +508,7 @@ class AppForm extends Component {
           />
           <Status
             value={this.state.status}
-            onChange={this.saveToState}
+            onChange={this.handleChange}
           >
             <Option>Applied</Option>
             <Option>Phone Interview</Option>
@@ -496,29 +518,65 @@ class AppForm extends Component {
           </Status>
           <Heading style={{ gridColumn: '1/-1', gridRow: '1/2' }}> Position & Company </Heading>
           <PositionLabel>Position</PositionLabel>
-          <Position onChange={this.saveToState} value={this.state.position} required autofocus />
+          <Position onChange={this.handleChange} value={this.state.position} required autofocus />
           <CompanyLabel>Company</CompanyLabel>
-          <Company onChange={this.saveToState} value={this.state.company} required />
+          <Company onChange={this.handleChange} value={this.state.company} required />
           <Heading>Company Contact Info</Heading>
-          <CompanyPhoneLabel>Telephone Number</CompanyPhoneLabel>
-          <Phone onChange={this.saveToState} value={this.state.companyPhone || ''} pattern={"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"} />
+          <CompanyPhoneLabel >Telephone Number</CompanyPhoneLabel>
+          <Phone
+            onChange={this.handleChange}
+            value={this.state.companyPhone || ''}
+            pattern={/>^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/} 
+            title={this.inputTitle("a valid phone number", `"123-456-7890" OR "(123) 456-7890" OR "123 456 7890" OR "123.456.7890" OR "+91 (123) 456-7890"`)}
+          />
           <CompanyWebsiteLabel>Website</CompanyWebsiteLabel>
-          <CompanyWebsite onChange={this.saveToState} value={this.state.companyWebsite} />
+          <CompanyWebsite
+            onChange={this.handleChange}
+            value={this.state.companyWebsite}
+            title={this.inputTitle("a valid web address.")}
+          />
           <CompanyEmailLabel>Email Address</CompanyEmailLabel>
-          <Email onChange={this.saveToState} value={this.state.companyEmail} />
+          <Email
+            onChange={this.handleChange}
+            value={this.state.companyEmail}
+            title={this.inputTitle("the company's email address")}
+          />
           <CompanyLocationLabel>Location</CompanyLocationLabel>
-          <Location onChange={this.saveToState} value={this.state.companyLocation} />
+          <Location
+            onChange={this.handleChange}
+            value={this.state.companyLocation}
+            title={this.inputTitle("the company's office location.")}
+          />
           <Heading>Job Information</Heading>
           <DateAppliedLabel>Date Applied</DateAppliedLabel>
-          <DateApplied onChange={this.saveToState} value={this.state.dateApplied} />
+          <DateApplied
+            onChange={this.handleChange}
+            value={this.state.dateApplied}
+          />
           <JobIDLabel>Job ID</JobIDLabel>
-          <JobID onChange={this.saveToState} value={this.state.jobID} />
+          <JobID
+            onChange={this.handleChange}
+            value={this.state.jobID}
+            title={this.inputTitle("job ID")}
+          />
           <CompensationLabel>Compensation</CompensationLabel>
-          <Compensation onChange={this.saveToState} value={this.state.compensation} />
+          <Compensation
+            onChange={this.handleChange}
+            value={this.state.compensation}
+            title={this.inputTitle("how much you would get paid.")}
+          />
           <SourceLabel>Source</SourceLabel>
-          <Source onChange={this.saveToState} value={this.state.source} />
+          <Source
+            onChange={this.handleChange}
+            value={this.state.source}
+            title={this.inputTitle("where you discovered this job.")}
+          />
           <JobDetailsInfo>Additional Information</JobDetailsInfo>
-          <JobDetails onChange={this.saveToState} value={this.state.jobDetails} />
+          <JobDetails
+            onChange={this.handleChange}
+            value={this.state.jobDetails}
+            title={this.inputTitle("additional information relavant to this job opening and/or company.")}
+          />
           <Submit /> <Cancel onClick={() => this.props.history.push('/')}>Cancel</Cancel>
         </Form>
       </FormContainer>
