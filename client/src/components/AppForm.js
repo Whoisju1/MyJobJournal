@@ -551,13 +551,13 @@ class AppForm extends Component {
           <CompanyWebsite
             onChange={this.handleChange}
             value={this.state.companyWebsite}
-            title={this.inputTitle('a valid web address.')}
+            title={this.inputTitle('web address.')}
           />
           <CompanyEmailLabel>Email Address</CompanyEmailLabel>
           <Email
             onChange={this.handleChange}
             value={this.state.companyEmail}
-            title={this.inputTitle("the company's email address")}
+            title={this.inputTitle("company's email address")}
           />
           <CompanyLocationLabel>Location</CompanyLocationLabel>
           <Location
