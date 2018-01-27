@@ -100,11 +100,8 @@ class DropDownMenu extends Component {
     `;
 
     const { current } = this.props;
-    console.log('current', current);
     const selected = this.props.items.filter(item => item.val === current)[0].alias;
-    console.log('selected', selected);
 
-    console.log('props: ', this.props);
     return (
       <DropDown>
         <DropDownHeading onClick={this.handleClick} content={`-- Sorted by ${selected}.`}>
