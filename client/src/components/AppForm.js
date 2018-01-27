@@ -3,19 +3,24 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/fontawesome-free-regular';
+import { faStar as StarUnfav } from '@fortawesome/fontawesome-free-regular';
+import { faStar as StarFav } from '@fortawesome/fontawesome-free-solid';
 import * as actions from '../actions';
 
 const Favorite = styled(FontAwesomeIcon).attrs({
-  icon: faHeart,
+  size: 'lg',
 })`
       grid-column: -2/-1;
       grid-row: 1/2;
       cursor: pointer;
-      color: ${props => (props.fav === 'true' ? 'red' : 'gray')};
+      color: #e1b12c;
       z-index: 1;
       justify-self: end;
       align-self: center;
+      transition: transform .5s ease;
+      &:hover {
+        transform: scale(1.2);
+      }
     `;
 
 const FormContainer = styled.main.attrs({
@@ -516,6 +521,8 @@ class AppForm extends Component {
               this.setState({ favorite: !this.state.favorite });
             }}
             fav={this.state.favorite.toString()}
+            icon={this.state.favorite ? StarFav : StarUnfav}
+
           />
           <Status
             value={this.state.status}
@@ -586,7 +593,7 @@ class AppForm extends Component {
           <JobDetails
             onChange={this.handleChange}
             value={this.state.jobDetails}
-            title={this.inputTitle('additional information relavant to this job opening and/or company.')}
+            title={this.inputTitle('additional information relevant to this job opening and/or company.')}
           />
           <Submit /> <Cancel onClick={() => this.props.history.push('/')}>Cancel</Cancel>
         </Form>
