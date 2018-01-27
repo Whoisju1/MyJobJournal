@@ -117,7 +117,7 @@ const Position = styled.input.attrs({
   grid-row: 3/4;
   text-align: center;
   position: relative;
-  ${'' /* ${props => console.log(props)}; */}
+  ${''}
   &::after {
     content: "Testing";
     position: absolute;
@@ -157,34 +157,34 @@ const JobDetails = styled.textarea.attrs({
 const Phone = styled.input.attrs({
   name: 'companyPhone',
   type: 'tel',
-  placeholder: '888 888 8888',
-  // title:`123-456-7890
-  // (123) 456-7890
-  // 123 456 7890
-  // 123.456.7890
-  // +91 (123) 456-7890`
+  placeholder: '(123) 456 7890',
 })`
   grid-column: 1/4;
   grid-row: 6/7;
-  ${props => console.log(props)};
   &::placeholder {
     align-items: center;
   }
-  &:invalid: {
-    ${props => props.value && 'box-shadow: 0px 0px 9px rgba(238,88,88,.8)'};
+  &:valid {
+    ${props => props.value && 'box-shadow: 0px 0px 9px rgba(56, 173, 169, .8)'};
+  }
+  &:invalid {
+    box-shadow: 0px 0px 9px rgba(238, 88, 88, .8);
   }
  `;
 
 const CompanyWebsite = styled.input.attrs({
   name: 'companyWebsite',
   type: 'url',
-  placeholder: 'www.company.org',
+  placeholder: 'http://www.company.com',
 })`
-   &:invalid: {
-    ${props => props.value && 'box-shadow: 0px 0px 9px rgba(238,88,88,.8)'};
-  }
   grid-column: 4/-1;
   grid-row: 6/7;
+  &:valid {
+    ${props => props.value && 'box-shadow: 0px 0px 9px rgba(56, 173, 169, .8)'};
+  }
+  &:invalid {
+    box-shadow: 0px 0px 9px rgba(238, 88, 88, .8);
+  }
 `;
 
 const Location = styled.input.attrs({
@@ -206,6 +206,12 @@ const Email = styled.input.attrs({
 })`
   grid-column: 1/4;
   grid-row: 8/9;
+  &:valid {
+    ${props => props.value && 'box-shadow: 0px 0px 9px rgba(56, 173, 169, .8)'};
+  }
+  &:invalid {
+    box-shadow: 0px 0px 9px rgba(238, 88, 88, .8);
+  }
   &::placeholder {
     align-items: center;
   }
@@ -403,6 +409,8 @@ class AppForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inputTitle = inputName => `Please enter a valid ${inputName}`;
+    this.isValid = true;
+    this.phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
   }
 
   static propTypes = {
@@ -471,19 +479,22 @@ class AppForm extends Component {
     // get input input and validation values
     const { valid: isValid } = e.target.validity;
     const { value: input } = e.target;
-
-    // if (input && !isValid) e.target.title = `"${input}" is not a valid phone number`;
-    // if (input && !isValid) console.log(`"${input}" is not a valid phone number`);
+    const { name } = e.target;
+    this.isValid = input && isValid;
 
     this.inputTitle = (inputName, patternHint) => {
-      if(input && !isValid) return `"${input}" is not ${inputName}.`;
-      else return patternHint || `Please enter ${inputName}.`; 
+      if (input && !isValid) return `"${input}" is not ${inputName}.`;
+      return patternHint || `Please enter ${inputName}.`;
+    };
+    if (name === 'companyPhone') {
+      if (this.phoneRegex.test(input)) {
+        const PhoneNumber = input.replace(this.phoneRegex, '($1) $2-$3');
+        return this.setState({ [name]: PhoneNumber });
+      }
     }
-    
-    
+
     if (e.target) {
-      const { name, value } = e.target;
-      this.setState({ [name]: value });
+      this.setState({ [name]: input });
     }
   }
 
@@ -526,14 +537,14 @@ class AppForm extends Component {
           <Phone
             onChange={this.handleChange}
             value={this.state.companyPhone || ''}
-            pattern={/>^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/} 
-            title={this.inputTitle("a valid phone number", `"123-456-7890" OR "(123) 456-7890" OR "123 456 7890" OR "123.456.7890" OR "+91 (123) 456-7890"`)}
+            pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"
+            title={this.inputTitle('a valid phone number', "(123) 456 7890")}
           />
           <CompanyWebsiteLabel>Website</CompanyWebsiteLabel>
           <CompanyWebsite
             onChange={this.handleChange}
             value={this.state.companyWebsite}
-            title={this.inputTitle("a valid web address.")}
+            title={this.inputTitle('a valid web address.')}
           />
           <CompanyEmailLabel>Email Address</CompanyEmailLabel>
           <Email
@@ -557,25 +568,25 @@ class AppForm extends Component {
           <JobID
             onChange={this.handleChange}
             value={this.state.jobID}
-            title={this.inputTitle("job ID")}
+            title={this.inputTitle('job ID')}
           />
           <CompensationLabel>Compensation</CompensationLabel>
           <Compensation
             onChange={this.handleChange}
             value={this.state.compensation}
-            title={this.inputTitle("how much you would get paid.")}
+            title={this.inputTitle('how much you would get paid.')}
           />
           <SourceLabel>Source</SourceLabel>
           <Source
             onChange={this.handleChange}
             value={this.state.source}
-            title={this.inputTitle("where you discovered this job.")}
+            title={this.inputTitle('where you discovered this job.')}
           />
           <JobDetailsInfo>Additional Information</JobDetailsInfo>
           <JobDetails
             onChange={this.handleChange}
             value={this.state.jobDetails}
-            title={this.inputTitle("additional information relavant to this job opening and/or company.")}
+            title={this.inputTitle('additional information relavant to this job opening and/or company.')}
           />
           <Submit /> <Cancel onClick={() => this.props.history.push('/')}>Cancel</Cancel>
         </Form>
