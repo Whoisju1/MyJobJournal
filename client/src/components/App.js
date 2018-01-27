@@ -14,7 +14,7 @@ import ComingSoon from './ComingSoon';
 import SingleItem from './SingleItem';
 import NotFound from './NotFound';
 // import Nav from './Nav';
-// import Favorites from './Favorites';
+import Favorites from './Favorites';
 // import AccountInfo from './AccountInfo';
 import requireAuth from './HOC/requireAuth';
 // import searchResults from './searchResults';
@@ -61,8 +61,8 @@ class App extends Component {
             {/* <Route path='/search/:searchTerm' component={requireAuth(searchResults)}/> */}
             {/* <Route path="/account" component={requireAuth(AccountInfo)} /> */}
             <Route path="/account" component={requireAuth(ComingSoon)} />
-            {/* <Route path="/favorites" component={requireAuth(Favorites)} /> */}
-            <Route path="/favorites" component={requireAuth(ComingSoon)} />
+            <Route path="/favorites" component={requireAuth(Favorites)} />
+            {/* <Route path="/favorites" component={requireAuth(ComingSoon)} /> */}
             <Route path="*" component={NotFound} />
           </Switch>
         </MainContainer>
