@@ -157,6 +157,11 @@ const Phone = styled.input.attrs({
   name: 'companyPhone',
   type: 'tel',
   placeholder: '888 888 8888',
+  title:`123-456-7890
+  (123) 456-7890
+  123 456 7890
+  123.456.7890
+  +91 (123) 456-7890`
 })`
   grid-column: 1/4;
   grid-row: 6/7;
@@ -496,7 +501,7 @@ class AppForm extends Component {
           <Company onChange={this.saveToState} value={this.state.company} required />
           <Heading>Company Contact Info</Heading>
           <CompanyPhoneLabel>Telephone Number</CompanyPhoneLabel>
-          <Phone onChange={this.saveToState} value={this.state.companyPhone || ''} pattern={/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/g} />
+          <Phone onChange={this.saveToState} value={this.state.companyPhone || ''} pattern={"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"} />
           <CompanyWebsiteLabel>Website</CompanyWebsiteLabel>
           <CompanyWebsite onChange={this.saveToState} value={this.state.companyWebsite} />
           <CompanyEmailLabel>Email Address</CompanyEmailLabel>

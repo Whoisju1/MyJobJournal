@@ -14,7 +14,13 @@ const applicationSchema = new Schema({
   },
   companyPhone: {
     default: '',
-    type: Number,
+    type: String,
+    validate: {
+      validator(v) {
+        return /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(v);
+      },
+    },
+    message: '{VALUE} is not a valid phone number.',
   },
   companyEmail: {
     type: String,
