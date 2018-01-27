@@ -97,8 +97,6 @@ const Form = styled.form`
   &>input[type=submit] {
 
   }
-  ${'' /* &>input:required {
-  } */}
 `;
 
 const Heading = styled.h2`
@@ -240,6 +238,23 @@ const DateApplied = styled.input.attrs({
   &::placeholder {
     align-items: center;
   }
+`;
+
+const Status = styled.select.attrs({
+  title: 'How far are you in the hiring process?',
+  name: 'status',
+})`
+  grid-row: 1/2;
+  grid-column: 9/12;
+  z-index: 1;
+  text-align: center;
+  align-self: center;
+  height: 1.75em;
+  color: green;
+`;
+
+const Option = styled.option`
+
 `;
 
 const Submit = styled.input.attrs({
@@ -464,6 +479,17 @@ class AppForm extends Component {
             }}
             fav={this.state.favorite.toString()}
           />
+          <Status
+            value={this.state.status}
+            // defaultValue={this.state.status}
+            onChange={this.saveToState}
+          >
+            <Option>Applied</Option>
+            <Option>Phone Interview</Option>
+            <Option>On-Sight Interview</Option>
+            <Option>Job Offered</Option>
+            <Option>Job Accepted</Option>
+          </Status>
           <Heading style={{ gridColumn: '1/-1', gridRow: '1/2' }}> Position & Company </Heading>
           <PositionLabel>Position</PositionLabel>
           <Position onChange={this.saveToState} value={this.state.position} required autofocus />
