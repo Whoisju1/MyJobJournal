@@ -4,7 +4,8 @@ import styled, { keyframes } from 'styled-components';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faHeart, faEdit, faTrashAlt } from '@fortawesome/fontawesome-free-regular';
+import { faStar as StarUnfav, faEdit, faTrashAlt } from '@fortawesome/fontawesome-free-regular';
+import { faStar as StarFav } from '@fortawesome/fontawesome-free-solid';
 
 const primaryColor = '#27ae60';
 
@@ -181,7 +182,7 @@ vertical-align: middle;
 `;
 
 const Favorite = styled(FontAwesomeIcon).attrs({
-  icon: faHeart,
+  icon: props => (props.fav ? StarFav : StarUnfav),
 })`
   transform: scale(1.2);
   transition: all .5s ease;
@@ -252,7 +253,7 @@ const JobList = ({ jobs, callback }) => jobs.map(job => (
     </Content>
     <IconsContainer>
       <Favorite
-        title="this feature hasn't been enabled yet. To add to favorites click the edit button then click the heart on the form."
+        fav={job.favorite}
       />
       <Link to={`/edit/${job._id}`} title="Edit">
         <Edit />
