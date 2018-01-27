@@ -104,6 +104,7 @@ class Dashboard extends Component {
 
     const AddWrapper = styled(Link).attrs({
       to: '/add',
+      title: 'Add to your records',
     })`
         transform: scale(4);
         position: fixed;

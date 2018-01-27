@@ -79,7 +79,7 @@ const Sorter = ({
       heading="Sort by..."
       current={sort}
     />
-    <ReverseSortWrapper>
+    <ReverseSortWrapper title="Sort Directions">
       <SortDescending
         onClick={descend}
         selected={isReversed}

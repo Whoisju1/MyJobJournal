@@ -251,11 +251,14 @@ const JobList = ({ jobs, callback }) => jobs.map(job => (
       </JobDetail>
     </Content>
     <IconsContainer>
-      <Favorite />
-      <Link to={`/edit/${job._id}`}>
+      <Favorite
+        title="this feature hasn't been enabled yet. To add to favorites click the edit button then click the heart on the form."
+      />
+      <Link to={`/edit/${job._id}`} title="Edit">
         <Edit />
       </Link>
       <IconWrapper
+        title="Delete"
         onClick={() => {
           const { _id, company } = job;
           callback({
