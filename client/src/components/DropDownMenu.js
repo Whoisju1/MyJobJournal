@@ -126,7 +126,7 @@ class DropDownMenu extends Component {
 DropDownMenu.propTypes = {
   callback: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  heading: PropTypes.any,
+  heading: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   current: PropTypes.string.isRequired,
 };
 
