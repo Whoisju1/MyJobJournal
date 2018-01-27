@@ -481,7 +481,6 @@ class AppForm extends Component {
           />
           <Status
             value={this.state.status}
-            // defaultValue={this.state.status}
             onChange={this.saveToState}
           >
             <Option>Applied</Option>
