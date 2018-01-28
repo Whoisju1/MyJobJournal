@@ -35,6 +35,7 @@ class SingleItem extends React.Component {
       company,
       companyPhone,
       companyEmail,
+      companyWebsite,
       companyLocation,
       jobID,
       status,
@@ -42,7 +43,6 @@ class SingleItem extends React.Component {
       compensation,
       jobDetails,
       source,
-      favorite,
       dateCreated,
     } = this.state.application;
 
@@ -116,6 +116,13 @@ class SingleItem extends React.Component {
     const CompanyPhone = styled.p`
       grid-column: 4/-2;
       white-space: pre-wrap;
+    `;
+
+    const CompanyWebsite = styled.a.attrs({
+      href: companyWebsite,
+      target: '_blank',
+    })`
+    
     `;
 
     const CompanyEmail = styled.p`
@@ -211,11 +218,12 @@ class SingleItem extends React.Component {
             </IconLinks>
             <HeadingSecondary>Email Address:</HeadingSecondary>
             <CompanyEmail> {companyEmail || 'Not Specified'} </CompanyEmail>
+            <HeadingSecondary>Location:</HeadingSecondary>
             <CompanyLocation> {companyLocation || 'Not Specified'} </CompanyLocation>
             <ModalLuncher title="Delete">
               <Delete />
             </ModalLuncher>
-            <HeadingSecondary>Location:</HeadingSecondary>
+            <HeadingSecondary>Company Website</HeadingSecondary><CompanyWebsite> {companyWebsite} </CompanyWebsite>
           </Section>
           <Section>
             <HeadingPrimary>Job Details</HeadingPrimary>
