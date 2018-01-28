@@ -97,14 +97,19 @@ class Nav extends Component {
     `;
 
     return (
-      <NavBar>
-        <NavigationLink to="/applications">
-          Dashboard <Quantity>{this.state.entryQuantity}</Quantity>
-        </NavigationLink>
-        <NavigationLink to="/favorites">
-          Favorites <Quantity>{this.state.favQuantity}</Quantity>
-        </NavigationLink>
-      </NavBar>
+      <React.Fragment>
+        {
+          this.props.auth &&
+          <NavBar>
+            <NavigationLink to="/applications">
+            Dashboard <Quantity>{this.state.entryQuantity}</Quantity>
+            </NavigationLink>
+            <NavigationLink to="/favorites">
+            Favorites <Quantity>{this.state.favQuantity}</Quantity>
+            </NavigationLink>
+          </NavBar>
+      }
+      </React.Fragment>
     );
   }
 }
