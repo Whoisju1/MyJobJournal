@@ -169,7 +169,6 @@ const DeleteModal = ({
 };
 
 DeleteModal.propTypes = {
-  // callback: PropTypes.func.isRequired,
   company: PropTypes.string.isRequired,
   deleteData: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

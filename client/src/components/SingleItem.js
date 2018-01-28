@@ -205,7 +205,10 @@ class SingleItem extends React.Component {
 
     return (
       <Main>
-        <Modal id={_id} />
+        <Modal
+          id={_id}
+          company={company}
+        />
         <Container>
           <Position> {position || 'Loading...'} </Position>
           <Company> {company || 'Loading...'} </Company>
