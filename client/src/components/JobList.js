@@ -30,6 +30,9 @@ padding: 1% 2%;
 transition: box-shadow .5s ease;
 background: #FFFFFF;
 grid-gap: 5px;
+&:nth-last-child(2) {
+  margin-bottom: 3%;
+}
 ${''/* TARGET ICONS UPON HOVER */}
 &:hover {
     box-shadow: 4px 3px 13px rgba(0, 0, 0, .2);
