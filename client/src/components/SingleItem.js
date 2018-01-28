@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import Icon from 'react-icons-kit';
-// import { ic_delete_forever } from 'react-icons-kit/md/ic_delete_forever';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faEdit } from '@fortawesome/fontawesome-free-regular';
 import styled from 'styled-components';
 import moment from 'moment';
-import { withRouter } from 'react-router-dom';
-// import { ic_add_circle } from 'react-icons-kit/md/ic_add_circle';
+import { withRouter, Link } from 'react-router-dom';
 import * as actions from '../actions';
+import Modal from './Modal';
 
 // import component
 class SingleItem extends React.Component {
@@ -30,6 +30,7 @@ class SingleItem extends React.Component {
 
   render() {
     const {
+      _id,
       position,
       company,
       companyPhone,
@@ -41,7 +42,7 @@ class SingleItem extends React.Component {
       compensation,
       jobDetails,
       source,
-      // favorite,
+      favorite,
       dateCreated,
     } = this.state.application;
 
@@ -113,17 +114,17 @@ class SingleItem extends React.Component {
     `;
 
     const CompanyPhone = styled.p`
-      grid-column: 4/ -1;
+      grid-column: 4/-2;
       white-space: pre-wrap;
     `;
 
     const CompanyEmail = styled.p`
-      grid-column: 4/ -1;
+      grid-column: 4/ -2;
       word-break: break-all;
     `;
 
     const CompanyLocation = styled.p`
-      grid-column: 4/ -1;
+      grid-column: 4/ -2;
       white-space: pre-wrap;
     `;
 
@@ -163,19 +164,58 @@ class SingleItem extends React.Component {
       word-break: break-all;
     `;
 
+    const IconLinks = styled(Link)`
+      display: grid;
+      justify-self: end;
+    `;
+
+    const Delete = styled(FontAwesomeIcon).attrs({
+      icon: faTrashAlt,
+      size: 'lg',
+    })`
+      cursor: pointer;
+      justify-self: end;
+    `;
+
+    const ModalLuncher = styled.a.attrs({
+      href: `#${_id}`,
+    })`
+      &,
+      &:link,
+      &:visited {
+        display: grid;
+        justify-self: end;
+        text-decoration: none;
+      }
+    `;
+
+    const Edit = styled(FontAwesomeIcon).attrs({
+      icon: faEdit,
+      size: 'lg',
+    })`
+      justify-self: end;
+    `;
+
     return (
       <Main>
+        <Modal id={_id} />
         <Container>
           <Position> {position || 'Loading...'} </Position>
           <Company> {company || 'Loading...'} </Company>
           <Section>
             <HeadingPrimary>Company Contact Info</HeadingPrimary>
             <HeadingSecondary>Telephone Number:</HeadingSecondary>
-            <CompanyPhone> {companyPhone || 'Not Specified'} </CompanyPhone>
+            <CompanyPhone> {companyPhone || 'Not Specified'} </CompanyPhone> 
+            <IconLinks to={`/edit/${_id}`} title="Edit">
+              <Edit />
+            </IconLinks>
             <HeadingSecondary>Email Address:</HeadingSecondary>
             <CompanyEmail> {companyEmail || 'Not Specified'} </CompanyEmail>
-            <HeadingSecondary>Location:</HeadingSecondary>
             <CompanyLocation> {companyLocation || 'Not Specified'} </CompanyLocation>
+            <ModalLuncher title="Delete">
+              <Delete />
+            </ModalLuncher>
+            <HeadingSecondary>Location:</HeadingSecondary>
           </Section>
           <Section>
             <HeadingPrimary>Job Details</HeadingPrimary>
