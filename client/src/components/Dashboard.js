@@ -56,7 +56,7 @@ class Dashboard extends Component {
       width: 100vw;
       grid-auto-rows: max-content;
       grid-auto-flow: row;
-      grid-template-columns: ${props => (props.content ? '25% 50% 25%' : 'none')};
+      grid-template-columns: ${props => (props.content ? '1fr  2fr  1fr' : 'none')};
       grid-gap: 10px;
     `;
 
