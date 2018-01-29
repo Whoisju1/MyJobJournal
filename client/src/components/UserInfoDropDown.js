@@ -30,12 +30,13 @@ class UserInfoDropDown extends Component {
       display: grid;
       grid-auto-flow: row;
       position: relative;
-      grid-column: 6/8;
+      grid-column: 3/-1;
     `;
 
     const Heading = styled.div`
       display: grid;
       justify-content: center;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
       grid-gap: 5px;
       cursor: pointer;
@@ -43,21 +44,19 @@ class UserInfoDropDown extends Component {
     `;
 
     const ListContainer = styled.div`
-      display: grid;
       grid-auto-flow: row;
       display: ${props => (props.isOpen ? 'grid' : 'none')};
       justify-content: center;
       align-item: center;
       background: white;
       position: absolute;
-      bottom: -43px;
-      left: -13px;
+      bottom: -100%;
+      right: 7%;
       animation-name: ${Open};
       animation-duration: .2s;
       animation-fill-mode: both;
       animation-direction: forward;
       border: .5px solid #d2dae2;
-      min-width: 150%;
       box-shadow: 1px 3px 14px rgba(0, 0, 0, .2);
       &>*{
         display: grid;

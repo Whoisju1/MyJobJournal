@@ -53,11 +53,11 @@ class UserLogin extends React.Component {
     const Login = styled.div`
       display: ${props => ((props.auth === null) ? 'none' : 'grid')};
       grid-gap: 10px;
-      justify-content: end;
+      justify-content: center;
       align-items: center;
       color: ${this.props.auth ? primaryColor : '#FFFFFF'};
       grid-auto-flow: column;
-      grid-column: 6/8;
+      grid-column: 2/-1;
     `;
 
     return (
