@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faListUl, faStar } from '@fortawesome/fontawesome-free-solid';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as actions from '../actions';
@@ -69,16 +71,33 @@ class Nav extends Component {
         justify-content: center;
         align-items: center;
         font-size: 150%;
-        color: ${primaryColor};
+        color: black;
         text-decoration: none;
         box-sizing: content-box;
-        font-weight: bold;
+        font-weight: 500;
         border-bottom: 5px solid transparent;
       }
       &:hover {
         color: ${primaryColor};
         border-bottom: 5px solid lightgray;
       }
+      
+      &:nth-last-child(2) {
+        &:hover {
+          &>*:nth-last-child(3) {
+            color: #0097e6;
+          }
+        }
+      }
+
+      &:nth-last-child(1) {
+        &:hover {
+          &>*:nth-last-child(3) {
+            color: #ffd32a;
+          } 
+        }
+      }
+
       &:nth-of-type(1) {
         border-right: .5px solid lightgray;
       }
@@ -88,12 +107,29 @@ class Nav extends Component {
     `;
 
     const Quantity = styled.span`
-      background-color: lightgray;
+      color: lightgray;
       display: inline-block;
       width: 1.2em;
       border-radius: 3px;
       text-align: center;
-      color: white;
+    `;
+
+    const DashIcon = styled(FontAwesomeIcon).attrs({
+      icon: faListUl,
+    })`
+      color: gray;
+    `;
+
+    const FavIcon = DashIcon.extend.attrs({
+      icon: faStar,
+    })`
+    
+    `;
+
+    const LinkLabel = styled.span`
+      @media screen and (max-width: 800px) {
+        display: none;
+      }
     `;
 
     return (
@@ -102,10 +138,14 @@ class Nav extends Component {
           this.props.auth &&
           <NavBar>
             <NavigationLink to="/applications">
-            Dashboard <Quantity>{this.state.entryQuantity}</Quantity>
+              <DashIcon />
+              <LinkLabel>Dashboard</LinkLabel>
+              <Quantity>({this.state.entryQuantity})</Quantity>
             </NavigationLink>
             <NavigationLink to="/favorites">
-            Favorites <Quantity>{this.state.favQuantity}</Quantity>
+              <FavIcon />
+              <LinkLabel>Favorites</LinkLabel>
+              <Quantity>({this.state.favQuantity})</Quantity>
             </NavigationLink>
           </NavBar>
       }
