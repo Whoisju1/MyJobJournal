@@ -26,6 +26,9 @@ class UserLogin extends React.Component {
 
     const UserName = styled.p`
       font-weight: bold;
+      @media screen and (max-width: 642px) {
+        display: none;
+      }
     `;
 
     const LogIn = styled.a.attrs({ href: '/auth/google' })`

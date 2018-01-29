@@ -37,6 +37,10 @@ class UserInfoDropDown extends Component {
       display: grid;
       justify-content: center;
       grid-template-columns: 1fr 1fr;
+      @media screen and (max-width: 642px) {
+        grid-template-columns: auto;
+        justify-content: center;
+      }
       align-items: center;
       grid-gap: 5px;
       cursor: pointer;

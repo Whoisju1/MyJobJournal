@@ -31,6 +31,9 @@ class Header extends Component {
       box-shadow: 1px 4px 15px rgba(0, 0, 0, .3);
       justify-content: space-between;
       grid-template-columns: 1fr 2fr 1fr;
+      @media screen and (max-width: 642px) {
+        grid-template-columns: min-content 2fr 1fr;
+      }
       z-index: 1;
       grid-row: 1/2;
       grid-gap: 10px;
@@ -57,6 +60,12 @@ class Header extends Component {
         outline: none;
         color: #27ae60;
         font-weight: 800;
+        @media screen and (max-width: 956px) {
+          font-size: 3vw;
+        }
+        @media screen and (max-width: 642px) {
+          font-size: 4vw;
+        } 
       }
       &:hover {
         outline: none;
