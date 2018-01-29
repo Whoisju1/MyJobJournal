@@ -43,8 +43,9 @@ ${''/* TARGET ICONS UPON HOVER */}
     }
   }
 }
-@media screen and (max-width: 900px ) {
-  border: .5px solid gray;
+@media screen and (max-width: 963px) {
+  grid-column: 1/-1;
+  margin: 0 .7%;
 }
 `;
 
