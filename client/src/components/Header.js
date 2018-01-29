@@ -30,7 +30,8 @@ class Header extends Component {
       grid-auto-flow: column;
       box-shadow: 1px 4px 15px rgba(0, 0, 0, .3);
       justify-content: space-between;
-      grid-template-columns: 25% 50% repeat(6, 1fr);
+      ${'' /* grid-template-columns: 25% 50% repeat(6, 1fr); */}
+      grid-template-columns: 1fr 2fr 1fr;
       z-index: 1;
       grid-row: 1/2;
       grid-gap: 10px;
