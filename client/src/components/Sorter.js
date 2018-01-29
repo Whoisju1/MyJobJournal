@@ -8,13 +8,16 @@ import DropDownMenu from './DropDownMenu';
 const primaryColor = '#27ae60';
 
 const SortWrapper = styled.div`
-width: 100%;
 display: grid;
 grid-gap: 5px;
 grid-row: 1/2;
 grid-column: 2/3;
 grid-auto-flow: column;
 justify-content: space-between;
+@media screen and (max-width: 963px) {
+  grid-column: 1/-1;
+  margin: 0 .7%;
+} 
 `;
 
 const ReverseSortWrapper = styled.div`
