@@ -189,7 +189,7 @@ class SingleItem extends React.Component {
 
     const IconLinks = styled(Link)`
       position: absolute;
-      right: 10%;
+      right: 80px;
       transition: all .2s ease;
         &:hover {
           transform: scale(1.2);
