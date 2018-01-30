@@ -50,24 +50,30 @@ ${''/* TARGET ICONS UPON HOVER */}
 `;
 
 const HeadingWrapper = styled.section`
-display: grid;
-grid-auto-flow: row;
-grid-auto-rows: max-content;
-position: relative;
-height: 2rem;
-perspective: 1500;
-&:hover a:nth-child(1){
-    transform: rotateX(180deg);
-}
-&:hover a:nth-child(2){
-    transform: rotateX(0deg);
-}
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-rows: max-content;
+  position: relative;
+  height: 2rem;
+  perspective: 1500;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  &:hover a:nth-child(1){
+      transform: rotateX(180deg);
+  }
+  &:hover a:nth-child(2){
+      transform: rotateX(0deg);
+  }
 `;
 
 const Position = styled(Link)`
 background-color: ${props => (props.tran ? '#7f8c8d' : primaryColor)};
 color: #FFFFFF;
 display: grid;
+@media screen and (max-width: 510px) {
+    justify-content: start;
+  } 
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 position: absolute;
 top: 0;
 left: 0;
