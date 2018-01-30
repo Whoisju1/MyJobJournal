@@ -30,6 +30,17 @@ const FormContainer = styled.main.attrs({
   justify-content: center;
   align-items: center;
   grid-template-columns: 1fr 50% 1fr;
+  @media screen and (max-width: 1106px) {
+    grid-template-columns: 1fr 8fr 1fr;
+  }
+  
+  @media screen and (max-width: 798px) {
+    grid-template-columns: 1fr 95% 1fr;
+  }
+
+  @media screen and (max-width: 603px) {
+    grid-template-columns: 1fr 99% 1fr;
+  }
 `;
 
 const Form = styled.form`
@@ -78,6 +89,10 @@ const Form = styled.form`
       height: 3em;
       border: .4px solid gray;
       padding-left: 2%;
+      @media screen and (max-width: 603px) {
+       grid-column: 1/-1;
+       grid-row: auto;
+      }
       &:focus {
         background-color: #edfbf3;
         &::placeholder {
@@ -89,6 +104,10 @@ const Form = styled.form`
     min-width: 100%;
     box-sizing: border-box;
     min-height: 8em;
+    @media screen and (max-width: 603px) {
+      grid-row: auto;
+      grid-column: 1/-1;
+    }
     &::placeholder {  
         text-align: start;
       }
@@ -101,6 +120,12 @@ const Form = styled.form`
   }
   &>input[type=submit] {
 
+  }
+  &>label {
+    @media screen and (max-width: 603px) {
+       grid-column: 1/-1;
+       grid-row: auto;
+      }
   }
 `;
 
@@ -295,6 +320,10 @@ const Submit = styled.input.attrs({
   letter-spacing: 1px;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .3);
   font-size: 120%;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    ${'' /* grid-column: 1/-1; */}
+  }
   :hover {
     transform: translateY(-3px);
     box-shadow: 1px 5px 4px rgba(0, 0, 0, .3);
@@ -316,6 +345,10 @@ const Cancel = styled.button`
   letter-spacing: 1px;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .3);
   font-size: 120%;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    ${'' /* grid-column: 1/-1; */}
+  }
   :hover {
     transform: translateY(-3px);
     box-shadow: 1px 5px 4px rgba(0, 0, 0, .3);
@@ -358,38 +391,74 @@ const CompanyLabel = styled.label`
 const CompanyPhoneLabel = styled.label`
   grid-column: 1/4;
   grid-row: 5/6;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
 `;
 const CompanyWebsiteLabel = styled.label`
   grid-column: 4/-1;
   grid-row: 5/6;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
 `;
 const CompanyEmailLabel = styled.label`
   grid-column: 1/4;
   grid-row: 7/8;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
 `;
 const CompanyLocationLabel = styled.label`
   grid-column: 4/-1;
   grid-row: 7/8;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
 `;
 const DateAppliedLabel = styled.label`
   grid-column: 1/5;
   grid-row: 12/13;
+   @media screen and (max-width: 603px) {
+     grid-row: auto;
+     grid-column: 1/-1;
+      }
 `;
 const JobIDLabel = styled.label`
   grid-column: 5/7;
   grid-row: 12/13;
+  @media screen and (max-width: 603px) {
+     grid-row: auto;
+     grid-column: 1/-1;
+  }
 `;
 const CompensationLabel = styled.label`
   grid-column: 7/9;
   grid-row: 12/13;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
 `;
 const SourceLabel = styled.label`
   grid-column: 9/-1;
   grid-row: 12/13;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
 `;
 const JobDetailsInfo = styled.label`
   grid-column: 1/-1;
   grid-row: 14/15;
+  @media screen and (max-width: 603px) {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
 `;
 
 class AppForm extends Component {
