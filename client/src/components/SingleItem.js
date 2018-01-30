@@ -48,74 +48,70 @@ class SingleItem extends React.Component {
 
     const Main = styled.main`
       display: grid;
-      grid-template-columns: repeat(12, minmax(0, 12fr));
-      &>* {
-        min-width: 100%;
-      }
+      grid-template-columns: 1fr 3fr 1fr; 
       grid-auto-flow: row;
       overflow: auto;
       grid-auto-rows: min-content;
     `;
 
-    const Container = styled.article`
+    const ItemContainer = styled.article`
       background: #ffffff;
       border: .5px solid lightgray;
       box-shadow: 1px 3px 3px rgba(0, 0, 0, .3);
-      padding: 0 4%;
-      grid-auto-flow: row;
-      grid-column: 3/span 8; 
-      margin: 2% 0;
-      &>p{
-        color: #34495e;
+      grid-column: 2/3;
+      padding: 1% 4%;
+      margin: 3% 0;
+      @media screen and (max-width: 950px) {
+        grid-column: 1/-1;
+        margin: 3% 1%; 
       }
     `;
 
     const Section = styled.section`
-      margin-bottom: 3%;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-gap: 10px;
-      padding-bottom: 4px;
-      &>* {
-        display: grid;
-        align-items: center;
-        margin: 0;
-        justify-content: start;
-        grid-row: span 1;
-      }
+     
     `;
 
     const HeadingPrimary = styled.h2`
       color: #27ae60;
-      grid-column: 1/ -1;
-      padding-bottom: 9px;
+      
       white-space: pre-wrap;
     `;
 
-    const HeadingSecondary = styled.h3`
-      grid-column: 1/span 3;
-      color: #3498db;
+    const HeadingSecondary = styled.span`
+      font-weight: bold;
       white-space: pre-wrap;
+      color: #16a085;
     `;
 
     const Position = styled.h1`
       color: #27ae60;
-      border-bottom: 2px solid #27ae60;
       text-align: center;
       text-transform: uppercase;
-      word-break: break-all;
+      word-break: normal;
+      font-weight: bold;
     `;
 
-    const Company = styled.h3`
+    const Company = styled.p`
       text-align: center;
       text-transform: uppercase;
-      word-break: break-all;
-      color: green;
+      word-break: normal;
+      color: #00b894;
+      font-size: 1rem;
+      border-bottom: .5px solid lightgray; 
+      padding-bottom: 1%;
     `;
 
-    const CompanyPhone = styled.p`
-      grid-column: 4/-2;
-      white-space: pre-wrap;
+    const TopSection = styled.section`
+      display: grid;
+      grid-template-columns: repeat(2, 50%);
+      grid-column-gap: 10px;
+      @media screen and (max-width: 610px) {
+        grid-template-columns: auto;
+      }
+    `;
+
+    const ItemDetail = styled.p`
+      
     `;
 
     const CompanyWebsite = styled.a.attrs({
@@ -125,50 +121,14 @@ class SingleItem extends React.Component {
     
     `;
 
-    const CompanyEmail = styled.p`
-      grid-column: 4/ -2;
-      word-break: break-all;
-    `;
-
-    const CompanyLocation = styled.p`
-      grid-column: 4/ -2;
-      white-space: pre-wrap;
-    `;
-
-    const JobID = styled.p`
-      grid-column: 4/ -1;
-      word-break: break-all;
-    `;
-
-    const Status = styled.p`
-      grid-column: 4/ -1;
-      word-break: break-all;
-    `;
-
-    const DateApplied = styled.p`
-      grid-column: 4/ -1;
-      word-break: break-all;
-    `;
-
-    const Source = styled.p`
-      grid-column: 4/ -1;
-      word-break: break-all;
-    `;
-
-    const Compensation = styled.p`
-      grid-column: 4/ -1;
-      word-break: break-all;
-    `;
-
     const JobDetails = styled.p`
-      grid-column: 1/ -1;
       white-space: pre-wrap;
     }
     `;
 
     const DateCreated = styled.p`
       text-align: end;
-      word-break: break-all;
+      word-break: normal;
     `;
 
     const IconLinks = styled(Link)`
@@ -209,55 +169,75 @@ class SingleItem extends React.Component {
           id={_id}
           company={company}
         />
-        <Container>
-          <Position> {position || 'Loading...'} </Position>
-          <Company> {company || 'Loading...'} </Company>
-          <Section>
-            <HeadingPrimary>Company Contact Info</HeadingPrimary>
-            <HeadingSecondary>Telephone Number:</HeadingSecondary>
-            <CompanyPhone> {companyPhone || 'Not Specified'} </CompanyPhone> 
-            <IconLinks to={`/edit/${_id}`} title="Edit">
-              <Edit />
-            </IconLinks>
-            <HeadingSecondary>Email Address:</HeadingSecondary>
-            <CompanyEmail> {companyEmail || 'Not Specified'} </CompanyEmail>
-            <HeadingSecondary>Location:</HeadingSecondary>
-            <CompanyLocation> {companyLocation || 'Not Specified'} </CompanyLocation>
-            <ModalLuncher title="Delete">
-              <Delete />
-            </ModalLuncher>
-            <HeadingSecondary>Company Website</HeadingSecondary><CompanyWebsite> {companyWebsite} </CompanyWebsite>
-          </Section>
-          <Section>
-            <HeadingPrimary>Job Details</HeadingPrimary>
-            <HeadingSecondary>Status:</HeadingSecondary>
-            <Status> {status || 'Not Specified'} </Status>
-            <HeadingSecondary>Job ID:</HeadingSecondary>
-            <JobID> {jobID || 'Not Specified'} </JobID>
-            <HeadingSecondary>Date Applied:</HeadingSecondary>
-            <DateApplied>
-              {
-                `${moment(dateApplied)
-                  .add('day')
-                  .format('LL')} (${(moment(Date.parse(dateApplied))
-                  .fromNow()).includes('hours') ?
-                  'today' :
-                  `about ${moment(dateApplied)
-                  .fromNow()}`})` || 'Not Specified'
-              }
-            </DateApplied>
-            <HeadingSecondary>Compensation</HeadingSecondary>
-            <Compensation> {compensation || 'Not Specified'} </Compensation>
-            <HeadingSecondary>Source:</HeadingSecondary>
-            <Source> {source || 'Not Specified'} </Source>
-          </Section>
+        <ItemContainer>
+          <Position> {position || 'Loading. ..'} </Position>
+          <Company>{company || 'Loading...'} </Company>
+          <TopSection>
+            <Section>
+              <HeadingPrimary>Company Contact Info</HeadingPrimary>
+              <ItemDetail>
+                <HeadingSecondary>Telephone Number: </HeadingSecondary>
+                {companyPhone || 'Not Specified'}
+              </ItemDetail>
+
+              {/* <IconLinks to={`/edit/${_id}`} title="Edit">
+                <Edit />
+              </IconLinks> */}
+              <ItemDetail>
+                <HeadingSecondary>Email Address: </HeadingSecondary>
+                {companyEmail || 'Not Specified'}
+              </ItemDetail>
+              <ItemDetail>
+                <HeadingSecondary>Location: </HeadingSecondary>
+                {companyLocation || 'Not Specified'}
+              </ItemDetail>
+              {/* <ModalLuncher title="Delete">
+                <Delete />
+              </ModalLuncher> */}
+              <ItemDetail>
+                <HeadingSecondary>Company Website: </HeadingSecondary>
+                <CompanyWebsite>{companyWebsite}</CompanyWebsite>
+              </ItemDetail>
+            </Section>
+            <Section>
+              <HeadingPrimary>Job Details</HeadingPrimary>
+              <ItemDetail>
+                <HeadingSecondary>Status: </HeadingSecondary>
+                {status || 'Not Specified'}
+              </ItemDetail>
+              <ItemDetail>
+                <HeadingSecondary>Job ID: </HeadingSecondary>
+                {jobID || 'Not Specified'}
+              </ItemDetail>
+              <ItemDetail>
+                <HeadingSecondary>Date Applied: </HeadingSecondary>
+                {
+                  `${moment(dateApplied)
+                    .add('day')
+                    .format('LL')} (${(moment(Date.parse(dateApplied))
+                    .fromNow()).includes('hours') ?
+                    'today' :
+                    `about ${moment(dateApplied)
+                    .fromNow()}`})` || 'Not Specified'
+                  }
+              </ItemDetail>
+              <ItemDetail>
+                <HeadingSecondary>Compensation: </HeadingSecondary>
+                {compensation || 'Not Specified'}
+              </ItemDetail>
+              <ItemDetail>
+                <HeadingSecondary>Source: </HeadingSecondary>
+                {source || 'Not Specified'}
+              </ItemDetail>
+            </Section>
+          </TopSection>
           <Section>
             <HeadingPrimary >Additional Information</HeadingPrimary>
             <JobDetails> {jobDetails || 'No Information'} </JobDetails>
           </Section>
           {/* <Favorite></Favorite> */}
           <DateCreated> {`Created ${moment(dateCreated).fromNow()}` || 'Loading...'} </DateCreated>
-        </Container>
+        </ItemContainer>
       </Main>
     );
   }
