@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEdit } from '@fortawesome/fontawesome-free-regular';
+import { faTrashAlt, faEdit, faCalendarAlt, faMoneyBillAlt, faFileAlt } from '@fortawesome/fontawesome-free-regular';
+import { faPhone, faAt, faMapMarker, faGlobe, faCheckCircle, faIdCard } from '@fortawesome/fontawesome-free-solid';
 import styled from 'styled-components';
 import moment from 'moment';
 import { withRouter, Link } from 'react-router-dom';
@@ -61,6 +62,7 @@ class SingleItem extends React.Component {
       grid-column: 2/3;
       padding: 1% 4%;
       margin: 3% 0;
+      position: relative;
       @media screen and (max-width: 950px) {
         grid-column: 1/-1;
         margin: 3% 1%; 
@@ -126,14 +128,75 @@ class SingleItem extends React.Component {
     }
     `;
 
+    const PhoneIcon = styled(FontAwesomeIcon).attrs({
+      icon: faPhone,
+    })`
+      color: #747d8c;
+    `;
+
+    const EmailIcon = styled(FontAwesomeIcon).attrs({
+      icon: faAt,
+    })`
+      color: #747d8c;
+    `;
+
+    const LocationIcon = styled(FontAwesomeIcon).attrs({
+      icon: faMapMarker,
+    })`
+      color: #747d8c;
+    `;
+
+    const WebsiteIcon = styled(FontAwesomeIcon).attrs({
+      icon: faGlobe,
+    })`
+      color: #747d8c;
+    `;
+
+    const DateIcon = styled(FontAwesomeIcon).attrs({
+      icon: faCalendarAlt,
+    })`
+      color: #747d8c;
+    `;
+
+    const StatusIcon = styled(FontAwesomeIcon).attrs({
+      icon: faCheckCircle,
+    })`
+      color: #747d8c;
+    `;
+
+    const JobIdIcon = styled(FontAwesomeIcon).attrs({
+      icon: faIdCard,
+    })`
+      color: #747d8c;
+    `;
+
+    const CompensationIcon = styled(FontAwesomeIcon).attrs({
+      icon: faMoneyBillAlt,
+    })`
+      color: #747d8c;
+    `;
+
+    const SourceIcon = styled(FontAwesomeIcon).attrs({
+      icon: faFileAlt,
+    })`
+      color: #747d8c;
+    `;
+
     const DateCreated = styled.p`
       text-align: end;
       word-break: normal;
     `;
 
     const IconLinks = styled(Link)`
-      display: grid;
-      justify-self: end;
+      position: absolute;
+      right: 10%;
+      transition: all .2s ease;
+        &:hover {
+          transform: scale(1.2);
+          &>*{
+              color: #70a1ff;
+            }
+        }
     `;
 
     const Delete = styled(FontAwesomeIcon).attrs({
@@ -141,7 +204,6 @@ class SingleItem extends React.Component {
       size: 'lg',
     })`
       cursor: pointer;
-      justify-self: end;
     `;
 
     const ModalLuncher = styled.a.attrs({
@@ -150,9 +212,15 @@ class SingleItem extends React.Component {
       &,
       &:link,
       &:visited {
-        display: grid;
-        justify-self: end;
+        position: absolute;
         text-decoration: none;
+        right: 34px;
+        color: gray;
+        transition: all .2s ease;
+        &:hover {
+          transform: scale(1.2);
+          color: #ff4757;
+        }
       }
     `;
 
@@ -160,7 +228,7 @@ class SingleItem extends React.Component {
       icon: faEdit,
       size: 'lg',
     })`
-      justify-self: end;
+      color: gray;
     `;
 
     return (
@@ -170,47 +238,47 @@ class SingleItem extends React.Component {
           company={company}
         />
         <ItemContainer>
+          <IconLinks to={`/edit/${_id}`} title="Edit">
+            <Edit />
+          </IconLinks>
+          <ModalLuncher title="Delete">
+            <Delete />
+          </ModalLuncher>
           <Position> {position || 'Loading. ..'} </Position>
           <Company>{company || 'Loading...'} </Company>
           <TopSection>
             <Section>
               <HeadingPrimary>Company Contact Info</HeadingPrimary>
               <ItemDetail>
-                <HeadingSecondary>Telephone Number: </HeadingSecondary>
+                <PhoneIcon /> <HeadingSecondary>Telephone Number: </HeadingSecondary>
                 {companyPhone || 'Not Specified'}
               </ItemDetail>
 
-              {/* <IconLinks to={`/edit/${_id}`} title="Edit">
-                <Edit />
-              </IconLinks> */}
               <ItemDetail>
-                <HeadingSecondary>Email Address: </HeadingSecondary>
+                <EmailIcon /> <HeadingSecondary>Email Address: </HeadingSecondary>
                 {companyEmail || 'Not Specified'}
               </ItemDetail>
               <ItemDetail>
-                <HeadingSecondary>Location: </HeadingSecondary>
+                <LocationIcon /> <HeadingSecondary>Location: </HeadingSecondary>
                 {companyLocation || 'Not Specified'}
               </ItemDetail>
-              {/* <ModalLuncher title="Delete">
-                <Delete />
-              </ModalLuncher> */}
               <ItemDetail>
-                <HeadingSecondary>Company Website: </HeadingSecondary>
+                <WebsiteIcon /> <HeadingSecondary>Company Website: </HeadingSecondary>
                 <CompanyWebsite>{companyWebsite}</CompanyWebsite>
               </ItemDetail>
             </Section>
             <Section>
               <HeadingPrimary>Job Details</HeadingPrimary>
               <ItemDetail>
-                <HeadingSecondary>Status: </HeadingSecondary>
+                <StatusIcon /> <HeadingSecondary>Status: </HeadingSecondary>
                 {status || 'Not Specified'}
               </ItemDetail>
               <ItemDetail>
-                <HeadingSecondary>Job ID: </HeadingSecondary>
+                <JobIdIcon /> <HeadingSecondary>Job ID: </HeadingSecondary>
                 {jobID || 'Not Specified'}
               </ItemDetail>
               <ItemDetail>
-                <HeadingSecondary>Date Applied: </HeadingSecondary>
+                <DateIcon /> <HeadingSecondary>Date Applied: </HeadingSecondary>
                 {
                   `${moment(dateApplied)
                     .add('day')
@@ -222,11 +290,11 @@ class SingleItem extends React.Component {
                   }
               </ItemDetail>
               <ItemDetail>
-                <HeadingSecondary>Compensation: </HeadingSecondary>
+                <CompensationIcon /> <HeadingSecondary>Compensation: </HeadingSecondary>
                 {compensation || 'Not Specified'}
               </ItemDetail>
               <ItemDetail>
-                <HeadingSecondary>Source: </HeadingSecondary>
+                <SourceIcon /> <HeadingSecondary>Source: </HeadingSecondary>
                 {source || 'Not Specified'}
               </ItemDetail>
             </Section>
