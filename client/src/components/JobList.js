@@ -170,10 +170,12 @@ justify-content: center;
 align-items: center;
 grid-auto-flow: column;
 justify-content: space-around;
-&>*{
-  opacity: 0;
-  transition: all .5s ease-out;
-  transform: translateY(-4px);
+@media screen and (min-width: 1000px) {
+  &>*{
+    opacity: 0;
+    transition: all .5s ease-out;
+    transform: translateY(-4px);
+  }
 }
 border-top: .5px solid ${primaryColor};
 padding-top: 1%;
