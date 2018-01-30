@@ -9,7 +9,17 @@ class DropDownMenu extends Component {
     super(props);
     this.state = { isOpen: false };
     this.handleClick = this.handleClick.bind(this);
+    this.handleResize = function handleResize(e) {
+      this.windowWidth = e.target.innerWidth;
+    };
+    this.windowWidth = window.innerWidth;
   }
+
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
 
   handleClick() {
     const { isOpen } = this.state;
@@ -33,7 +43,7 @@ class DropDownMenu extends Component {
         grid-template-row: 1.5em max-content;
         background: #FFFFFFF;
         box-shadow: 3px 2px 10px rgba(0, 0, 0, .2);
-        width: 150px;
+        width: 170px;
         position:relative;
     `;
 
@@ -42,7 +52,6 @@ class DropDownMenu extends Component {
         justify-content: space-around;
         align-items: center;
         grid-auto-flow: column;
-        text-transform: uppercase;
         font-weight: 800;
         cursor: pointer;
         color: #433F3F;
@@ -52,19 +61,6 @@ class DropDownMenu extends Component {
           background: #FFFBFF;
           color:${primaryColor};
         } 
-        &:after {
-          content: "${props => (props.content ? props.content : ' ')}";
-          display: grid;  
-          justify-content: center;
-          align-items: center;
-          position: absolute;
-          height: 100%;
-          width: 125%;
-          top: 0;
-          right: -195px;
-          color: lightgray;
-          cursor: initial;
-        }
     `;
 
     const DropDownBody = styled.div`
@@ -104,8 +100,8 @@ class DropDownMenu extends Component {
 
     return (
       <DropDown>
-        <DropDownHeading onClick={this.handleClick} content={`-- Sorted by ${selected}.`}>
-          { this.props.heading } <FontAwesomeIcon icon={faAngleDown} />
+        <DropDownHeading onClick={this.handleClick}>
+          { `${this.props.heading} ${selected}`} <FontAwesomeIcon icon={faAngleDown} />
         </DropDownHeading>
         <DropDownBody style={{ display: this.state.isOpen ? 'grid' : 'none' }}>
           {this.props.items.map(item => (
