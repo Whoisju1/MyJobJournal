@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class UserInfoDropDown extends Component {
@@ -10,7 +11,7 @@ class UserInfoDropDown extends Component {
   }
 
   handleClick() {
-    this.setState({ isOpen: !this.state.isOpen });
+    if (this.props.auth) this.setState({ isOpen: !this.state.isOpen });
   }
 
   render() {
@@ -94,6 +95,10 @@ UserInfoDropDown.defaultProps = {
 UserInfoDropDown.propTypes = {
   heading: PropTypes.element,
   children: PropTypes.array,
+  auth: PropTypes.any,
 };
 
-export default UserInfoDropDown;
+const mapStateToProps = ({ auth }) => ({ auth });
+
+
+export default connect(mapStateToProps)(UserInfoDropDown);
