@@ -17,7 +17,7 @@ const applicationSchema = new Schema({
     type: String,
     validate: {
       validator(v) {
-        return /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
+        return /^$|^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
       },
     },
     message: '{VALUE} is not a valid phone number.',
