@@ -57,6 +57,7 @@ class UserInfoDropDown extends Component {
       position: absolute;
       bottom: -90%;
       right: 7%;
+      width: 50%;
       animation-name: ${Open};
       animation-duration: .2s;
       animation-fill-mode: both;
