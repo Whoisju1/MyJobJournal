@@ -32,7 +32,7 @@ class UserLogin extends React.Component {
     `;
 
     const LogIn = styled.a.attrs({ href: '/auth/google' })`
-
+      color: #27ae60;
     `;
 
     switch (this.props.auth) {
