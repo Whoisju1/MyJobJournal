@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
 const DeleteModal = ({
-  id, company, deleteData,
+  id, deleteData,
 }) => {
   const primaryColor = '#27ae60';
 
@@ -40,15 +40,14 @@ const DeleteModal = ({
   const Modal = styled.div`
     position: fixed;
     display: grid;
-    grid-template-rows: 20% 54% 17%;  
-    grid-gap: 3px;
     bottom: 50%;
     left: 50%;
     transform: translateY(50%) translateX(-50%);
     height: 300px;
     width: 500px;
-    border: 2px solid black;
-    border-radius: 31px;
+    @media screen and (max-width: 525px) {
+      width: 95vw;
+    }
     background: #ecf0f1;
     padding: 1% 1% 1.5% 1% ;
   `;
@@ -57,10 +56,9 @@ const DeleteModal = ({
     background: ${primaryColor};
     color: #FFFFFF;
     display: flex;
+    margin: 0;
     text-transform: uppercase;
-    padding-bottom: .7%;
-    border-top-left-radius: 17px;
-    border-top-right-radius: 17px;
+    ${'' /* padding-bottom: .7%; */}
     text-align: center;
     font-size: 130%;
     justify-content: center;
@@ -94,7 +92,7 @@ const DeleteModal = ({
       }
       100% {
         outline: 2.5px solid #e74c3c;
-        outline-offset: 6px;
+        outline-offset: 2px;
         border-radius: 0px;
       }
     }
@@ -103,7 +101,7 @@ const DeleteModal = ({
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 1.5em;
+      height: 1.7em;
       color: #e74c3c;
       border: 2.5px solid #e74c3c;
       font-weight: 500;
@@ -144,15 +142,13 @@ const DeleteModal = ({
   return (
     <ModalBackground>
       <Modal>
-        <ModalHeading>
-          {`You are about to delete your notes for the job opening at "${company}"!`}
-        </ModalHeading>
+        <ModalHeading>You are about to delete your notes for this position</ModalHeading>
         <ModalMessage>
-          {'Do you wish to continue? Press "YES" to do so or press "No" to cancel.'}
+          {'Do you wish to continue? Press "Delete" to proceed or "No" to cancel.'}
         </ModalMessage>
         <ButtonWrapper>
           <CancelButton to="/applications">
-          No! I change my mind.
+            No! I change my mind.
           </CancelButton>
           <DeleteButton
             to="/applications"
@@ -160,7 +156,7 @@ const DeleteModal = ({
               deleteData(id);
             }}
           >
-          Yes
+            Delete
           </DeleteButton>
         </ButtonWrapper>
       </Modal>
@@ -169,7 +165,6 @@ const DeleteModal = ({
 };
 
 DeleteModal.propTypes = {
-  company: PropTypes.string.isRequired,
   deleteData: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
