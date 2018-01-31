@@ -63,6 +63,11 @@ class SingleItem extends React.Component {
       padding: 1% 4%;
       margin: 3% 0;
       position: relative;
+      &:hover {
+        &>.icon {
+          opacity: 1;
+        }
+      }
       @media screen and (max-width: 950px) {
         grid-column: 1/-1;
         margin: 3% 1%; 
@@ -187,9 +192,13 @@ class SingleItem extends React.Component {
       word-break: normal;
     `;
 
-    const IconLinks = styled(Link)`
+    const IconLinks = styled(Link).attrs({
+      className: 'icon',
+    })`
       position: absolute;
-      right: 80px;
+      right: 7px;
+      top: 33px;
+      transition: opacity .2s ease;
       transition: all .2s ease;
         &:hover {
           transform: scale(1.2);
@@ -208,15 +217,18 @@ class SingleItem extends React.Component {
 
     const ModalLuncher = styled.a.attrs({
       href: `#${_id}`,
+      className: 'icon',
     })`
       &,
       &:link,
       &:visited {
         position: absolute;
         text-decoration: none;
-        right: 34px;
+        right: 11px;
+        top: 81px;
         color: gray;
         transition: all .2s ease;
+        transition: opacity .2s ease;
         &:hover {
           transform: scale(1.2);
           color: #ff4757;
