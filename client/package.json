@@ -41,6 +41,7 @@
     "devDependencies": {
         "enzyme": "^3.3.0",
         "jest-cli": "^20.0.4",
-        "jest-styled-components": "^4.10.0"
+        "jest-styled-components": "^4.10.0",
+        "redux-devtools-extension": "^2.13.2"
     }
 }
