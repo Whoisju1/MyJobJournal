@@ -30,7 +30,8 @@
         "redux": "^3.7.2",
         "redux-form": "^7.2.0",
         "redux-thunk": "^2.2.0",
-        "styled-components": "^2.4.0"
+        "styled-components": "^2.4.0",
+        "redux-devtools-extension": "^2.13.2"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -42,6 +43,5 @@
         "enzyme": "^3.3.0",
         "jest-cli": "^20.0.4",
         "jest-styled-components": "^4.10.0",
-        "redux-devtools-extension": "^2.13.2"
     }
 }
