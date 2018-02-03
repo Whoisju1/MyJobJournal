@@ -32,10 +32,8 @@ class Dashboard extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillReceiveProps({ data, deleted, added }) {
+  componentWillReceiveProps({ data }) {
     if (data !== this.props.data) this.setState({ jobNotes: data.applications });
-    if (deleted !== this.props.deleted) this.setState({ jobNotes: deleted.applications });
-    if (added !== this.props.added) this.setState({ jobNotes: added.applications });
   }
 
   handleClick(item) {
@@ -167,9 +165,6 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   fetchData: PropTypes.func.isRequired,
   data: PropTypes.object,
-  update: PropTypes.object,
-  added: PropTypes.object,
-  deleted: PropTypes.object,
 };
 
 const mapStateToProps = ({

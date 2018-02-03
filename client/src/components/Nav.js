@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -7,48 +7,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as actions from '../actions';
 
-class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      favQuantity: 0,
-      entryQuantity: 0,
-    };
-  }
+const Nav = ({ data, auth }) => {
+  const primaryColor = '#27ae60';
 
-  componentDidMount() {
-    if (!this.state) this.props.fetchData();
-  }
-
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.data !== nextProps.data) {
-      this.setState({ entryQuantity: nextProps.data.applications.length });
-      const favQuantity = nextProps.data.applications.filter(item => item.favorite).length;
-      this.setState({ favQuantity });
-    }
-
-    if (this.props.auth !== nextProps.auth) {
-      this.setState({ entryQuantity: nextProps.auth.applications.length });
-      const favQuantity = nextProps.auth.applications.filter(item => item.favorite).length;
-      this.setState({ favQuantity });
-    }
-
-    if (this.props.deleted !== nextProps.deleted) {
-      this.setState({ entryQuantity: nextProps.deleted.applications.length });
-      const favQuantity = nextProps.deleted.applications.filter(item => item.favorite).length;
-      this.setState({ favQuantity });
-    }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state !== nextState;
-  }
-
-  render() {
-    const primaryColor = '#27ae60';
-
-    const NavBar = styled.nav`
+  const NavBar = styled.nav`
       display: grid;
       grid-auto-flow: column;
       align-items: center;
@@ -57,9 +19,9 @@ class Nav extends Component {
       grid-column: 2/3;
     `;
 
-    const NavigationLink = styled(NavLink).attrs({
-      activeClassName: 'active',
-    })`
+  const NavigationLink = styled(NavLink).attrs({
+    activeClassName: 'active',
+  })`
       &,
       &:link,
       &:active {
@@ -106,7 +68,7 @@ class Nav extends Component {
       }
     `;
 
-    const Quantity = styled.span`
+  const Quantity = styled.span`
       color: lightgray;
       display: inline-block;
       width: 1.2em;
@@ -114,56 +76,67 @@ class Nav extends Component {
       text-align: center;
     `;
 
-    const DashIcon = styled(FontAwesomeIcon).attrs({
-      icon: faListUl,
-    })`
+  const DashIcon = styled(FontAwesomeIcon).attrs({
+    icon: faListUl,
+  })`
       color: gray;
     `;
 
-    const FavIcon = DashIcon.extend.attrs({
-      icon: faStar,
-    })`
+  const FavIcon = DashIcon.extend.attrs({
+    icon: faStar,
+  })`
     
     `;
 
-    const LinkLabel = styled.span`
+  const LinkLabel = styled.span`
       @media screen and (max-width: 800px) {
         display: none;
       }
     `;
 
-    return (
-      <React.Fragment>
-        {
-          this.props.auth &&
-          <NavBar>
-            <NavigationLink to="/applications">
-              <DashIcon />
-              <LinkLabel>Dashboard</LinkLabel>
-              <Quantity>({this.state.entryQuantity})</Quantity>
-            </NavigationLink>
-            <NavigationLink to="/favorites">
-              <FavIcon />
-              <LinkLabel>Favorites</LinkLabel>
-              <Quantity>({this.state.favQuantity})</Quantity>
-            </NavigationLink>
-          </NavBar>
-      }
-      </React.Fragment>
-    );
-  }
-}
+  // const { applications = [] } = data;
+  const applicationQuantity = (() => {
+    if (data) return data.applications.length;
+    return 0;
+  })();
+
+  const favoritesQuantity = (() => {
+    if (data) return data.applications.filter(({ favorite }) => favorite === true).length;
+    return 0;
+  })();
+
+  return (
+    <React.Fragment>
+      {
+        auth &&
+        <NavBar>
+          <NavigationLink to="/applications">
+            <DashIcon />
+            <LinkLabel>Dashboard</LinkLabel>
+            <Quantity>({ applicationQuantity })</Quantity>
+          </NavigationLink>
+          <NavigationLink to="/favorites">
+            <FavIcon />
+            <LinkLabel>Favorites</LinkLabel>
+            <Quantity>({ favoritesQuantity })</Quantity>
+          </NavigationLink>
+        </NavBar>
+    }
+    </React.Fragment>
+  );
+};
 
 Nav.defaultProps = {
-  data: null,
-  auth: null,
-  deleted: null,
+  data: {
+    applications: [],
+  },
 };
 
 Nav.propTypes = {
-  data: PropTypes.object,
-  auth: PropTypes.object,
-  deleted: PropTypes.object,
+  data: PropTypes.shape({
+    application: PropTypes.array,
+    auth: PropTypes.object,
+  }),
 };
 
 const mapStateToProps = ({ data, auth, deleted }) => ({ data, auth, deleted });
