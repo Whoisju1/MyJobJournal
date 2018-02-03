@@ -164,9 +164,13 @@ const DeleteModal = ({
   );
 };
 
+DeleteModal.defaultProps = {
+  id: 'hidden',
+};
+
 DeleteModal.propTypes = {
   deleteData: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 
