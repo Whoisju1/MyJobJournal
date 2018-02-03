@@ -24,7 +24,7 @@ export const updateData = (entryID, body) => async (dispatch) => {
   dispatch({ type: UPDATE_DATA, payload: res.data });
 };
 
-export const fetchData = userID => async (dispatch) => {
+export const fetchData = () => async (dispatch) => {
   const res = await axios.get('/api/find/');
 
   dispatch({ type: FETCH_DATA, payload: res.data });
