@@ -8,9 +8,6 @@ import reduxThunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers';
 
-// import styles
-// import './styles/index.css';
-
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
