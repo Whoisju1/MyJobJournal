@@ -199,14 +199,15 @@ const Favorite = styled(FontAwesomeIcon).attrs({
   transform: scale(1.2);
   transition: all .5s ease;
   fill: none;
-  color: gray;
+  ${'' /* color: gray; */}
+  color: lightgray;
   border-radius: 3px;
   transform-origin: 50% 50%;
-  cursor: pointer;
-  &:hover {
+  ${'' /* cursor: pointer; */}
+  ${'' /* &:hover {
     transform: scale(1.6);
     color: #e74c3c;
-  }
+  } */}
 `;
 
 const Edit = styled(FontAwesomeIcon).attrs({
