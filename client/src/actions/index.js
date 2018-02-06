@@ -1,5 +1,14 @@
 import axios from 'axios';
-import { FETCH_USER, STORE_DATA, DELETE_DATA, UPDATE_DATA, FETCH_DATA, FETCH_APPLICATION, SEARCH } from './types';
+import {
+  FETCH_USER,
+  STORE_DATA,
+  DELETE_DATA,
+  UPDATE_DATA,
+  FETCH_DATA,
+  FETCH_APPLICATION,
+  TOGGLE_SORT_DROPDOWN,
+  SEARCH,
+} from './types';
 
 export const fetchUser = () => async (dispatch) => {
   const res = await axios.get('/api/current_user');
@@ -40,3 +49,9 @@ export const dataSearch = searchTerm => async (dispatch) => {
   const res = await axios.get(`/api/search/${searchTerm}`);
   dispatch({ type: SEARCH, payload: res.data });
 };
+
+export const toggleSort = isOpen => ({
+  type: TOGGLE_SORT_DROPDOWN,
+  payload: !isOpen,
+});
+
