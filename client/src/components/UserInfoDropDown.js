@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as actions from '../actions';
 
 class UserInfoDropDown extends Component {
+  /* eslint no-useless-constructor: "off" */
   constructor(props) {
     super(props);
-    this.state = { isOpen: false };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    if (this.props.auth) this.setState({ isOpen: !this.state.isOpen });
+  componentDidMount() {
+    // make sure that dropdown is closed when component renders
+    this.props.toggleHeaderDropdown(true);
   }
 
   render() {
@@ -77,10 +78,13 @@ class UserInfoDropDown extends Component {
 
     return (
       <MainContainer ref={(node) => { this.node = node; }}>
-        <Heading onClick={this.handleClick} >
+        <Heading onClick={() => this.props.toggleHeaderDropdown(this.props.isHeaderOpen)} >
           { this.props.heading }
         </Heading>
-        <ListContainer isOpen={this.state.isOpen} onClick={this.handleClick}>
+        <ListContainer
+          isOpen={this.props.isHeaderOpen}
+          onClick={() => this.props.toggleHeaderDropdown(this.props.isHeaderOpen)}
+        >
           { this.props.children }
         </ListContainer>
       </MainContainer>
@@ -95,11 +99,12 @@ UserInfoDropDown.defaultProps = {
 
 UserInfoDropDown.propTypes = {
   heading: PropTypes.element,
-  children: PropTypes.array,
-  auth: PropTypes.any,
+  children: PropTypes.arrayOf(PropTypes.element),
+  isHeaderOpen: PropTypes.bool.isRequired,
+  toggleHeaderDropdown: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapStateToProps = ({ auth, isHeaderOpen }) => ({ auth, isHeaderOpen });
 
 
-export default connect(mapStateToProps)(UserInfoDropDown);
+export default connect(mapStateToProps, actions)(UserInfoDropDown);
