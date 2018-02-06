@@ -3,27 +3,18 @@ import styled, { keyframes } from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { faAngleDown } from '@fortawesome/fontawesome-free-solid';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class DropDownMenu extends Component {
+  /* eslint no-useless-constructor: "off" */
   constructor(props) {
     super(props);
-    this.state = { isOpen: false };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleResize = function handleResize(e) {
-      this.windowWidth = e.target.innerWidth;
-    };
-    this.windowWidth = window.innerWidth;
   }
-
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-  }
-
-
-  handleClick() {
-    const { isOpen } = this.state;
-    isOpen ? this.setState({ isOpen: false }) : this.setState({ isOpen: true });
+    // make sure drop down is hidden when component mounts
+    this.props.toggleSort(true);
   }
 
   render() {
@@ -95,21 +86,27 @@ class DropDownMenu extends Component {
         } 
     `;
 
-    const { current } = this.props;
-    const selected = this.props.items.filter(item => item.val === current)[0].alias;
-
+    const {
+      isSortOpen,
+      items,
+      callback,
+      toggleSort,
+      heading,
+      current,
+    } = this.props;
+    const selected = items.filter(item => item.val === current)[0].alias;
     return (
       <DropDown>
-        <DropDownHeading onClick={this.handleClick}>
-          { `${this.props.heading} ${selected}`} <FontAwesomeIcon icon={faAngleDown} />
+        <DropDownHeading onClick={() => toggleSort(isSortOpen)}>
+          { `${heading} ${selected}`} <FontAwesomeIcon icon={faAngleDown} />
         </DropDownHeading>
-        <DropDownBody style={{ display: this.state.isOpen ? 'grid' : 'none' }}>
-          {this.props.items.map(item => (
+        <DropDownBody style={{ display: isSortOpen ? 'grid' : 'none' }}>
+          {items.map(item => (
             <DropDownItem
               key={item.val}
               onClick={() => {
-                this.props.callback(item.val);
-                this.setState({ isOpen: false });
+                callback(item.val);
+                toggleSort(isSortOpen);
                 }}
               isSelected={item.alias === selected}
             >
@@ -127,6 +124,10 @@ DropDownMenu.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   heading: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   current: PropTypes.string.isRequired,
+  toggleSort: PropTypes.func.isRequired,
+  isSortOpen: PropTypes.bool.isRequired,
 };
 
-export default DropDownMenu;
+const mapStateToProps = ({ isSortOpen }) => ({ isSortOpen });
+
+export default connect(mapStateToProps, actions)(DropDownMenu);
