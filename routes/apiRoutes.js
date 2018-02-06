@@ -52,7 +52,7 @@ module.exports = (app) => {
 
       application.save((err, createdApplication) => {
         if (err) return console.log('Error: ', err);
-        res.send({ _id: createdApplication._id });
+        res.json({ _id: createdApplication._id, message: 'Item added.' });
       });
 
       user.applications.push(application);
@@ -64,10 +64,10 @@ module.exports = (app) => {
 
   // update application
   app.patch('/api/edit/id/:id*?', (req, res) => {
-    const { id } = req.params;
-    Application.findById(id, (err, application) => {
+    const { id: _id } = req.params;
+    Application.findById(_id, (err, application) => {
       if (err) return console.log('Error: ', err);
-
+      /* eslint no-param-reassign: "off" */
       application.company = req.body.company;
       application.companyInfo = req.body.companyInfo;
       application.companyPhone = req.body.companyPhone;
@@ -84,9 +84,10 @@ module.exports = (app) => {
       application.source = req.body.source;
       application.favorite = req.body.favorite;
 
+      /* eslint no-shadow: "off" */
       application.save((err, data) => {
         if (err) return console.log('Error: ', err);
-        res.send(data);
+        res.json({ _id, message: 'Item updated.' });
       });
     });
   });
@@ -98,13 +99,14 @@ module.exports = (app) => {
       if (err) return console.log('Error: ', err);
       entry.save((err, data) => {
         if (err) return console.log('Error: ', err);
-        User.update({ applications: entryID }, { $pull: { applications: entryID } }, (err, data) => {
-          if (err) return console.log('Error: ', err);
-          User.findOne({ _id: req.user._id }).populate('applications').exec((err, data) => {
+        /* eslint no-unused-vars: "off" */
+        User.update(
+          { applications: entryID }, { $pull: { applications: entryID } },
+          (err, data) => {
             if (err) return console.log('Error: ', err);
-            res.send(data);
-          });
-        });
+            res.json({ message: 'Item deleted' });
+          },
+        );
       });
     });
   });
@@ -114,7 +116,7 @@ module.exports = (app) => {
     const userID = req.user.id;
     User.findOne({ _id: userID }).populate('applications').exec((err, data) => {
       if (err) return console.log('Error: ', err);
-      res.send(data);
+      res.json(data);
     });
   });
 
@@ -122,7 +124,7 @@ module.exports = (app) => {
     const { id } = req.params;
     Application.findById(id, (err, application) => {
       if (err) return console.log('Error: ', err);
-      res.send(application);
+      res.json(application);
     });
   });
   // search engine
