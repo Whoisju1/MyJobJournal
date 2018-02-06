@@ -194,17 +194,17 @@ vertical-align: middle;
 `;
 
 const Favorite = styled(FontAwesomeIcon).attrs({
-  icon: props => (props.fav ? StarFav : StarUnfav),
+  icon: props => (props.fav === 'true' ? StarFav : StarUnfav),
 })`
   transform: scale(1.2);
   transition: all .5s ease;
   fill: none;
-  ${'' /* color: gray; */}
+  ${''/* color: gray; */}
   color: lightgray;
   border-radius: 3px;
   transform-origin: 50% 50%;
-  ${'' /* cursor: pointer; */}
-  ${'' /* &:hover {
+  ${''/* cursor: pointer; */}
+  ${''/* &:hover {
     transform: scale(1.6);
     color: #e74c3c;
   } */}
@@ -266,7 +266,7 @@ const JobList = ({ jobs, callback }) => jobs.map(job => (
     </Content>
     <IconsContainer>
       <Favorite
-        fav={job.favorite}
+        fav={job.favorite.toString()}
       />
       <Link to={`/edit/${job._id}`} title="Edit">
         <Edit />
