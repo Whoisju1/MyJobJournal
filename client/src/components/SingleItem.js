@@ -6,6 +6,7 @@ import { faTrashAlt, faEdit, faCalendarAlt, faMoneyBillAlt, faFileAlt } from '@f
 import { faPhone, faAt, faMapMarker, faGlobe, faCheckCircle, faIdCard } from '@fortawesome/fontawesome-free-solid';
 import styled from 'styled-components';
 import moment from 'moment';
+import Linkify from 'react-linkify';
 import { withRouter, Link } from 'react-router-dom';
 import * as actions from '../actions';
 import Modal from './Modal';
@@ -250,73 +251,75 @@ class SingleItem extends React.Component {
           company={company}
         />
         <ItemContainer>
-          <IconLinks to={`/edit/${_id}`} title="Edit">
-            <Edit />
-          </IconLinks>
-          <ModalLuncher title="Delete">
-            <Delete />
-          </ModalLuncher>
-          <Position> {position || 'Loading. ..'} </Position>
-          <Company>{company || 'Loading...'} </Company>
-          <TopSection>
-            <Section>
-              <HeadingPrimary>Company Contact Info</HeadingPrimary>
-              <ItemDetail>
-                <PhoneIcon /> <HeadingSecondary>Telephone Number: </HeadingSecondary>
-                {companyPhone || 'Not Specified'}
-              </ItemDetail>
+          <Linkify>
+            <IconLinks to={`/edit/${_id}`} title="Edit">
+              <Edit />
+            </IconLinks>
+            <ModalLuncher title="Delete">
+              <Delete />
+            </ModalLuncher>
+            <Position> {position || 'Loading. ..'} </Position>
+            <Company>{company || 'Loading...'} </Company>
+            <TopSection>
+              <Section>
+                <HeadingPrimary>Company Contact Info</HeadingPrimary>
+                <ItemDetail>
+                  <PhoneIcon /> <HeadingSecondary>Telephone Number: </HeadingSecondary>
+                  {companyPhone || 'Not Specified'}
+                </ItemDetail>
 
-              <ItemDetail>
-                <EmailIcon /> <HeadingSecondary>Email Address: </HeadingSecondary>
-                {companyEmail || 'Not Specified'}
-              </ItemDetail>
-              <ItemDetail>
-                <LocationIcon /> <HeadingSecondary>Location: </HeadingSecondary>
-                {companyLocation || 'Not Specified'}
-              </ItemDetail>
-              <ItemDetail>
-                <WebsiteIcon /> <HeadingSecondary>Company Website: </HeadingSecondary>
-                <CompanyWebsite>{companyWebsite}</CompanyWebsite>
-              </ItemDetail>
-            </Section>
+                <ItemDetail>
+                  <EmailIcon /> <HeadingSecondary>Email Address: </HeadingSecondary>
+                  {companyEmail || 'Not Specified'}
+                </ItemDetail>
+                <ItemDetail>
+                  <LocationIcon /> <HeadingSecondary>Location: </HeadingSecondary>
+                  {companyLocation || 'Not Specified'}
+                </ItemDetail>
+                <ItemDetail>
+                  <WebsiteIcon /> <HeadingSecondary>Company Website: </HeadingSecondary>
+                  <CompanyWebsite>{companyWebsite}</CompanyWebsite>
+                </ItemDetail>
+              </Section>
+              <Section>
+                <HeadingPrimary>Job Details</HeadingPrimary>
+                <ItemDetail>
+                  <StatusIcon /> <HeadingSecondary>Status: </HeadingSecondary>
+                  {status || 'Not Specified'}
+                </ItemDetail>
+                <ItemDetail>
+                  <JobIdIcon /> <HeadingSecondary>Job ID: </HeadingSecondary>
+                  {jobID || 'Not Specified'}
+                </ItemDetail>
+                <ItemDetail>
+                  <DateIcon /> <HeadingSecondary>Date Applied: </HeadingSecondary>
+                  {
+                    `${moment(dateApplied)
+                      .add('day')
+                      .format('LL')} (${(moment(Date.parse(dateApplied))
+                      .fromNow()).includes('hours') ?
+                      'today' :
+                      `about ${moment(dateApplied)
+                      .fromNow()}`})` || 'Not Specified'
+                    }
+                </ItemDetail>
+                <ItemDetail>
+                  <CompensationIcon /> <HeadingSecondary>Compensation: </HeadingSecondary>
+                  {compensation || 'Not Specified'}
+                </ItemDetail>
+                <ItemDetail>
+                  <SourceIcon /> <HeadingSecondary>Source: </HeadingSecondary>
+                  {source || 'Not Specified'}
+                </ItemDetail>
+              </Section>
+            </TopSection>
             <Section>
-              <HeadingPrimary>Job Details</HeadingPrimary>
-              <ItemDetail>
-                <StatusIcon /> <HeadingSecondary>Status: </HeadingSecondary>
-                {status || 'Not Specified'}
-              </ItemDetail>
-              <ItemDetail>
-                <JobIdIcon /> <HeadingSecondary>Job ID: </HeadingSecondary>
-                {jobID || 'Not Specified'}
-              </ItemDetail>
-              <ItemDetail>
-                <DateIcon /> <HeadingSecondary>Date Applied: </HeadingSecondary>
-                {
-                  `${moment(dateApplied)
-                    .add('day')
-                    .format('LL')} (${(moment(Date.parse(dateApplied))
-                    .fromNow()).includes('hours') ?
-                    'today' :
-                    `about ${moment(dateApplied)
-                    .fromNow()}`})` || 'Not Specified'
-                  }
-              </ItemDetail>
-              <ItemDetail>
-                <CompensationIcon /> <HeadingSecondary>Compensation: </HeadingSecondary>
-                {compensation || 'Not Specified'}
-              </ItemDetail>
-              <ItemDetail>
-                <SourceIcon /> <HeadingSecondary>Source: </HeadingSecondary>
-                {source || 'Not Specified'}
-              </ItemDetail>
+              <HeadingPrimary >Additional Information</HeadingPrimary>
+              <JobDetails> {jobDetails || 'No Information'} </JobDetails>
             </Section>
-          </TopSection>
-          <Section>
-            <HeadingPrimary >Additional Information</HeadingPrimary>
-            <JobDetails> {jobDetails || 'No Information'} </JobDetails>
-          </Section>
-          {/* <Favorite></Favorite> */}
-          <DateCreated> {`Created ${moment(dateCreated).fromNow()}` || 'Loading...'} </DateCreated>
+            {/* <Favorite></Favorite> */}
+            <DateCreated> {`Created ${moment(dateCreated).fromNow()}` || 'Loading...'} </DateCreated>
+          </Linkify>
         </ItemContainer>
       </Main>
     );
