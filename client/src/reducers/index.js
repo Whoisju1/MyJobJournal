@@ -8,6 +8,7 @@ import fetchReducer from './fetchReducer';
 import fetchApplication from './fetchApplication';
 import searchReducer from './searchReducer';
 import toggleSortReducer from './toggleSortReducer';
+import headerDropDownReducer from './headerDropDownReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -17,6 +18,7 @@ export default combineReducers({
   data: fetchReducer,
   application: fetchApplication,
   isSortOpen: toggleSortReducer,
+  isHeaderOpen: headerDropDownReducer,
   search: searchReducer,
   form: formReducer,
 });
