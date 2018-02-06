@@ -5,4 +5,5 @@ export const UPDATE_DATA = 'update-data';
 export const FETCH_DATA = 'fetch-data';
 export const FETCH_APPLICATION = 'fetch-application';
 export const TOGGLE_SORT_DROPDOWN = 'toggle-sort-dropdown';
+export const TOGGLE_HEADER_DROPDOWN = 'toggle-header-dropdown';
 export const SEARCH = 'search';

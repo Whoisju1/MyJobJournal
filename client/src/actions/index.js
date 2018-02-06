@@ -7,6 +7,7 @@ import {
   FETCH_DATA,
   FETCH_APPLICATION,
   TOGGLE_SORT_DROPDOWN,
+  TOGGLE_HEADER_DROPDOWN,
   SEARCH,
 } from './types';
 
@@ -52,6 +53,11 @@ export const dataSearch = searchTerm => async (dispatch) => {
 
 export const toggleSort = isOpen => ({
   type: TOGGLE_SORT_DROPDOWN,
+  payload: !isOpen,
+});
+
+export const toggleHeaderDropdown = isOpen => ({
+  type: TOGGLE_HEADER_DROPDOWN,
   payload: !isOpen,
 });
 
