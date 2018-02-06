@@ -29,16 +29,16 @@ const AuthButtons = () => {
     }
   `;
 
-  const Overlay = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .3), rgba(0, 0, 0, .7));
-    ${'' /* clip-path: polygon(0% 100%, 90% 100%, 100% 0%) */}
-  `;
+  // const Overlay = styled.div`
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   bottom: 0;
+  //   width: 100vw;
+  //   height: 100vh;
+  //   background-image: linear-gradient(to right, rgba(0, 0, 0, .3), rgba(0, 0, 0, .7));
+  //   ${'' /* clip-path: polygon(0% 100%, 90% 100%, 100% 0%) */}
+  // `;
 
   return (
     <React.Fragment>
