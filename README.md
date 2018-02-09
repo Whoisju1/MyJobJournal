@@ -44,15 +44,15 @@
 
 * View of Single Application
 
-![Alternate text](./images_for_readme/job_view.png)
+![View of Single Application](./images_for_readme/job_view.png)
 
 * List of Jobs Already Applied to
 
-![Alternate text](./images_for_readme/list.png)
+![List of Jobs Already Applied to](./images_for_readme/list.png)
 
 * Form
 
-![Alternate text](./images_for_readme/form.png)
+![Form](./images_for_readme/form.png)
 
 ### Authentication with Google
 
@@ -60,4 +60,4 @@
 
 ### Sorting of Data by Different Criterion
 
-![Alternate text](./images_for_readme/sort.png)
+![Sorting of Data by Different Criterion](./images_for_readme/sort.png)
