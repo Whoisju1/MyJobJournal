@@ -42,8 +42,22 @@
 
 ### Beautiful UI
 
+* View of Single Application
+
+![Alternate text](./images_for_readme/job_view.png)
+
+* List of Jobs Already Applied to
+
+![Alternate text](./images_for_readme/list.png)
+
+* Form
+
+![Alternate text](./images_for_readme/form.png)
+
 ### Authentication with Google
 
 ### Client and Server-Side Validation
 
 ### Sorting of Data by Different Criterion
+
+![Alternate text](./images_for_readme/sort.png)
