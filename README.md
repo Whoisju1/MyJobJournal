@@ -38,7 +38,7 @@
 * NPM
 * Concurrently
 
-## Features
+## Main Features
 
 ### Beautiful UI
 
@@ -50,7 +50,7 @@
 
 ![List of Jobs Already Applied to](./images_for_readme/List.png)
 
-* Form
+* Form for Creating and Updating Items
 
 ![Form](./images_for_readme/form.png)
 
