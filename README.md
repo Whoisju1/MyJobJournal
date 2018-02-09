@@ -48,7 +48,7 @@
 
 * List of Jobs Already Applied to
 
-![List of Jobs Already Applied to](./images_for_readme/list.png)
+![List of Jobs Already Applied to](./images_for_readme/List.png)
 
 * Form
 
@@ -60,4 +60,4 @@
 
 ### Sorting of Data by Different Criterion
 
-![Sorting of Data by Different Criterion](./images_for_readme/sort.png)
+![Sorting of Data by Different Criterion](./images_for_readme/Sort.png)
