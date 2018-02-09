@@ -60,4 +60,4 @@
 
 ### Sorting of Data by Different Criterion
 
-<!-- ![Sorting of Data by Different Criterion](./images_for_readme/sorting_data.png) -->
+<!-- ![Sorting of Data by Different Criterion](./images_for_readme/Sort.png) -->
