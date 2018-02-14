@@ -86,7 +86,6 @@ class Dashboard extends Component {
       animation-name: ${spin};
       animation-duration: 1s;
       animation-direction: normal;
-      animation-play-mode: running;
       animation-iteration-count: infinite;
       animation-fill-mode: both;
       border-radius: 100px;
@@ -164,7 +163,8 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   fetchData: PropTypes.func.isRequired,
-  data: PropTypes.object,
+  /* eslint react/forbid-prop-types: ["off"] */
+  data: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = ({
