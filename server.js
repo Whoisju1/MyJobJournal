@@ -5,6 +5,9 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const graphqlHTTP = require('express-graphql');
+const schema = require('./schema/main');
+const path = require('path');
 require('./models/User');
 require('./models/Application');
 require('./services/passport');
@@ -39,6 +42,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(bodyParser.json());
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true,
+}));
+
+
 // import route handlers
 require('./routes/index')(app);
 
@@ -47,7 +57,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
   // express will serve up the index.html file if it doesn't recognize the route
-  const path = require('path');
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
