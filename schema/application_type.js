@@ -5,8 +5,6 @@ const {
   GraphQLID,
 } = require('graphql');
 
-// const User = mongoose.model('User');
-
 const ApplicationType = new GraphQLObjectType({
   name: 'applications',
   fields: {
