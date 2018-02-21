@@ -1,3 +1,6 @@
+/* eslint "import/no-named-as-default": ["off"] */
+/* eslint "import/no-named-as-default-member": ["off"] */
+
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
