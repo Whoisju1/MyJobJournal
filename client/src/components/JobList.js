@@ -4,8 +4,8 @@ import styled, { keyframes } from 'styled-components';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faStar as StarUnfav, faEdit, faTrashAlt } from '@fortawesome/fontawesome-free-regular';
-import { faStar as StarFav } from '@fortawesome/fontawesome-free-solid';
+import { faEdit, faTrashAlt } from '@fortawesome/fontawesome-free-regular';
+import Favorite from './Favorite';
 
 const primaryColor = '#27ae60';
 
@@ -193,23 +193,6 @@ vertical-align: middle;
 }
 `;
 
-const Favorite = styled(FontAwesomeIcon).attrs({
-  icon: props => (props.fav === 'true' ? StarFav : StarUnfav),
-})`
-  transform: scale(1.2);
-  transition: all .5s ease;
-  fill: none;
-  ${''/* color: gray; */}
-  color: lightgray;
-  border-radius: 3px;
-  transform-origin: 50% 50%;
-  ${''/* cursor: pointer; */}
-  ${''/* &:hover {
-    transform: scale(1.6);
-    color: #e74c3c;
-  } */}
-`;
-
 const Edit = styled(FontAwesomeIcon).attrs({
   icon: faEdit,
 })`
@@ -266,7 +249,7 @@ const JobList = ({ jobs, callback }) => jobs.map(job => (
     </Content>
     <IconsContainer>
       <Favorite
-        fav={job.favorite.toString()}
+        id={job._id}
       />
       <Link to={`/edit/${job._id}`} title="Edit">
         <Edit />
