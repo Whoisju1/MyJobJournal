@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLID } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLNonNull } = require('graphql');
 const mongoose = require('mongoose');
 const UserType = require('./user_type');
 const ApplicationType = require('./application_type');
@@ -29,7 +29,7 @@ const RootQuery = new GraphQLObjectType({
       type: ApplicationType,
       args: {
         id: {
-          type: GraphQLID,
+          type: GraphQLNonNull(GraphQLID),
         },
       },
       resolve: async (root, { id }, { user }) => {
