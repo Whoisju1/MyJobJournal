@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faStar as StarUnfav } from '@fortawesome/fontawesome-free-regular';
 import { faStar as StarFav } from '@fortawesome/fontawesome-free-solid';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import * as actions from '../actions';
 
 const Favorite = styled(FontAwesomeIcon).attrs({
@@ -143,11 +144,11 @@ const Position = styled.input.attrs({
   required: true,
   type: 'text',
 })`
+  display: block;
   grid-column: 1/7;
   grid-row: 3/4;
   text-align: center;
   position: relative;
-  ${''}
   &::after {
     content: "Testing";
     position: absolute;
@@ -217,12 +218,16 @@ const CompanyWebsite = styled.input.attrs({
   }
 `;
 
-const Location = styled.input.attrs({
-  name: 'companyLocation',
-  placeholder: 'Manhattan, New York',
-  type: 'text',
-})`
-   grid-column: 4/-1;
+const LocationWrapper = styled.div`
+  grid-column: 4/-1;
+  @media screen and (max-width: 603px) {
+    grid-column: 1/-1;
+  }
+`
+
+const Location = styled(PlacesAutocomplete)`
+   
+   width: 200%;
    grid-row: 8/9;
    &::placeholder {
     align-items: center;
@@ -485,6 +490,8 @@ class AppForm extends Component {
     this.inputTitle = inputName => `Please enter a valid ${inputName}`;
     this.isValid = true;
     this.phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+    this.onChange = (companyLocation) => this.setState({ companyLocation });
   }
 
   static propTypes = {
@@ -574,6 +581,11 @@ class AppForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    geocodeByAddress(this.state.address)
+    .then(results => getLatLng(results[0]))
+    .then(companyLocation => this.setState({companyLocation}))
+    .catch(error => console.error('Error', error))
+    
     // if id evaluates to true then it's an update
     const { id = false } = this.props.match.params;
     (id) ?
@@ -582,6 +594,16 @@ class AppForm extends Component {
   }
 
   render() {
+    // set up for react-places-autocomplete package
+    const inputProps = {
+      value: this.state.companyLocation,   
+      onChange: this.onChange, 
+      name: 'companyLocation',
+      placeholder: 'Manhattan, New York',
+      type: 'text',
+      title: this.inputTitle("the company's office location."),
+    };
+  
     return (
       <FormContainer>
         <Form onSubmit={this.handleSubmit} >
@@ -629,11 +651,12 @@ class AppForm extends Component {
             title={this.inputTitle("company's email address")}
           />
           <CompanyLocationLabel>Location</CompanyLocationLabel>
-          <Location
-            onChange={this.handleChange}
-            value={this.state.companyLocation}
-            title={this.inputTitle("the company's office location.")}
-          />
+          <LocationWrapper>
+            <Location
+              inputProps={inputProps}
+              // styles={myStyles}
+            />
+          </LocationWrapper>
           <Heading>Job Information</Heading>
           <DateAppliedLabel>Date Applied</DateAppliedLabel>
           <DateApplied
