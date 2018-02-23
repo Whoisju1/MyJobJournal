@@ -155,6 +155,7 @@ grid-auto-flow: column;
 &>p {
 height: 1.5em;
 overflow-y: hidden;
+word-break: break-all;
 margin: 0;
 width: 100%;
 }
