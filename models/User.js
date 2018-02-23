@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
 const applicationSchema = require('./Application');
 
 const userSchema = new Schema({
 	googleID: String,
 	firstName: {
-		type: String,
+    type: String,
 		trim: true
 	},
 	lastName: {
@@ -26,6 +27,10 @@ const userSchema = new Schema({
 	numOfApplications: {
 		type: Number,
 		default: 0
+	},
+	dateAccountCreated: {
+		type: Date,
+		default: Date.now
 	}
 });
 
