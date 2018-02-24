@@ -30,6 +30,7 @@
 * OAuth2.0
 * Express.js
 * MongoDB (with Mongoose)
+* GraphQL
 * JavaScript (ES6)
 
 #### Development Environment
